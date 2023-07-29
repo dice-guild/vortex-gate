@@ -1,7 +1,6 @@
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BugReportIcon from '@mui/icons-material/BugReport';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import UploadIcon from '@mui/icons-material/Upload';
 import {
   Button, CardActionArea,

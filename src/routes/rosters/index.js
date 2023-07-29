@@ -3,7 +3,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
 import EditIcon from "@mui/icons-material/Edit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import UploadIcon from "@mui/icons-material/Upload";
 import ShareIcon from "@mui/icons-material/Share";
 import {
@@ -28,7 +27,7 @@ import { DataContext, useModal } from "hooks";
 import { get, omit } from "lodash";
 import { useSnackbar } from "notistack";
 import React from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import { AddList, UpdateList, ShareList } from "routes/rosters/modals";
 import { downloadFile, readFileContent } from "utils/files";
@@ -36,13 +35,11 @@ import { v4 as uuidv4 } from "uuid";
 import { PrettyHeader } from "components/pretty-header";
 
 export default React.memo((props) => {
-  const { gameName } = useParams();
   const [
     {
       data: nope,
       coreData,
       setData,
-      refreshAllData: refreshData,
       appState,
       userPrefs,
       setAppState,
@@ -176,19 +173,6 @@ export default React.memo((props) => {
         });
     }
     fileDialog.current.value = null;
-  };
-  const refreshFactions = () => {
-    refreshData(gameName)
-      .then(() => {
-        enqueueSnackbar(`Game data successfully updated.`, {
-          appearance: "success",
-        });
-      })
-      .catch((error) => {
-        enqueueSnackbar(`Game failed to fetch factions. ${error.message}`, {
-          appearance: "error",
-        });
-      });
   };
   const [showAddList, hideAddList] = useModal(
     ({ extraProps }) => (

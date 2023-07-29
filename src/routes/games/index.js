@@ -188,13 +188,6 @@ const Games = (props) => {
     setAppState({
       enableSearch: true,
       contextActions: [
-        {
-          name: 'Refresh',
-          icon: <RefreshIcon />,
-          onClick: () => {
-            refreshData()
-          }
-        },
         ...(!!userPrefs.developerMode ? [
           {
             name: 'Import',

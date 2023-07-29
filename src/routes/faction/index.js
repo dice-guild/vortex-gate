@@ -38,7 +38,6 @@ export default React.memo((props) => {
       data: someData,
       coreData,
       setData,
-      refreshAllData: refreshFaction,
       appState,
       setAppState,
       userPrefs,
@@ -77,19 +76,6 @@ export default React.memo((props) => {
       },
     };
     setData(newGameData);
-  };
-  const refreshFactionData = () => {
-    refreshFaction(gameName, factionName)
-      .then(() => {
-        enqueueSnackbar(`Faction data successfully updated.`, {
-          appearance: "success",
-        });
-      })
-      .catch((error) => {
-        enqueueSnackbar(`Faction failed to fetch factions. ${error.message}`, {
-          appearance: "error",
-        });
-      });
   };
   const uploadFaction = (event) => {
     event.preventDefault();
@@ -185,11 +171,6 @@ export default React.memo((props) => {
     setAppState({
       enableSearch: true,
       contextActions: [
-        {
-          name: "Refresh",
-          icon: <RefreshIcon />,
-          onClick: () => refreshFactionData(),
-        },
         ...(!!userPrefs.developerMode
           ? [
               {
@@ -245,9 +226,7 @@ export default React.memo((props) => {
     );
   }
   let TABS = {
-    Overview: (
-      <Overview data={data} faction={faction} />
-    ),
+    Overview: <Overview data={data} faction={faction} />,
     Units: (
       <Units
         data={data}

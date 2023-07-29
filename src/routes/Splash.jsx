@@ -3,6 +3,7 @@ import ExtensionIcon from "@mui/icons-material/Extension";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import {
   Box,
   Card,
@@ -27,10 +28,16 @@ import { colors } from "utils/colors";
 import { getHeaders } from "utils/images";
 import { MaterialRenderer } from "utils/markdown";
 import bgImage from "assets/background.jpg";
+import { DataContext } from "hooks";
+import { useContext } from "react";
+import { useSnackbar } from "notistack";
 
 export default function Home() {
   const navigate = useNavigate();
   const theme = useTheme();
+  const [{ refreshAllData: refreshData, setAppState }] =
+    useContext(DataContext);
+  const { enqueueSnackbar } = useSnackbar();
   const images = React.useMemo(() => shuffle(getHeaders()), []);
   const iconSize = "60px";
   const mrender = MaterialRenderer();
@@ -58,6 +65,41 @@ export default function Home() {
       color: colors.brown.import[500],
     },
   ];
+
+  const refreshFactions = () => {
+    refreshData()
+      .then(() => {
+        enqueueSnackbar(`Game data successfully updated.`, {
+          appearance: "success",
+        });
+      })
+      .catch((error) => {
+        enqueueSnackbar(`Game data failed to refresh. ${error.message}`, {
+          appearance: "error",
+        });
+      });
+  };
+
+  React.useEffect(() => {
+    setAppState({
+      enableSearch: false,
+      contextActions: [
+        {
+          name: "Refresh",
+          icon: <RefreshIcon />,
+          onClick: () => {
+            refreshFactions();
+          },
+        },
+      ],
+    });
+    return () => {
+      setAppState({
+        contextActions: [],
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -146,9 +188,9 @@ export default function Home() {
             destruction. Join the ranks of the valiant defenders or the
             ambitious conquerors in this breathtaking sci-fi saga, where the
             destiny of countless worlds depends on the outcome of the battle for
-            the Celestia Expanse. Prepare for an adrenaline-pumping adventure that
-            will challenge your wit, courage, and determination in the face of
-            the unknown. Are you ready to seize your place in this war-torn
+            the Celestia Expanse. Prepare for an adrenaline-pumping adventure
+            that will challenge your wit, courage, and determination in the face
+            of the unknown. Are you ready to seize your place in this war-torn
             cosmos and shape its destiny?
           </Typography>
 

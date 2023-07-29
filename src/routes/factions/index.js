@@ -1,7 +1,6 @@
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BugReportIcon from "@mui/icons-material/BugReport";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import UploadIcon from "@mui/icons-material/Upload";
 import InfoIcon from "@mui/icons-material/Info";
 import { Container } from "@mui/material";
@@ -30,7 +29,6 @@ const FactionsMain = () => {
       coreData,
       fetchGame,
       setData,
-      refreshAllData: refreshData,
       isLoading,
       appState,
       setAppState,
@@ -143,19 +141,6 @@ const FactionsMain = () => {
     );
     setCustomData(armyData);
   };
-  const refreshFactions = () => {
-    refreshData(gameName)
-      .then(() => {
-        enqueueSnackbar(`Game data successfully updated.`, {
-          appearance: "success",
-        });
-      })
-      .catch((error) => {
-        enqueueSnackbar(`Game failed to fetch factions. ${error.message}`, {
-          appearance: "error",
-        });
-      });
-  };
   const setCustomData = (passedData) => {
     const newGameData = {
       ...coreData,
@@ -183,11 +168,6 @@ const FactionsMain = () => {
     setAppState({
       enableSearch: true,
       contextActions: [
-        {
-          name: "Refresh",
-          icon: <RefreshIcon />,
-          onClick: () => refreshFactions(),
-        },
         ...(!!userPrefs.developerMode
           ? [
               {

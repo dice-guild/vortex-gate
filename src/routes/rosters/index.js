@@ -266,14 +266,7 @@ export default React.memo((props) => {
           onClick: () => {
             handleClick();
           },
-        },
-        {
-          name: "Refresh",
-          icon: <RefreshIcon />,
-          onClick: () => {
-            refreshFactions();
-          },
-        },
+        }
       ],
     });
     return () => {

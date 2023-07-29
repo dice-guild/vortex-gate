@@ -4,6 +4,7 @@ import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import CodeIcon from "@mui/icons-material/Code";
 import {
   Box,
   Card,
@@ -230,19 +231,16 @@ export default function Home() {
                 Strategic Gameplay
               </Typography>
               <Typography style={{ fontSize: 16 }} paragraph>
-                The rules employ alternating activation with a twist, in that
-                both players risk a certain amount of "Shock", pushing their
-                units to their limit each round to attempt to seize the
-                initiative. Additionally, units may be deployed in hidden
-                positions to attempt to outsmart or outbluff your opponent.
+                The rules employ alternating activations to keep both players
+                engaged and a two action system to keep each unit activation
+                dynamic and interesting.
               </Typography>
               <Typography style={{ fontSize: 16 }} paragraph>
-                The Shock system introduces a Command and Control element to
-                ensure that you will have to adapt to the changing battlefield
-                and use your Leaders to their full effect to keep your units
-                fighting at full efficiency. Crucially, these mechanics will
-                rarely cause you to lose a unit's entire activation, only weaken
-                them to avoid frustration.
+                Our Shock-based morale system ensures that you will have to
+                adapt to the changing battlefield and use your Leaders to their
+                full effect to keep your units fighting at full efficiency.
+                Crucially, these mechanics will rarely cause you to lose a
+                unit's entire activation, only weaken them to avoid frustration.
               </Typography>
             </Box>
           </Grid>
@@ -285,7 +283,7 @@ export default function Home() {
               flexDirection="column"
             >
               <div style={{ padding: "5px" }}>
-                <BuildIcon
+                <CodeIcon
                   style={{
                     fontSize: "100px",
                     color: theme.palette.primary.main,
@@ -293,13 +291,12 @@ export default function Home() {
                 />
               </div>
               <Typography variant="h5" gutterBottom>
-                Fully Mod-able
+                Open-source
               </Typography>
               <Typography style={{ fontSize: 16 }} paragraph>
-                All of our released game settings configuration files are fully
-                downloadable and editable with our developed tools to allow you
-                to create your own units, factions or even entirely new game
-                settings.
+                All of our released game data and the app itself are fully open
+                source to allow you to edit and suggest changes in the live
+                game.
               </Typography>
               <Typography style={{ fontSize: 16 }} paragraph>
                 The games are all about community-driven content and regular

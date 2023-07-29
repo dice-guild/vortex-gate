@@ -21,7 +21,6 @@ import React, { useContext, useState } from "react";
 import { useParams } from "react-router";
 import { DataAPI, mergeGlobalData } from "utils/data";
 import { readFileContent } from "utils/files";
-import { Focus } from "./focus";
 import { Overview } from "./overview";
 import { Powers } from "./powers";
 import { Relics } from "./relics";
@@ -50,13 +49,10 @@ export default React.memo((props) => {
   const nameFilter = appState?.searchText;
   let [activeTab, setActiveTab] = useQueryParams("tab", 0);
   const [filterByFocus] = useState(false);
-  const [subfaction, setSubfaction] = useState("none");
   const game = get(someData, `gameData`, {});
   const globalData = mergeGlobalData(game, someData);
   const data = DataAPI(game, globalData);
-  const faction = filterByFocus
-    ? data.getFactionWithSubfaction(factionName, subfaction)
-    : data.getFaction(factionName);
+  const faction = data.getFaction(factionName);
   const buyLinks = get(faction, "buyLinks", []);
   const rawFaction = data.getRawFaction(factionName);
   const DEFAULT_FILTER = {
@@ -66,7 +62,6 @@ export default React.memo((props) => {
   const [unitFilter] = useState(DEFAULT_FILTER);
   const powers =
     !isNil(rawFaction.powers) && Object.keys(rawFaction.powers).length;
-  const subfactionData = data.getSubfaction(factionName, subfaction);
   const { enqueueSnackbar } = useSnackbar();
   const fileDialog = React.useRef();
   const subfactions = Object.values(faction.subfactions || []);
@@ -251,13 +246,12 @@ export default React.memo((props) => {
   }
   let TABS = {
     Overview: (
-      <Overview data={data} faction={faction} subfaction={subfactionData} />
+      <Overview data={data} faction={faction} />
     ),
     Units: (
       <Units
         data={data}
         faction={faction}
-        subfactionId={subfaction}
         setData={setData}
         rawData={someData}
         userPrefs={userPrefs}
@@ -341,9 +335,7 @@ export default React.memo((props) => {
                 )}
               </Dropdown>
             )}
-            {`${faction.name}${
-              subfactionData.name ? ` - ${subfactionData.name}` : ""
-            }`}
+            {`${faction.name}`}
             {/* <small style={{ fontSize: '1rem' }}> {faction.version ? `(${faction.version})` : ""}</small> */}
           </>
         }

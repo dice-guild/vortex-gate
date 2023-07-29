@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.cffba31f.js",
+    "main.js": "/static/js/main.83b0517d.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
@@ -20,10 +20,10 @@
     "static/media/7_shock.md": "/static/media/7_shock.11680cfe8902e9fb7fd5.md",
     "index.html": "/index.html",
     "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.cffba31f.js.map": "/static/js/main.cffba31f.js.map"
+    "main.83b0517d.js.map": "/static/js/main.83b0517d.js.map"
   },
   "entrypoints": [
     "static/css/main.82ab7748.css",
-    "static/js/main.cffba31f.js"
+    "static/js/main.83b0517d.js"
   ]
 }

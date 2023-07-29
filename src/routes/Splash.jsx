@@ -168,7 +168,7 @@ export default function Home() {
           <Typography
             variant={fullScreen ? "h1" : "h3"}
             paragraph
-            align="center"
+            align={fullScreen ? "center" : "left"}
             sx={{
               mb: "0.5em",
               borderBottom: `5px solid ${theme.palette.primary.main}`,
@@ -222,7 +222,7 @@ export default function Home() {
         <Typography
           variant={fullScreen ? "h1" : "h3"}
           paragraph
-          align="center"
+          align={fullScreen ? "center" : "left"}
           sx={{
             mb: "0.5em",
             borderBottom: `5px solid ${theme.palette.primary.main}`,

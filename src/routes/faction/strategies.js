@@ -31,7 +31,6 @@ export const Strategies = (props) => {
           "cost",
         ]);
         const phaseData = data.getSubfaction(faction, phaseId);
-        console.log(phaseData);
         return (
           <>
             <div key={phaseKey} className="no-break">

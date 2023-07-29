@@ -69,8 +69,8 @@ export const Overview = (props) => {
               </Typography>
             }
           />
-          <CardContent>
-            <ReactMarkdown children={lore} className="rule-text" />
+          <CardContent style={{ paddingBottom: 0, paddingTop: 0 }}>
+            <ReactMarkdown children={lore} />
           </CardContent>
         </Card>
       )}

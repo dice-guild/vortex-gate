@@ -268,6 +268,7 @@ export const AddList = (props) => {
                 Cancel
               </Button>
               <Button
+                disabled={!pointLimit || !listName}
                 color="primary"
                 onClick={() => {
                   if (listName) {

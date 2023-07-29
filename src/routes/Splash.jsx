@@ -46,7 +46,7 @@ export default function Home() {
     {
       name: "Factions",
       icon: <ExtensionIcon style={{ fontSize: iconSize }} />,
-      text: "Browse all of the available game systems to experience.",
+      text: "Browse all of the available game factions to play.",
       to: "/factions",
       color: colors.green.import[900],
     },

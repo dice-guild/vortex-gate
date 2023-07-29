@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import React, { useEffect, useState } from "react";
-import { useLocation } from 'react-router';
+import { useLocation } from "react-router";
 import { CHAPTERS } from "routes/Rules";
 
 function getWindowDimensions() {
@@ -31,16 +31,16 @@ export function useWindowDimensions() {
 export const DataContext = React.createContext({});
 
 const breadCrumbDefaults = {
-  '': 'Home',
-  factions: 'Factions',
-  rules: 'Rules',
-  games: 'Games',
-  missions: 'Missions',
-  quickstart: 'Rules',
-  updates: 'Updates',
-  privacy: 'Privacy Policy',
-  lists: 'Rosters',
-  scenarios: 'Scenarios'
+  "": "Home",
+  factions: "Factions",
+  rules: "Rules",
+  games: "Games",
+  missions: "Missions",
+  quickstart: "Rules",
+  updates: "Updates",
+  privacy: "Privacy Policy",
+  lists: "Rosters",
+  scenarios: "Scenarios",
 };
 
 export function usePageTitle(opts = {}) {
@@ -50,22 +50,22 @@ export function usePageTitle(opts = {}) {
   const data = optData ?? contextData;
   const loc = useLocation();
   const path = optPath ?? loc.pathname;
-  const [locationTitle] = path.split('/').slice(-1);
+  const [locationTitle] = path.split("/").slice(-1);
   //const ignoredPathes = new Set(['lists']);
   const ignoredPathes = new Set([]);
   const titles = React.useMemo(() => {
     const breadCrumbTitles = {
-      ...breadCrumbDefaults
+      ...breadCrumbDefaults,
     };
-    Object.keys(get(data, 'gameData.games', {})).forEach((gameId) => {
-      const game = get(data, `gameData.games[${gameId}]`);
-      Object.keys(get(game, 'factions', {})).forEach((factionId) => {
-        const faction = get(data, `gameData.games[${gameId}].factions[${factionId}]`);
-        breadCrumbTitles[factionId] = faction.name;
-      });
-      breadCrumbTitles[gameId] = game.name;
+    const game = get(data, `gameData`);
+    Object.keys(get(game, "factions", {})).forEach((factionId) => {
+      const faction = get(
+        data,
+        `gameData.factions[${factionId}]`
+      );
+      breadCrumbTitles[factionId] = faction.name;
     });
-    const lists = get(data, 'lists', {});
+    const lists = get(data, "lists", {});
     Object.keys(lists).forEach((listId) => {
       const list = lists[listId];
       breadCrumbTitles[listId] = list.name;
@@ -78,8 +78,7 @@ export function usePageTitle(opts = {}) {
   let title = titles[locationTitle] || locationTitle;
   title = ignoredPathes.has(title) ? null : title;
   return title;
-};
+}
 
-export * from './use-data-fetcher';
-export * from './use-modal';
-
+export * from "./use-data-fetcher";
+export * from "./use-modal";

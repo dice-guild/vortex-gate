@@ -177,11 +177,33 @@ export default function Home() {
             Battles in the Celestia Expanse
           </Typography>
           <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-            Welcome to the epic and war-torn galaxy of Vortex Gate, where the
-            battle for control over these mysterious portals rages on. In the
-            distant reaches of space, powerful factions clash, each vying for
-            dominance over the Vortex Gates, as they grant unparalleled
-            strategic advantages in the interstellar conflict.
+            In the distant future, in a war-torn galaxy known as the Celestia
+            Expanse, countless planets and civilizations find themselves
+            embroiled in a seemingly unending conflict. The Celestia Expanse was
+            once a beacon of prosperity and interstellar cooperation, but it all
+            changed when the enigmatic Vortex Gate appeared at its center. The
+            Vortex Gate was a cosmic anomaly of immense power, emitting dark and
+            corrupt energies that spread like a plague throughout the galaxy. At
+            its heart lay an ancient and malevolent cosmic horror, dormant for
+            eons but now awakened by the ambitions and conflicts of the various
+            civilizations within the Celestia Expanse.
+          </Typography>
+          <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+            Humanity, at the forefront of exploration and colonization, had
+            formed the Stellar Vanguard, an elite interstellar marine force
+            dedicated to safeguarding the galaxy from threats. The Vanguard
+            stood as a symbol of hope and valor. Eager to harness the power of
+            the Vortex Gate for the benefit of mankind, the Stellar Vanguard
+            embarked on a daring mission to investigate the anomaly. Their
+            intentions were noble, driven by the belief that understanding the
+            gate's energies could provide an advantage against their enemies.
+            However, their encounter with the Vortex Gate proved catastrophic.
+            The corrupt cosmic horror within the gate saw an opportunity to
+            spread its malevolence further and exploited the Vanguard's
+            vulnerabilities. The dark energies of the Vortex Gate twisted their
+            minds, turning the once-virtuous Stellar Vanguard into the
+            malevolent and corrupted nightmarish beings, their souls and bodies
+            twisted by darkness.
           </Typography>
           <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
             The Vortex Gate is both a beacon of hope and a harbinger of
@@ -193,18 +215,27 @@ export default function Home() {
             of the unknown. Are you ready to seize your place in this war-torn
             cosmos and shape its destiny?
           </Typography>
-
-          <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-            Vortex Gate is a tactical miniature wargame designed for either
-            small skirmish engagements or large all out battles. It allows you
-            to experience your favorite settings and miniatures in a common set
-            of rules. Our simple to learn but deep to master rules provide a
-            fair set of rules for both competitive and casual players alike.
-          </Typography>
         </Box>
       </Container>
       <Divider sx={{ py: 2 }} />
       <Container>
+        <Typography
+          variant={fullScreen ? "h1" : "h3"}
+          paragraph
+          align="center"
+          sx={{
+            mb: "0.5em",
+            borderBottom: `5px solid ${theme.palette.primary.main}`,
+          }}
+        >
+          Key Game Features
+        </Typography>
+        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+          Vortex Gate is a tactical miniature wargame designed for either small
+          clashes or large all out battles. It allows you to use any miniatures
+          you like in our simple to learn but deep to master rules provide a
+          fair set of rules for both competitive and casual players alike.
+        </Typography>
         <Grid
           container
           rowSpacing={1}

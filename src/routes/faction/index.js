@@ -33,14 +33,7 @@ import { PrettyHeader } from "components/pretty-header";
 export default React.memo((props) => {
   const { factionName, gameName } = useParams();
   const [
-    {
-      data: someData,
-      coreData,
-      setData,
-      appState,
-      setAppState,
-      userPrefs,
-    },
+    { data: someData, coreData, setData, appState, setAppState, userPrefs },
   ] = useContext(DataContext);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -88,23 +81,11 @@ export default React.memo((props) => {
           } catch (e) {
             return Promise.reject(e);
           }
-          if (armyObject.games) {
-            const newArmyData = {
+          if (armyObject.factions) {
+            const newData = {
+              ...get(someData, `customData`),
               ...armyObject,
             };
-            setCustomData(newArmyData);
-            enqueueSnackbar(`Core data successfully imported.`, {
-              appearance: "success",
-            });
-          } else if (armyObject.factions) {
-            const newData = set(
-              { ...get(someData, "customData", {}) },
-              `games[${gameName}]`,
-              {
-                ...get(someData, `customData.games[${gameName}]`),
-                ...armyObject,
-              }
-            );
             setCustomData(newData);
             enqueueSnackbar(`Core data successfully imported.`, {
               appearance: "success",
@@ -114,13 +95,9 @@ export default React.memo((props) => {
             const factionId = faction.id;
             const newData = set(
               { ...get(someData, "customData", {}) },
-              `games[${gameName}].factions[${factionId}]`,
+              `factions[${factionId}]`,
               {
-                ...get(
-                  someData,
-                  `customData.games[${gameName}].factions[${factionId}]`,
-                  {}
-                ),
+                ...get(someData, `customData.factions[${factionId}]`, {}),
                 ...armyObject,
                 id: faction.id,
                 color: faction.color,

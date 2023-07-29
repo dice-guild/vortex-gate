@@ -73,29 +73,17 @@ const FactionsMain = () => {
           } catch (e) {
             return Promise.reject(e);
           }
-          if (armyObject.games) {
-            const newArmyData = {
-              ...armyObject,
-            };
-            setCustomData(newArmyData);
-            enqueueSnackbar(`Core data successfully imported.`, {
-              appearance: "success",
-            });
-          } else if (armyObject.factions) {
-            const newData = set(
-              `games[${gameName}]`,
-              { ...get(nope, `customData.games[${gameName}]`), ...armyObject },
-              get(nope, "customData", {})
-            );
+          if (armyObject.factions) {
+            const newData = { ...get(nope, `customData`), ...armyObject };
             setCustomData(newData);
             enqueueSnackbar(`Core data successfully imported.`, {
               appearance: "success",
             });
           } else if (armyObject.id) {
             const newData = set(
-              `games[${gameName}].factions[${armyObject.id}]`,
+              `factions[${armyObject.id}]`,
               {
-                ...get(`games[${gameName}].factions[${armyObject.id}]`, {}),
+                ...get(`factions[${armyObject.id}]`, {}),
                 ...armyObject,
               },
               get(nope, "customData", {})

@@ -1,4 +1,3 @@
-import BuildIcon from "@mui/icons-material/Build";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import MenuBookIcon from "@mui/icons-material/MenuBook";

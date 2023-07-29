@@ -1,13 +1,34 @@
-import { Delete, ExpandLess, ExpandMore, Visibility } from "@mui/icons-material";
 import {
-  Button, Checkbox, Chip, Dialog,
+  Delete,
+  ExpandLess,
+  ExpandMore,
+  Visibility,
+} from "@mui/icons-material";
+import {
+  Button,
+  Checkbox,
+  Chip,
+  Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle, Divider, FormControl,
-  FormControlLabel, FormGroup, IconButton, InputLabel, LinearProgress, ListItem,
+  DialogTitle,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  IconButton,
+  InputLabel,
+  LinearProgress,
+  ListItem,
   ListItemButton,
   ListItemText,
-  ListSubheader, MenuItem, Paper, Select, Stack, TextField, Typography
+  ListSubheader,
+  MenuItem,
+  Paper,
+  Select,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import useTheme from "@mui/material/styles/useTheme";
@@ -17,11 +38,18 @@ import { InputNumber } from "components/bootstrap";
 import { Dropdown } from "components/dropdown";
 import { PowerCard } from "components/roster/power-card";
 import { RelicCard } from "components/roster/relic-card";
-import { StrategyCard } from 'components/roster/strategy-card';
+import { StrategyCard } from "components/roster/strategy-card";
 import { UnitCard } from "components/roster/unit-card";
 import {
-  find, get, groupBy, isEqual, sortBy, sum,
-  toNumber, uniq, uniqBy
+  find,
+  get,
+  groupBy,
+  isEqual,
+  sortBy,
+  sum,
+  toNumber,
+  uniq,
+  uniqBy,
 } from "lodash";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -31,10 +59,17 @@ import { MarkdownRenderer } from "utils/markdown";
 import { getRandomItem } from "utils/math";
 
 const PowerSpecialtySelector = (props) => {
-  const { data: nope, faction, onChange = () => { }, value = 'none' } = props;
-  const powerCats = { 'none': { name: 'None' }, ...nope.getRawPowerCategories(faction) };
+  const { data: nope, faction, onChange = () => {}, value = "none" } = props;
+  const powerCats = {
+    none: { name: "None" },
+    ...nope.getRawPowerCategories(faction),
+  };
   const specialtyOptions = Object.keys(powerCats).map((cat, index) => {
-    return <MenuItem key={index} value={cat}>{powerCats[cat]?.name}</MenuItem>;
+    return (
+      <MenuItem key={index} value={cat}>
+        {powerCats[cat]?.name}
+      </MenuItem>
+    );
   });
   return (
     <FormGroup sx={{ my: 1 }}>
@@ -71,25 +106,34 @@ export const ChooseSubFaction = (props) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
-      <Dialog open onClose={hideModal} fullScreen={fullScreen} maxWidth="lg" fullWidth>
+      <Dialog
+        open
+        onClose={hideModal}
+        fullScreen={fullScreen}
+        maxWidth="lg"
+        fullWidth
+      >
         <DialogTitle closeButton>Change Focus</DialogTitle>
-        <DialogContent style={{ padding: 0 }} sx={{ backgroundColor: "background.paper" }}>
-          <Paper style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
+        <DialogContent
+          style={{ padding: 0 }}
+          sx={{ backgroundColor: "background.paper" }}
+        >
+          <Paper style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}>
             {subfactions.map((subfaction) => {
               return (
                 <ListItem
                   disablePadding
-                // secondaryAction={
-                //   <IconButton
-                //     sx={{}}
-                //     onClick={() => {
-                //       setSubFaction(forceId, subfaction.id);
-                //       hideModal();
-                //     }}
-                //   >
-                //     <AddIcon />
-                //   </IconButton>
-                // }
+                  // secondaryAction={
+                  //   <IconButton
+                  //     sx={{}}
+                  //     onClick={() => {
+                  //       setSubFaction(forceId, subfaction.id);
+                  //       hideModal();
+                  //     }}
+                  //   >
+                  //     <AddIcon />
+                  //   </IconButton>
+                  // }
                 >
                   <ListItemButton
                     onClick={() => {
@@ -98,8 +142,14 @@ export const ChooseSubFaction = (props) => {
                     }}
                   >
                     <ListItemText
-                      primary={<Typography fontWeight="bold">{`${subfaction.name}`}</Typography>}
-                      secondary={<Typography variant="body2">{subfaction.description}</Typography>}
+                      primary={
+                        <Typography fontWeight="bold">{`${subfaction.name}`}</Typography>
+                      }
+                      secondary={
+                        <Typography variant="body2">
+                          {subfaction.description}
+                        </Typography>
+                      }
                     />
                   </ListItemButton>
                 </ListItem>
@@ -118,12 +168,8 @@ export const ChooseSubFaction = (props) => {
 };
 
 export const AddLegend = (props) => {
-  const { hideModal, data, forceId, faction, addLegend, list } = props;
-  const legends = data.getRelics(faction);
-  const RELIC_TYPES = {
-    equipment: "Equipment",
-    ability: "Abilities",
-  };
+  const { hideModal, data, forceId, faction, addLegend } = props;
+  const legends = Object.values(get(faction, "relics", {}));
   const sortedLegends = sortBy(
     legends.map((legend) => ({
       ...legend,
@@ -131,103 +177,93 @@ export const AddLegend = (props) => {
     })),
     ["points", "name"]
   );
-  const listType = list.type || "competitive";
-  const listLegendSet = new Set(
-    get(list, "forces", [])
-      .map((force) => get(force, "legends", []).map((legend) => legend.id))
-      .flat()
-  );
-  const filteredLegends =
-    listType === "narrative"
-      ? sortedLegends
-      : sortedLegends.filter((legend) => !listLegendSet.has(legend.id));
-  const groupedRelics = groupBy(filteredLegends, (relic) =>
-    relic.type || relic.rule ? "ability" : "equipment"
-  );
-  const [ previewLegend, setPreviewLegend ] = React.useState(null);
+  const [previewLegend, setPreviewLegend] = React.useState(null);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
-      {!!previewLegend &&
+      {!!previewLegend && (
         <ViewLegend
           hideModal={() => setPreviewLegend(null)}
           data={data}
           faction={faction}
           legend={previewLegend}
-        />}
-      {!previewLegend && <Dialog open onClose={hideModal} fullScreen={fullScreen} maxWidth="lg" fullWidth>
-        <DialogTitle>Add Legend</DialogTitle>
-        <DialogContent style={{ padding: 0 }} sx={{ backgroundColor: "background.paper" }}>
-          <Paper style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
-            {Object.keys(RELIC_TYPES)
-              .filter(
-                (type) => !!groupedRelics[type] && !!groupedRelics[type].length
-              )
-              .map((relicType) => {
-                const relicsType = get(groupedRelics, `[${relicType}]`, []);
-                const sortedRelics = sortBy(relicsType, (relic) =>
-                  data.getRelicCost(relic, faction)
-                );
+        />
+      )}
+      {!previewLegend && (
+        <Dialog
+          open
+          onClose={hideModal}
+          fullScreen={fullScreen}
+          maxWidth="lg"
+          fullWidth
+        >
+          <DialogTitle>Add Legend</DialogTitle>
+          <DialogContent
+            style={{ padding: 0 }}
+            sx={{ backgroundColor: "background.paper" }}
+          >
+            <Paper
+              style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+            >
+              {sortedLegends.map((relic) => {
                 return (
-                  <>
-                    <ListSubheader sx={{ flex: 1, backgroundColor: 'background.paper', color: 'inherit' }}>
-                      <Typography
-                        sx={{ py: 1 }}
-                        fontWeight="bold"
-                        variant="h5"
+                  <div key={relic.id}>
+                    <ListItem
+                      disablePadding
+                      secondaryAction={
+                        <IconButton
+                          sx={{}}
+                          onClick={() => {
+                            setPreviewLegend(relic);
+                          }}
+                        >
+                          <Visibility />
+                        </IconButton>
+                      }
+                    >
+                      <ListItemButton
+                        onClick={() => {
+                          addLegend(forceId, { id: relic.id });
+                          hideModal();
+                        }}
                       >
-                        {RELIC_TYPES[relicType]}
-                      </Typography>
-                    </ListSubheader>
-                    {sortedRelics.map((relic) => {
-                      return (
-                        <div key={relic.id}>
-                          <ListItem
-                            disablePadding
-                          secondaryAction={
-                            <IconButton
-                              sx={{}}
-                              onClick={() => {
-                                setPreviewLegend(relic)
-                              }}
-                            >
-                              <Visibility />
-                            </IconButton>
-                          }
-                          >
-                            <ListItemButton
-                              onClick={() => {
-                                addLegend(forceId, { id: relic.id });
-                                hideModal();
-                              }}
-                            >
-                              <Stack direction="row" spacing={1}>
-                                <Box style={{ width: '8px', background: faction?.color || 'grey', flex: 'none' }} />
-                                <ListItemText
-                                  primary={<Typography fontWeight="bold">{`${relic.name} (${relic.points} pts)`}</Typography>}
-                                  secondary={<Typography variant="body2"><ReactMarkdown
-                                    children={relic.description}
-                                    className="rule-text"
-                                  /></Typography>}
+                        <Stack direction="row" spacing={1}>
+                          <Box
+                            style={{
+                              width: "8px",
+                              background: faction?.color || "grey",
+                              flex: "none",
+                            }}
+                          />
+                          <ListItemText
+                            primary={
+                              <Typography fontWeight="bold">{`${relic.name} (${relic.points} pts)`}</Typography>
+                            }
+                            secondary={
+                              <Typography variant="body2">
+                                <ReactMarkdown
+                                  children={relic.description}
+                                  className="rule-text"
                                 />
-                              </Stack>
-                            </ListItemButton>
-                          </ListItem>
-                        </div>
-                      );
-                    })}
-                  </>
+                              </Typography>
+                            }
+                          />
+                        </Stack>
+                      </ListItemButton>
+                    </ListItem>
+                  </div>
                 );
               })}
-          </Paper>
-        </DialogContent>
-        <DialogActions>
-          <Button color="primary" onClick={hideModal}>
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>}
+            </Paper>
+          </DialogContent>
+          <DialogActions>
+            <Button color="primary" onClick={hideModal}>
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };
@@ -257,9 +293,11 @@ export const AddForce = (props) => {
       "mercenaries",
     ];
   }
-  const categoryOrder = uniq(filteredAlliances.filter(
-    (cat) => unitCategories[cat] && unitCategories[cat].length
-  ));
+  const categoryOrder = uniq(
+    filteredAlliances.filter(
+      (cat) => unitCategories[cat] && unitCategories[cat].length
+    )
+  );
   // Subfactions
   const rawSubfactions = Object.values(
     data.getFaction(faction).subfactions || []
@@ -290,7 +328,9 @@ export const AddForce = (props) => {
           <>
             <DialogTitle closeButton>Choose Faction</DialogTitle>
             <DialogContent style={{ padding: 0 }}>
-              <Paper style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
+              <Paper
+                style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+              >
                 <>
                   {categoryOrder.map((allianceKey) => {
                     const theFactions = sortBy(
@@ -299,16 +339,16 @@ export const AddForce = (props) => {
                     );
                     const filteredFactions =
                       forces.length > 0 &&
-                        !listAlliance &&
-                        list.type !== "narrative"
+                      !listAlliance &&
+                      list.type !== "narrative"
                         ? theFactions.filter(
-                          (faction) => faction.id === firstFaction
-                        )
+                            (faction) => faction.id === firstFaction
+                          )
                         : theFactions;
                     const allianceData = data.getAlliance(allianceKey);
                     return (
                       <>
-                        <ListSubheader sx={{ flex: 1, color: 'inherit' }}>
+                        <ListSubheader sx={{ flex: 1, color: "inherit" }}>
                           <Typography
                             sx={{ py: 1 }}
                             fontWeight="bold"
@@ -322,16 +362,16 @@ export const AddForce = (props) => {
                           return (
                             <ListItem
                               disablePadding
-                            // secondaryAction={
-                            //   <IconButton
-                            //     sx={{}}
-                            //     onClick={() => {
-                            //       setFaction(org.id);
-                            //     }}
-                            //   >
-                            //     <AddIcon />
-                            //   </IconButton>
-                            // }
+                              // secondaryAction={
+                              //   <IconButton
+                              //     sx={{}}
+                              //     onClick={() => {
+                              //       setFaction(org.id);
+                              //     }}
+                              //   >
+                              //     <AddIcon />
+                              //   </IconButton>
+                              // }
                             >
                               <ListItemButton
                                 onClick={() => {
@@ -339,17 +379,29 @@ export const AddForce = (props) => {
                                 }}
                               >
                                 <Stack direction="row" spacing={1}>
-                                  <Box style={{ width: '8px', background: org.color, flex: 'none' }} />
+                                  <Box
+                                    style={{
+                                      width: "8px",
+                                      background: org.color,
+                                      flex: "none",
+                                    }}
+                                  />
                                   <ListItemText
                                     primary={
                                       <Typography fontWeight="bold">
                                         {`${org.name}`}
                                         <small>
-                                          {org.version ? ` (${org.version})` : ""}
+                                          {org.version
+                                            ? ` (${org.version})`
+                                            : ""}
                                         </small>
                                       </Typography>
                                     }
-                                    secondary={<Typography variant="body2">{`${org.description || ""}`}</Typography>}
+                                    secondary={
+                                      <Typography variant="body2">{`${
+                                        org.description || ""
+                                      }`}</Typography>
+                                    }
                                   />
                                 </Stack>
                               </ListItemButton>
@@ -372,28 +424,33 @@ export const AddForce = (props) => {
         {!!faction && (subFaction || !hasSubfactions) && (
           <>
             <DialogTitle closeButton>Add Force Organization</DialogTitle>
-            <DialogContent style={{ padding: 0 }} sx={{ backgroundColor: "background.paper" }}>
-              <Paper style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
+            <DialogContent
+              style={{ padding: 0 }}
+              sx={{ backgroundColor: "background.paper" }}
+            >
+              <Paper
+                style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+              >
                 {Object.keys(organizations).map((orgKey) => {
                   const org = organizations[orgKey];
                   return (
                     <ListItem
                       disablePadding
-                    // secondaryAction={
-                    //   <IconButton
-                    //     sx={{}}
-                    //     onClick={() => {
-                    //       addForce({
-                    //         id: orgKey,
-                    //         factionId: faction,
-                    //         subFactionId: subFaction || "none",
-                    //       });
-                    //       hideModal();
-                    //     }}
-                    //   >
-                    //     <AddIcon />
-                    //   </IconButton>
-                    // }
+                      // secondaryAction={
+                      //   <IconButton
+                      //     sx={{}}
+                      //     onClick={() => {
+                      //       addForce({
+                      //         id: orgKey,
+                      //         factionId: faction,
+                      //         subFactionId: subFaction || "none",
+                      //       });
+                      //       hideModal();
+                      //     }}
+                      //   >
+                      //     <AddIcon />
+                      //   </IconButton>
+                      // }
                     >
                       <ListItemButton
                         onClick={() => {
@@ -406,10 +463,22 @@ export const AddForce = (props) => {
                         }}
                       >
                         <Stack direction="row" spacing={1}>
-                          <Box style={{ width: '8px', background: factionData?.color || 'grey', flex: 'none' }} />
+                          <Box
+                            style={{
+                              width: "8px",
+                              background: factionData?.color || "grey",
+                              flex: "none",
+                            }}
+                          />
                           <ListItemText
-                            primary={<Typography fontWeight="bold">{`${org.name} (Cost ${org.cost})`}</Typography>}
-                            secondary={<Typography variant="body2">{org.description}</Typography>}
+                            primary={
+                              <Typography fontWeight="bold">{`${org.name} (Cost ${org.cost})`}</Typography>
+                            }
+                            secondary={
+                              <Typography variant="body2">
+                                {org.description}
+                              </Typography>
+                            }
                           />
                         </Stack>
                       </ListItemButton>
@@ -436,22 +505,27 @@ export const AddForce = (props) => {
         {hasSubfactions && !subFaction && !!faction && (
           <>
             <DialogTitle closeButton>Choose Focus</DialogTitle>
-            <DialogContent style={{ padding: 0 }} sx={{ backgroundColor: "background.paper" }}>
-              <Paper style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
+            <DialogContent
+              style={{ padding: 0 }}
+              sx={{ backgroundColor: "background.paper" }}
+            >
+              <Paper
+                style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+              >
                 {subfactions.map((subfaction) => {
                   return (
                     <ListItem
                       disablePadding
-                    // secondaryAction={
-                    //   <IconButton
-                    //     sx={{}}
-                    //     onClick={() => {
-                    //       setSubFaction(subfaction.id);
-                    //     }}
-                    //   >
-                    //     <AddIcon />
-                    //   </IconButton>
-                    // }
+                      // secondaryAction={
+                      //   <IconButton
+                      //     sx={{}}
+                      //     onClick={() => {
+                      //       setSubFaction(subfaction.id);
+                      //     }}
+                      //   >
+                      //     <AddIcon />
+                      //   </IconButton>
+                      // }
                     >
                       <ListItemButton
                         onClick={() => {
@@ -459,10 +533,24 @@ export const AddForce = (props) => {
                         }}
                       >
                         <Stack direction="row" spacing={1}>
-                          <Box style={{ width: '8px', background: factionData?.color || 'grey', flex: 'none' }} />
+                          <Box
+                            style={{
+                              width: "8px",
+                              background: factionData?.color || "grey",
+                              flex: "none",
+                            }}
+                          />
                           <ListItemText
-                            primary={<Typography fontWeight="bold">{subfaction.name}</Typography>}
-                            secondary={<Typography variant="body2">{subfaction.description}</Typography>}
+                            primary={
+                              <Typography fontWeight="bold">
+                                {subfaction.name}
+                              </Typography>
+                            }
+                            secondary={
+                              <Typography variant="body2">
+                                {subfaction.description}
+                              </Typography>
+                            }
                           />
                         </Stack>
                       </ListItemButton>
@@ -495,7 +583,7 @@ export const AddUnit = (props) => {
   const { hideModal, data, units, faction, addUnit, forceId } = props;
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const [ previewUnit, setPreviewUnit ] = React.useState(null);
+  const [previewUnit, setPreviewUnit] = React.useState(null);
   const sortedUnits = sortBy(
     units.map((unit) => ({
       ...unit,
@@ -505,59 +593,81 @@ export const AddUnit = (props) => {
   );
   return (
     <>
-      {!!previewUnit && <ViewUnit
-        unit={previewUnit}
-        faction={faction}
-        data={data}
-        showOptions={true}
-        hideModal={() => setPreviewUnit(null)}
-      />}
-      {!previewUnit && <Dialog open onClose={hideModal} fullScreen={fullScreen} maxWidth="lg" fullWidth>
-        <DialogTitle closeButton>
-          Add Unit
-        </DialogTitle>
-        <DialogContent style={{ padding: 0 }}>
-          <Paper style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
-            {sortedUnits.map((unit, index) => {
-              return (
-                <ListItem
-                  key={index}
-                  disablePadding
-                secondaryAction={
-                  <IconButton
-                    onClick={() => {
-                      setPreviewUnit(unit);
-                    }}
+      {!!previewUnit && (
+        <ViewUnit
+          unit={previewUnit}
+          faction={faction}
+          data={data}
+          showOptions={true}
+          hideModal={() => setPreviewUnit(null)}
+        />
+      )}
+      {!previewUnit && (
+        <Dialog
+          open
+          onClose={hideModal}
+          fullScreen={fullScreen}
+          maxWidth="lg"
+          fullWidth
+        >
+          <DialogTitle closeButton>Add Unit</DialogTitle>
+          <DialogContent style={{ padding: 0 }}>
+            <Paper
+              style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+            >
+              {sortedUnits.map((unit, index) => {
+                return (
+                  <ListItem
+                    key={index}
+                    disablePadding
+                    secondaryAction={
+                      <IconButton
+                        onClick={() => {
+                          setPreviewUnit(unit);
+                        }}
+                      >
+                        <Visibility />
+                      </IconButton>
+                    }
                   >
-                    <Visibility />
-                  </IconButton>
-                }
-                >
-                  <ListItemButton
-                    onClick={() => {
-                      addUnit(forceId, { id: unit.id });
-                      hideModal();
-                    }}
-                  >
-                    <Stack direction="row" spacing={1}>
-                      <Box style={{ width: '8px', background: faction?.color || 'grey', flex: 'none' }} />
-                      <ListItemText
-                        primary={<Typography fontWeight="bold">{`${unit.name} (${unit.points} pts)`}</Typography>}
-                        secondary={<Typography variant="body2">{unit.description}</Typography>}
-                      />
-                    </Stack>
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-          </Paper>
-        </DialogContent>
-        <DialogActions>
-          <Button color="primary" onClick={hideModal}>
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>}
+                    <ListItemButton
+                      onClick={() => {
+                        addUnit(forceId, { id: unit.id });
+                        hideModal();
+                      }}
+                    >
+                      <Stack direction="row" spacing={1}>
+                        <Box
+                          style={{
+                            width: "8px",
+                            background: faction?.color || "grey",
+                            flex: "none",
+                          }}
+                        />
+                        <ListItemText
+                          primary={
+                            <Typography fontWeight="bold">{`${unit.name} (${unit.points} pts)`}</Typography>
+                          }
+                          secondary={
+                            <Typography variant="body2">
+                              {unit.description}
+                            </Typography>
+                          }
+                        />
+                      </Stack>
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </Paper>
+          </DialogContent>
+          <DialogActions>
+            <Button color="primary" onClick={hideModal}>
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };
@@ -574,10 +684,14 @@ export const ViewStrategies = (props) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
-      <Dialog open onClose={hideModal} maxWidth="lg" fullWidth fullScreen={fullScreen}>
-        <DialogTitle closeButton>
-          Strategies
-        </DialogTitle>
+      <Dialog
+        open
+        onClose={hideModal}
+        maxWidth="lg"
+        fullWidth
+        fullScreen={fullScreen}
+      >
+        <DialogTitle closeButton>Strategies</DialogTitle>
         <DialogContent sx={{ backgroundColor: "background.paper" }}>
           {phaseOrder.map((phaseId, phaseIndex) => {
             const phaseStrategies = get(unitPhases, `[${phaseId}]`, []).map(
@@ -628,17 +742,21 @@ export const ViewPowers = (props) => {
   const strategies = data.getPowers(faction);
   const phases = { ...data.getRawPowerCategories(faction) };
   const unitPhases = { ...groupBy(strategies, "category") };
-  const phaseOrder = [undefined, ...Object.keys(phases)].filter(
-    (cat) => unitPhases[cat] && unitPhases[cat]
-  ).filter((cat) => powerCatSet.has(cat) || !cat);
+  const phaseOrder = [undefined, ...Object.keys(phases)]
+    .filter((cat) => unitPhases[cat] && unitPhases[cat])
+    .filter((cat) => powerCatSet.has(cat) || !cat);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Dialog open onClose={hideModal} maxWidth="lg" fullWidth fullScreen={fullScreen}>
-      <DialogTitle closeButton>
-        Powers
-      </DialogTitle>
-      <DialogContent sx={{ backgroundColor: 'background.paper' }}>
+    <Dialog
+      open
+      onClose={hideModal}
+      maxWidth="lg"
+      fullWidth
+      fullScreen={fullScreen}
+    >
+      <DialogTitle closeButton>Powers</DialogTitle>
+      <DialogContent sx={{ backgroundColor: "background.paper" }}>
         <>
           {!strategies.length && <p>{"No strategies found..."}</p>}
           {phaseOrder.map((phaseId, phaseIdx) => {
@@ -690,10 +808,16 @@ export const ViewUnit = (props) => {
   const { hideModal, data, unit, faction, showOptions = false } = props;
   const models = [
     ...get(unit, "models", []),
-    ...(unit.selectedModels ? data.getModelList(unit.selectedModels, faction) : []),
+    ...(unit.selectedModels
+      ? data.getModelList(unit.selectedModels, faction)
+      : []),
   ];
-  const weapons = unit.selectedWeapons ? data.getWeaponList(unit.selectedWeapons, faction) : undefined;
-  const rules = unit.selectedRules ? data.getRulesList(unit.selectedRules, faction) : undefined;
+  const weapons = unit.selectedWeapons
+    ? data.getWeaponList(unit.selectedWeapons, faction)
+    : undefined;
+  const rules = unit.selectedRules
+    ? data.getRulesList(unit.selectedRules, faction)
+    : undefined;
   const allWeaponRules = data.getAllWeaponRules(weapons, faction);
   const weaponsRules = uniqBy(allWeaponRules, (rule) => rule.id || rule);
   const unitSetbacks = get(unit, "selectedSetbacks", []).map((setback) =>
@@ -705,14 +829,20 @@ export const ViewUnit = (props) => {
   const unitLevel = Math.floor((unit.experience || 0) / 5);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const unitPowerSpecialty = unit?.powerSpecialty ? data.getPowerCategory(unit?.powerSpecialty, faction)?.name : undefined;
+  const unitPowerSpecialty = unit?.powerSpecialty
+    ? data.getPowerCategory(unit?.powerSpecialty, faction)?.name
+    : undefined;
   return (
     <>
-      <Dialog open maxWidth="lg" fullScreen={fullScreen} onClose={hideModal} fullWidth>
-        <DialogTitle>
-          View Unit
-        </DialogTitle>
-        <DialogContent sx={{ p: 1, backgroundColor: 'background.paper' }}>
+      <Dialog
+        open
+        maxWidth="lg"
+        fullScreen={fullScreen}
+        onClose={hideModal}
+        fullWidth
+      >
+        <DialogTitle>View Unit</DialogTitle>
+        <DialogContent sx={{ p: 1, backgroundColor: "background.paper" }}>
           <Box sx={{ mt: 1 }}>
             <UnitCard
               toggler={false}
@@ -817,7 +947,12 @@ To make a Reaction, a unit declares they are attempting to react to one of the a
 Reactions follow some special timing as they interrupt another unit's activation. Attack actions such as Fight or Shoot are performed simultaneously with the interrupted unit's activation. This means if a unit reacts to a shoot action, it performs its own shoot action simultaneously with the unit targeting it. All other actions are performed before the interrupted unit's activation such as Move actions or Evade actions.
 `;
 const ReferenceRules = styled.div`
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-bottom: 0.25rem;
   }
   h1 {
@@ -858,12 +993,12 @@ export const ViewActionReference = (props) => {
       <Dialog open maxWidth="lg" fullScreen={fullScreen} onClose={hideModal}>
         <DialogTitle>Rules Reference</DialogTitle>
         <DialogContent sx={{ p: 0 }}>
-          <Paper sx={{ px: 3 }} style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
+          <Paper
+            sx={{ px: 3 }}
+            style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+          >
             <ReferenceRules>
-              <ReactMarkdown
-                className="reference-text"
-                children={rules}
-              />
+              <ReactMarkdown className="reference-text" children={rules} />
             </ReferenceRules>
           </Paper>
         </DialogContent>
@@ -943,11 +1078,15 @@ export const ViewLegend = (props) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Dialog open maxWidth="lg" onClose={hideModal} fullScreen={fullScreen}>
-      <DialogTitle>
-        View Legend
-      </DialogTitle>
+      <DialogTitle>View Legend</DialogTitle>
       <DialogContent sx={{ p: 1, backgroundColor: "background.paper" }}>
-        <Box sx={{ mt: 1 }} height="100%" display="flex" justifyContent="center" alignItems="center">
+        <Box
+          sx={{ mt: 1 }}
+          height="100%"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
           <RelicCard faction={faction} relic={relic} data={data} />
         </Box>
       </DialogContent>
@@ -969,7 +1108,7 @@ export const EditUnit = (props) => {
     setUnitOptions,
     setUnitPowerSpecialty,
     forceId,
-    unitId
+    unitId,
   } = props;
   const unit = getUnit(forceId, unitId);
   const options = get(unit, "optionList", []);
@@ -977,7 +1116,10 @@ export const EditUnit = (props) => {
   const unitModels = sum(Object.values(get(unit, "modelCounts", {})));
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const hasPowerRule = find(get(unit, 'selectedRules', []), (rule) => rule.id === 'power' || rule === 'power');
+  const hasPowerRule = find(
+    get(unit, "selectedRules", []),
+    (rule) => rule.id === "power" || rule === "power"
+  );
   if (!unit) {
     return <div></div>;
   }
@@ -1015,27 +1157,26 @@ export const EditUnit = (props) => {
             return (
               <>
                 {!choiceLimit && limit === 0 && (
-                  <FormGroup
-                    controlId={`${index}${optIndex}`}
-                  >
-                    <FormControlLabel control={
-                      <Checkbox
-                        type="checkbox"
-                        color="primary"
-                        checked={value}
-                        disabled={shouldDisable}
-                        onChange={changeFuncCheck}
-                      />
-                    } label={`${option.list.length === 1 ? option.option : ""
-                      } ${opt.text}`} />
+                  <FormGroup controlId={`${index}${optIndex}`}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          type="checkbox"
+                          color="primary"
+                          checked={value}
+                          disabled={shouldDisable}
+                          onChange={changeFuncCheck}
+                        />
+                      }
+                      label={`${
+                        option.list.length === 1 ? option.option : ""
+                      } ${opt.text}`}
+                    />
                   </FormGroup>
                 )}
                 {limit > 1 && choiceLimit > 1 && (
-                  <FormGroup
-                    controlId={`${index}${optIndex}`}
-                    sx={{ mb: 1 }}
-                  >
-                    <label style={{ marginBottom: '0.5em' }}>
+                  <FormGroup controlId={`${index}${optIndex}`} sx={{ mb: 1 }}>
+                    <label style={{ marginBottom: "0.5em" }}>
                       {option.list.length === 1 && <>{option.option}</>}{" "}
                       {opt.text}
                     </label>
@@ -1052,20 +1193,22 @@ export const EditUnit = (props) => {
                   </FormGroup>
                 )}
                 {(choiceLimit === 1 || limit === 1) && (
-                  <FormGroup
-                    controlId={`${index}${optIndex}`}
-                  >
-                    <FormControlLabel control={
-                      <Checkbox
-                        labelPlacement="start"
-                        type="checkbox"
-                        color="primary"
-                        checked={value}
-                        disabled={shouldDisable}
-                        onChange={changeFuncCheck}
-                      />}
-                      label={`${option.list.length === 1 ? option.option : ""
-                        } ${opt.text}`} />
+                  <FormGroup controlId={`${index}${optIndex}`}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          labelPlacement="start"
+                          type="checkbox"
+                          color="primary"
+                          checked={value}
+                          disabled={shouldDisable}
+                          onChange={changeFuncCheck}
+                        />
+                      }
+                      label={`${
+                        option.list.length === 1 ? option.option : ""
+                      } ${opt.text}`}
+                    />
                   </FormGroup>
                 )}
               </>
@@ -1078,7 +1221,13 @@ export const EditUnit = (props) => {
   };
   return (
     <>
-      <Dialog open onClose={hideModal} fullScreen={fullScreen} maxWidth="lg" fullWidth>
+      <Dialog
+        open
+        onClose={hideModal}
+        fullScreen={fullScreen}
+        maxWidth="lg"
+        fullWidth
+      >
         <DialogTitle>
           {`${unit.customName || unit.name} `}{" "}
           <small>
@@ -1087,15 +1236,31 @@ export const EditUnit = (props) => {
           </small>
         </DialogTitle>
         <DialogContent sx={{ p: 0 }}>
-          <Paper style={{ height: '100%', borderRadius: 0, overflow: 'auto' }} sx={{ p: 2 }}>
+          <Paper
+            style={{ height: "100%", borderRadius: 0, overflow: "auto" }}
+            sx={{ p: 2 }}
+          >
             <FormGroup>
               <div>
-                {!!hasPowerRule && <div>
-                  <div className="d-flex justify-content-center flex-column">
-                    <PowerSpecialtySelector value={unit?.powerSpecialty} onChange={(event) => setUnitPowerSpecialty(forceId, unitId, event.target.value)} data={data} faction={faction} />
+                {!!hasPowerRule && (
+                  <div>
+                    <div className="d-flex justify-content-center flex-column">
+                      <PowerSpecialtySelector
+                        value={unit?.powerSpecialty}
+                        onChange={(event) =>
+                          setUnitPowerSpecialty(
+                            forceId,
+                            unitId,
+                            event.target.value
+                          )
+                        }
+                        data={data}
+                        faction={faction}
+                      />
+                    </div>
+                    <Box sx={{ py: 1 }} />
                   </div>
-                  <Box sx={{ py: 1 }} />
-                </div>}
+                )}
                 {options.map((option, index) => {
                   return (
                     <div>
@@ -1126,13 +1291,7 @@ export const EditUnit = (props) => {
 };
 
 export const RenameUnit = (props) => {
-  const {
-    hideModal,
-    getUnit,
-    setUnitName,
-    forceId,
-    unitId
-  } = props;
+  const { hideModal, getUnit, setUnitName, forceId, unitId } = props;
   const unit = getUnit(forceId, unitId);
   const unitModels = sum(Object.values(get(unit, "modelCounts", {})));
   const theme = useTheme();
@@ -1142,7 +1301,13 @@ export const RenameUnit = (props) => {
   }
   return (
     <>
-      <Dialog open onClose={hideModal} fullScreen={fullScreen} maxWidth="lg" fullWidth>
+      <Dialog
+        open
+        onClose={hideModal}
+        fullScreen={fullScreen}
+        maxWidth="lg"
+        fullWidth
+      >
         <DialogTitle>
           {`${unit.customName || unit.name} `}{" "}
           <small>
@@ -1151,7 +1316,10 @@ export const RenameUnit = (props) => {
           </small>
         </DialogTitle>
         <DialogContent sx={{ p: 0 }}>
-          <Paper style={{ height: '100%', borderRadius: 0, overflow: 'auto' }} sx={{ px: 2 }}>
+          <Paper
+            style={{ height: "100%", borderRadius: 0, overflow: "auto" }}
+            sx={{ px: 2 }}
+          >
             <FormControl fullWidth sx={{ mt: 2 }}>
               <TextField
                 fullWidth
@@ -1235,24 +1403,36 @@ export const EditUnitCampaign = (props) => {
   }
   return (
     <>
-      <Dialog open onClose={hideModal} fullScreen={fullScreen} maxWidth="lg" fullWidth>
+      <Dialog
+        open
+        onClose={hideModal}
+        fullScreen={fullScreen}
+        maxWidth="lg"
+        fullWidth
+      >
         <DialogTitle>
           {`${unit.customName || unit.name}`}{" "}
-          <small>
-            {`(${unit.points} pts)`}
-          </small>
+          <small>{`(${unit.points} pts)`}</small>
         </DialogTitle>
         <DialogContent style={{ padding: 0 }}>
-          <Paper sx={{ px: 3 }} style={{ height: '100%', borderRadius: 0, overflowY: 'auto' }}>
+          <Paper
+            sx={{ px: 3 }}
+            style={{ height: "100%", borderRadius: 0, overflowY: "auto" }}
+          >
             <div>
               <Typography variant="h5" sx={{ pt: 2, pb: 1 }} gutterBottom>
                 Unit Rank
               </Typography>
-              {formattedLevel}, {unitLevel} Perk{unitLevel !== 1 ? 's' : ''}
+              {formattedLevel}, {unitLevel} Perk{unitLevel !== 1 ? "s" : ""}
               <Typography variant="h5" sx={{ pt: 2, pb: 1 }} gutterBottom>
                 Next Level
               </Typography>
-              <Stack sx={{ mb: 2 }} direction="row" alignItems="center" flexWrap={true}>
+              <Stack
+                sx={{ mb: 2 }}
+                direction="row"
+                alignItems="center"
+                flexWrap={true}
+              >
                 <LinearProgress
                   disabled={isMaxLevel}
                   variant="determinate"
@@ -1301,7 +1481,10 @@ export const EditUnitCampaign = (props) => {
                   color="primary"
                   onClick={() =>
                     updateUnit(forceId, unitId, {
-                      experience: Math.min(Math.max((unit.experience || 0) + 1, 0), maxExp),
+                      experience: Math.min(
+                        Math.max((unit.experience || 0) + 1, 0),
+                        maxExp
+                      ),
                     })
                   }
                 >
@@ -1315,7 +1498,10 @@ export const EditUnitCampaign = (props) => {
                   color="primary"
                   onClick={() =>
                     updateUnit(forceId, unitId, {
-                      experience: Math.min(Math.max((unit.experience || 0) + 5, 0), maxExp),
+                      experience: Math.min(
+                        Math.max((unit.experience || 0) + 5, 0),
+                        maxExp
+                      ),
                     })
                   }
                 >
@@ -1343,64 +1529,87 @@ export const EditUnitCampaign = (props) => {
               </Stack>
             </div>
             <Divider />
-            {!!selectedSetbacks.size && <div>
-              <Dropdown>
-                {({ handleClose, open, handleOpen, anchorElement }) => (
-                  <>
-                    <ListItemButton sx={{ px: 0 }} disabled={unitSetbacksData?.length < 1} onClick={() => open ? handleClose() : handleOpen()}>
-                      <ListItemText primary={
-                        <Typography variant="h5">
-                          Injuries
-                          <Chip sx={{ ml: 1 }} size="small" variant="outlined" label={unitSetbacksData?.length} />
-                        </Typography>
-                      } />
-                      {unitSetbacksData?.length > 0 && <span>{open ? <ExpandLess /> : <ExpandMore />}</span>}
-                    </ListItemButton>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                      <div>
-                        {unitSetbacksData.map((setback, index) => {
-                          const setbackCost = data.resolvePoints(setback.points, { unit });
-                          return (
-                            <ListItem
-                              key={index}
-                              sx={{ p: 0 }}
-                              secondaryAction={
-                                <IconButton
-                                  sx={{ mr: -3 }}
+            {!!selectedSetbacks.size && (
+              <div>
+                <Dropdown>
+                  {({ handleClose, open, handleOpen, anchorElement }) => (
+                    <>
+                      <ListItemButton
+                        sx={{ px: 0 }}
+                        disabled={unitSetbacksData?.length < 1}
+                        onClick={() => (open ? handleClose() : handleOpen())}
+                      >
+                        <ListItemText
+                          primary={
+                            <Typography variant="h5">
+                              Injuries
+                              <Chip
+                                sx={{ ml: 1 }}
+                                size="small"
+                                variant="outlined"
+                                label={unitSetbacksData?.length}
+                              />
+                            </Typography>
+                          }
+                        />
+                        {unitSetbacksData?.length > 0 && (
+                          <span>{open ? <ExpandLess /> : <ExpandMore />}</span>
+                        )}
+                      </ListItemButton>
+                      <Collapse in={open} timeout="auto" unmountOnExit>
+                        <div>
+                          {unitSetbacksData.map((setback, index) => {
+                            const setbackCost = data.resolvePoints(
+                              setback.points,
+                              { unit }
+                            );
+                            return (
+                              <ListItem
+                                key={index}
+                                sx={{ p: 0 }}
+                                secondaryAction={
+                                  <IconButton
+                                    sx={{ mr: -3 }}
+                                    onClick={() => {
+                                      selectedSetbacks.delete(setback.id);
+                                      updateUnit(forceId, unitId, {
+                                        // experience: Math.max((unit.experience || 0) - 5, 0),
+                                        selectedSetbacks:
+                                          Array.from(selectedSetbacks),
+                                      });
+                                    }}
+                                  >
+                                    <Delete />
+                                  </IconButton>
+                                }
+                              >
+                                <ListItemButton
+                                  sx={{ p: 0 }}
                                   onClick={() => {
                                     selectedSetbacks.delete(setback.id);
                                     updateUnit(forceId, unitId, {
                                       // experience: Math.max((unit.experience || 0) - 5, 0),
-                                      selectedSetbacks: Array.from(selectedSetbacks),
+                                      selectedSetbacks:
+                                        Array.from(selectedSetbacks),
                                     });
                                   }}
                                 >
-                                  <Delete />
-                                </IconButton>
-                              }
-                            >
-                              <ListItemButton sx={{ p: 0 }} onClick={() => {
-                                selectedSetbacks.delete(setback.id);
-                                updateUnit(forceId, unitId, {
-                                  // experience: Math.max((unit.experience || 0) - 5, 0),
-                                  selectedSetbacks: Array.from(selectedSetbacks),
-                                });
-                              }}>
-                                <ListItemText
-                                  primary={`${setback.name} (${setbackCost} pts)`}
-                                  secondary={setback.description}
-                                />
-                              </ListItemButton>
-                            </ListItem>
-                          );
-                        })}
-                      </div>
-                    </Collapse>
-                  </>
-                )}
-              </Dropdown>
-            <Divider />
-            </div>}
+                                  <ListItemText
+                                    primary={`${setback.name} (${setbackCost} pts)`}
+                                    secondary={setback.description}
+                                  />
+                                </ListItemButton>
+                              </ListItem>
+                            );
+                          })}
+                        </div>
+                      </Collapse>
+                    </>
+                  )}
+                </Dropdown>
+                <Divider />
+              </div>
+            )}
             <div>
               {perkOrder.map((level) => {
                 const thePerks = sortBy(
@@ -1413,28 +1622,47 @@ export const EditUnitCampaign = (props) => {
                     <Dropdown>
                       {({ handleClose, open, handleOpen, anchorElement }) => (
                         <>
-                          <ListItemButton sx={{ px: 0 }} onClick={() => open ? handleClose() : handleOpen()}>
-                            <ListItemText primary={
-                              <Box display="flex">
-                                <Typography variant="h5">{`${formatLevel(level)} Perks`}{" "}
-                                  <Chip sx={{ ml: 1 }} size="small" variant="outlined" label={`${availablePerks}`} />
-                                </Typography>
-                              </Box>
-                            } />
+                          <ListItemButton
+                            sx={{ px: 0 }}
+                            onClick={() =>
+                              open ? handleClose() : handleOpen()
+                            }
+                          >
+                            <ListItemText
+                              primary={
+                                <Box display="flex">
+                                  <Typography variant="h5">
+                                    {`${formatLevel(level)} Perks`}{" "}
+                                    <Chip
+                                      sx={{ ml: 1 }}
+                                      size="small"
+                                      variant="outlined"
+                                      label={`${availablePerks}`}
+                                    />
+                                  </Typography>
+                                </Box>
+                              }
+                            />
                             {open ? <ExpandLess /> : <ExpandMore />}
                           </ListItemButton>
                           <Collapse in={open} timeout="auto" unmountOnExit>
                             <div>
                               {thePerks.map((perk) => {
-                                const perkCost = data.resolvePoints(perk.points, {
-                                  unit,
-                                });
+                                const perkCost = data.resolvePoints(
+                                  perk.points,
+                                  {
+                                    unit,
+                                  }
+                                );
                                 return (
                                   <ListItem
                                     sx={{ p: 0 }}
                                     secondaryAction={
                                       <Checkbox
-                                        disabled={!canGetPerk(level) && !selectedPerks.has(perk.id)}
+                                        disabled={
+                                          !canGetPerk(level) &&
+                                          !selectedPerks.has(perk.id)
+                                        }
                                         sx={{ mr: -3 }}
                                         checked={selectedPerks.has(perk.id)}
                                         onChange={() => {
@@ -1457,23 +1685,30 @@ export const EditUnitCampaign = (props) => {
                                       />
                                     }
                                   >
-                                    <ListItemButton sx={{ p: 0 }} disabled={!canGetPerk(level) && !selectedPerks.has(perk.id)} onClick={() => {
-                                      if (!selectedPerks.has(perk.id)) {
-                                        selectedPerks.add(perk.id);
-                                        setUnitPerks(
-                                          forceId,
-                                          unitId,
-                                          Array.from(selectedPerks)
-                                        );
-                                      } else {
-                                        selectedPerks.delete(perk.id);
-                                        setUnitPerks(
-                                          forceId,
-                                          unitId,
-                                          Array.from(selectedPerks)
-                                        );
+                                    <ListItemButton
+                                      sx={{ p: 0 }}
+                                      disabled={
+                                        !canGetPerk(level) &&
+                                        !selectedPerks.has(perk.id)
                                       }
-                                    }}>
+                                      onClick={() => {
+                                        if (!selectedPerks.has(perk.id)) {
+                                          selectedPerks.add(perk.id);
+                                          setUnitPerks(
+                                            forceId,
+                                            unitId,
+                                            Array.from(selectedPerks)
+                                          );
+                                        } else {
+                                          selectedPerks.delete(perk.id);
+                                          setUnitPerks(
+                                            forceId,
+                                            unitId,
+                                            Array.from(selectedPerks)
+                                          );
+                                        }
+                                      }}
+                                    >
                                       <ListItemText
                                         primary={`${perk.name} (${perkCost} pts)`}
                                         secondary={`${perk.description}`}

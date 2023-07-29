@@ -1,15 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { RelicCard } from "components/roster/relic-card";
 import { get, groupBy, sortBy } from "lodash";
-import React from "react";
 
 export const Relics = (props) => {
   const { data, faction, nameFilter } = props;
-
-  const RELIC_TYPES = {
-    equipment: "Equipment",
-    ability: "Abilities",
-  };
 
   const nameFilterer = (relic) => {
     if (!nameFilter) {
@@ -23,14 +17,15 @@ export const Relics = (props) => {
 
   const relics = data.getRelics(faction).filter(nameFilterer);
   const groupedRelics = groupBy(relics, (relic) =>
-    relic.type || relic.rule ? "ability" : "equipment"
+    relic.source
   );
+  const relicOrder = [faction?.name, ...Object.keys(groupedRelics).filter((key) => key !== faction?.name).sort()];
 
   return (
     <div>
       {!relics.length && <p>{"No legends found..."}</p>}
       <div>
-        {Object.keys(RELIC_TYPES)
+        {relicOrder
           .filter(
             (type) => !!groupedRelics[type] && !!groupedRelics[type].length
           )
@@ -58,10 +53,10 @@ export const Relics = (props) => {
                     component="div"
                     align="center"
                   >
-                    {RELIC_TYPES[relicType]}
+                    {relicType}
                   </Typography>
                 </div>
-                <div className="two-columns">
+                <div>
                   {sortedRelics.map((relic, index) => {
                     return (
                       <Box sx={{ mb: 2 }} style={{ breakInside: "avoid" }} key={index}>

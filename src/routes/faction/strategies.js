@@ -40,10 +40,10 @@ export const Strategies = (props) => {
                 component="div"
                 align="center"
               >
-                {phaseData.name || "Faction"}
+                {phaseData.name || faction?.name}
               </Typography>
             </div>
-            <div className="two-columns">
+            <div>
               {sortedStrategies.map((strategy, index) => (
                 <div key={index} className="no-break">
                   <Box sx={{ mb: 2 }}>

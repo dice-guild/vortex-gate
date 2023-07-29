@@ -1,12 +1,16 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {
   Box,
-  CardHeader, ListItem, ListItemButton, ListItemText, Typography
+  CardHeader,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { get, sortBy } from "lodash";
-import React from "react";
+import ReactMarkdown from "react-markdown";
 import { getTextColor, hexToRgb } from "utils/colors";
 
 export const Overview = (props) => {
@@ -17,8 +21,7 @@ export const Overview = (props) => {
     : "white";
   const background = faction.background;
   const description = faction.description;
-  const strengths = faction.strengths;
-  const weaknesses = faction.weaknesses;
+  const lore = faction.lore;
   const powers = get(faction, "buyLinks", []).filter((list) =>
     nameFilter
       ? list.name.toLowerCase().includes(nameFilter.toLowerCase())
@@ -27,15 +30,11 @@ export const Overview = (props) => {
   const sortedPowers = sortBy(powers, (power) => power.name);
   return (
     <Box sx={{ mt: 2 }}>
-      {!background &&
-        !description &&
-        !strengths &&
-        !weaknesses &&
-        !sortedPowers && (
-          <div>
-            <p>{`No information available...`}</p>
-          </div>
-        )}
+      {!background && !description && !lore && !sortedPowers && (
+        <div>
+          <p>{`No information available...`}</p>
+        </div>
+      )}
 
       {!!description && (
         <Card
@@ -55,24 +54,26 @@ export const Overview = (props) => {
           <CardContent>{description}</CardContent>
         </Card>
       )}
-      {/* {!!background && <div className="unit-card" style={{ marginBottom: '15px', borderColor: factionColor }}>
-        <div style={thStyle} className="unit-card-title">
-          <h4>{'Background'}</h4>
-        </div>
-        <div className="unit-card-body">
-          {background}
-        </div>
-      </div>} */}
-      {/* {!!strengths && <div>
-        <h4>{'Strengths'}</h4>
-        <p>{strengths}</p>
-        <hr />
-      </div>}
-      {!!weaknesses && <div>
-        <h4>{'Weaknesses'}</h4>
-        <p>{weaknesses}</p>
-        <hr />
-      </div>} */}
+      {!!lore && (
+        <Card
+          sx={{
+            border: `2px solid ${factionColor}`,
+            mb: 2,
+          }}
+        >
+          <CardHeader
+            sx={{ backgroundColor: factionColor, color: textColor, py: 1 }}
+            title={
+              <Typography variant="h5" component="div">
+                {"Lore Details"}
+              </Typography>
+            }
+          />
+          <CardContent>
+            <ReactMarkdown children={lore} className="rule-text" />
+          </CardContent>
+        </Card>
+      )}
       {!!sortedPowers && !!sortedPowers.length && (
         <Card
           sx={{
@@ -90,11 +91,10 @@ export const Overview = (props) => {
           />
           <CardContent style={{ padding: 0 }}>
             {sortedPowers.map((list) => (
-              <ListItem
-                sx={{ p: 0 }}
-                key={list.name}
-              >
-                <ListItemButton onClick={() => window.open(list.link, "_blank")}>
+              <ListItem sx={{ p: 0 }} key={list.name}>
+                <ListItemButton
+                  onClick={() => window.open(list.link, "_blank")}
+                >
                   <ListItemText
                     id={list.name}
                     primary={list.name}

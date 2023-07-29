@@ -22,7 +22,7 @@ export const Weapons = React.memo((props) => {
     <Box sx={{ mt: 2 }}>
       {!weapons.length && <p>{"No weapons found..."}</p>}
       {!!weapons.length && (
-        <div className="two-columns">
+        <div>
           {weaponsSorted.map((rule, index) => (
             <div style={{ breakInside: "avoid-column" }} key={index}>
               <Card

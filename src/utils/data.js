@@ -327,7 +327,12 @@ export const DataAPI = (data, root = {}) => {
       powers: {
         ...mapValues(globalPowers, (strat) => ({
           ...strat,
-          source: `Core`,
+          source: hasSubfactions(strat)
+            ? `Core - ${getSubfactionNameList(
+                strat.subfactions,
+                subfactionList
+              )}`
+            : `Core`,
         })),
         ...mapValues(faction.powers || {}, (strat) => ({
           ...strat,
@@ -370,7 +375,12 @@ export const DataAPI = (data, root = {}) => {
       relics: {
         ...mapValues(globalRelics, (strat) => ({
           ...strat,
-          source: `Core`,
+          source: hasSubfactions(strat)
+            ? `Core - ${getSubfactionNameList(
+                strat.subfactions,
+                subfactionList
+              )}`
+            : `Core`,
         })),
         ...mapValues(faction.relics || {}, (strat) => ({
           ...strat,

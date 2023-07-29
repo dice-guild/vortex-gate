@@ -41,7 +41,7 @@ export const Powers = (props) => {
                 component="div"
                 align="center"
               >
-                {phaseData.name || "Any Specialty"}
+                {phaseData.name || "Faction"}
               </Typography>
             </div>
             <div className="two-columns">

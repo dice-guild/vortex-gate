@@ -49,7 +49,7 @@ export default React.memo((props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const nameFilter = appState?.searchText;
   let [activeTab, setActiveTab] = useQueryParams("tab", 0);
-  const [filterByFocus] = useState(true);
+  const [filterByFocus] = useState(false);
   const [subfaction, setSubfaction] = useState("none");
   const game = get(someData, `gameData`, {});
   const globalData = mergeGlobalData(game, someData);
@@ -271,16 +271,16 @@ export default React.memo((props) => {
       <Strategies data={data} faction={faction} nameFilter={nameFilter} />
     ),
     Legends: <Relics data={data} faction={faction} nameFilter={nameFilter} />,
-    Focus: (
-      <Focus
-        data={data}
-        faction={faction}
-        nameFilter={nameFilter}
-        subfactions={subfactions}
-        setSubfaction={setSubfaction}
-        subfaction={subfaction}
-      />
-    ),
+    // Focus: (
+    //   <Focus
+    //     data={data}
+    //     faction={faction}
+    //     nameFilter={nameFilter}
+    //     subfactions={subfactions}
+    //     setSubfaction={setSubfaction}
+    //     subfaction={subfaction}
+    //   />
+    // ),
     Weapons: <Weapons data={data} faction={faction} nameFilter={nameFilter} />,
     Rules: <Rules data={data} faction={faction} nameFilter={nameFilter} />,
   };

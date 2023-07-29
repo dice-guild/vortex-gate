@@ -13,9 +13,9 @@ export const Strategies = (props) => {
         ? strategy.name.toLowerCase().includes(nameFilter.toLowerCase())
         : true
     );
-  const phases = { ...data.getRawPhases() };
-  const unitPhases = { ...groupBy(strategies, "phase") };
-  const phaseOrder = [...Object.keys(phases), undefined].filter(
+  const phases = { ...data.getFaction(faction)?.subfactions };
+  const unitPhases = { ...groupBy(strategies, (strategy) => strategy?.subfactions?.[0]) };
+  const phaseOrder = [undefined,  ...Object.keys(phases)].filter(
     (cat) => unitPhases[cat] && unitPhases[cat]
   );
   return (
@@ -30,7 +30,8 @@ export const Strategies = (props) => {
           "source",
           "cost",
         ]);
-        const phaseData = data.getPhase(phaseId);
+        const phaseData = data.getSubfaction(faction, phaseId);
+        console.log(phaseData);
         return (
           <>
             <div key={phaseKey} className="no-break">
@@ -40,7 +41,7 @@ export const Strategies = (props) => {
                 component="div"
                 align="center"
               >
-                {phaseData.name || "Any Phase"}
+                {phaseData.name || "Faction"}
               </Typography>
             </div>
             <div className="two-columns">

@@ -535,7 +535,7 @@ export const DataAPI = (data, root = {}) => {
     if (!faction) {
       return [];
     }
-    const relics = { ...globalRelics, ...get(faction, "relics", {}) };
+    const relics = { ...get(faction, "relics", {}) };
     return sortBy(
       Object.keys(relics).map((key) => ({
         id: key,

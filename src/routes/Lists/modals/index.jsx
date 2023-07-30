@@ -169,7 +169,7 @@ export const ChooseSubFaction = (props) => {
 
 export const AddLegend = (props) => {
   const { hideModal, data, forceId, faction, addLegend } = props;
-  const legends = Object.values(get(faction, "relics", {}));
+  const legends = data.getRelics(faction);
   const sortedLegends = sortBy(
     legends.map((legend) => ({
       ...legend,

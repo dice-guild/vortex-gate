@@ -1,29 +1,30 @@
 {
   "files": {
     "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.10fcd8d6.js",
+    "main.js": "/static/js/main.6782aee0.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
-    "static/media/5_movement.md": "/static/media/5_movement.7116109a801193e5950d.md",
-    "static/media/11_force_building.md": "/static/media/11_force_building.d1c47c1e182e1c6b7354.md",
+    "static/media/12_force_building.md": "/static/media/12_force_building.d1c47c1e182e1c6b7354.md",
+    "static/media/6_shooting.md": "/static/media/6_shooting.17d8edeaeb933fdec565.md",
     "static/media/4_actions.md": "/static/media/4_actions.6917136ef819bdf88142.md",
     "static/media/2_datasheets.md": "/static/media/2_datasheets.5cc3c636483019bbd15d.md",
-    "static/media/9_terrain.md": "/static/media/9_terrain.b97aa0fda4c95b227919.md",
-    "static/media/12_scenarios.md": "/static/media/12_scenarios.fa0ad800cbadf0a41e0d.md",
+    "static/media/10_terrain.md": "/static/media/10_terrain.b97aa0fda4c95b227919.md",
+    "static/media/13_scenarios.md": "/static/media/13_scenarios.fa0ad800cbadf0a41e0d.md",
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.8df2cca21651e88e294a.md",
-    "static/media/6_fighting.md": "/static/media/6_fighting.ea8ca97e7e1b2d1bc843.md",
+    "static/media/5_movement.md": "/static/media/5_movement.9fb3e6458bee3d4e4278.md",
+    "static/media/7_fighting.md": "/static/media/7_fighting.ea8ca97e7e1b2d1bc843.md",
     "static/media/1_introduction.md": "/static/media/1_introduction.fc885981562f1c642d14.md",
-    "static/media/13_multiplayer.md": "/static/media/13_multiplayer.ccc3c77530eb505e97d7.md",
-    "static/media/10_powers.md": "/static/media/10_powers.689463232803f955185b.md",
-    "static/media/8_reactions.md": "/static/media/8_reactions.9fe5fed3145bf9391c90.md",
-    "static/media/7_shock.md": "/static/media/7_shock.11680cfe8902e9fb7fd5.md",
+    "static/media/14_multiplayer.md": "/static/media/14_multiplayer.ccc3c77530eb505e97d7.md",
+    "static/media/11_powers.md": "/static/media/11_powers.689463232803f955185b.md",
+    "static/media/9_reactions.md": "/static/media/9_reactions.9fe5fed3145bf9391c90.md",
+    "static/media/8_shock.md": "/static/media/8_shock.11680cfe8902e9fb7fd5.md",
     "index.html": "/index.html",
     "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.10fcd8d6.js.map": "/static/js/main.10fcd8d6.js.map"
+    "main.6782aee0.js.map": "/static/js/main.6782aee0.js.map"
   },
   "entrypoints": [
     "static/css/main.82ab7748.css",
-    "static/js/main.10fcd8d6.js"
+    "static/js/main.6782aee0.js"
   ]
 }

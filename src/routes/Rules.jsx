@@ -11,14 +11,15 @@ import datasheets from 'assets/rules/2_datasheets.md';
 import game_rounds from 'assets/rules/3_game_rounds.md';
 import actions from 'assets/rules/4_actions.md';
 import movement from 'assets/rules/5_movement.md';
-import fighting from 'assets/rules/6_fighting.md';
-import shock from 'assets/rules/7_shock.md';
-import reactions from 'assets/rules/8_reactions.md';
-import terrain from 'assets/rules/9_terrain.md';
-import powers from 'assets/rules/10_powers.md';
-import force_building from 'assets/rules/11_force_building.md';
-import scenarios from 'assets/rules/12_scenarios.md';
-import multiplayer from 'assets/rules/13_multiplayer.md';
+import shooting from 'assets/rules/6_shooting.md';
+import fighting from 'assets/rules/7_fighting.md';
+import shock from 'assets/rules/8_shock.md';
+import reactions from 'assets/rules/9_reactions.md';
+import terrain from 'assets/rules/10_terrain.md';
+import powers from 'assets/rules/11_powers.md';
+import force_building from 'assets/rules/12_force_building.md';
+import scenarios from 'assets/rules/13_scenarios.md';
+import multiplayer from 'assets/rules/14_multiplayer.md';
 import { Navigate, useNavigate, useParams } from 'react-router';
 import { PrettyHeader } from 'components/pretty-header';
 
@@ -42,6 +43,10 @@ export const CHAPTERS = {
   movement: {
     name: "Movement",
     page: movement
+  },
+  shooting: {
+    name: "Shooting",
+    page: shooting
   },
   fighting: {
     name: "Fighting",

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.5fe340fb.js",
+    "main.js": "/static/js/main.f19f4ec2.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
@@ -11,7 +11,6 @@
     "static/media/2_datasheets.md": "/static/media/2_datasheets.5cc3c636483019bbd15d.md",
     "static/media/10_terrain.md": "/static/media/10_terrain.b97aa0fda4c95b227919.md",
     "static/media/13_scenarios.md": "/static/media/13_scenarios.fa0ad800cbadf0a41e0d.md",
-    "static/media/3_game_rounds.md": "/static/media/3_game_rounds.8df2cca21651e88e294a.md",
     "static/media/5_movement.md": "/static/media/5_movement.9fb3e6458bee3d4e4278.md",
     "static/media/7_fighting.md": "/static/media/7_fighting.ea8ca97e7e1b2d1bc843.md",
     "static/media/1_introduction.md": "/static/media/1_introduction.fc885981562f1c642d14.md",
@@ -19,12 +18,13 @@
     "static/media/11_powers.md": "/static/media/11_powers.689463232803f955185b.md",
     "static/media/9_reactions.md": "/static/media/9_reactions.9fe5fed3145bf9391c90.md",
     "static/media/8_shock.md": "/static/media/8_shock.11680cfe8902e9fb7fd5.md",
+    "static/media/3_game_rounds.md": "/static/media/3_game_rounds.9314738d89905fce6bfd.md",
     "index.html": "/index.html",
     "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.5fe340fb.js.map": "/static/js/main.5fe340fb.js.map"
+    "main.f19f4ec2.js.map": "/static/js/main.f19f4ec2.js.map"
   },
   "entrypoints": [
     "static/css/main.82ab7748.css",
-    "static/js/main.5fe340fb.js"
+    "static/js/main.f19f4ec2.js"
   ]
 }

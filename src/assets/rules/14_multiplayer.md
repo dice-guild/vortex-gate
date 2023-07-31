@@ -2,7 +2,7 @@
 The following multiplayer rules are intended to allow players to play on "teams" against one another and to speed up game play while retaining the proper game balance.
 
 ## Free-for-all
-Free-for-all games are played very similarly to one-on-one games in that each player bids to gain initiative. All players roll and in order of the highest, players activate units in that order. If there are any ties players roll-off to determine who will go first.
+Free-for-all games are played very similarly to one-on-one games in that each player rolls to gain initiative. All players roll off and in order of the highest, players activate units in that order. If there are any ties players roll-off to determine who will go first.
 
 __For Example:__ There are three players. Player one rolls 5, player two rolls 3 and player three rolls 1. Player one will first, then player two would then activate. Finally, player three would activate one unit. Play then continues in the same order with each player activating one unit until all units are activated.
 

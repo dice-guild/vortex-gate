@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.aca7e2f5.js",
+    "main.js": "/static/js/main.571efdfd.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
@@ -16,15 +16,15 @@
     "static/media/1_introduction.md": "/static/media/1_introduction.fc885981562f1c642d14.md",
     "static/media/11_powers.md": "/static/media/11_powers.689463232803f955185b.md",
     "static/media/9_reactions.md": "/static/media/9_reactions.9fe5fed3145bf9391c90.md",
-    "static/media/14_multiplayer.md": "/static/media/14_multiplayer.9c5465722a18676d2fda.md",
+    "static/media/14_multiplayer.md": "/static/media/14_multiplayer.edb3f5fc34bc4dc63d2f.md",
     "static/media/8_shock.md": "/static/media/8_shock.11680cfe8902e9fb7fd5.md",
-    "static/media/3_game_rounds.md": "/static/media/3_game_rounds.9314738d89905fce6bfd.md",
+    "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.aca7e2f5.js.map": "/static/js/main.aca7e2f5.js.map"
+    "main.571efdfd.js.map": "/static/js/main.571efdfd.js.map"
   },
   "entrypoints": [
     "static/css/main.82ab7748.css",
-    "static/js/main.aca7e2f5.js"
+    "static/js/main.571efdfd.js"
   ]
 }

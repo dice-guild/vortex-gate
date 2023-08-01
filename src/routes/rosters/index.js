@@ -24,7 +24,7 @@ import Typography from "@mui/material/Typography";
 import CustomCircularProgress from "components/CustomCircularProgress";
 import { Dropdown } from "components/dropdown";
 import { DataContext, useModal } from "hooks";
-import { get, omit } from "lodash";
+import { get, omit, startCase } from "lodash";
 import { useSnackbar } from "notistack";
 import React from "react";
 import { useNavigate } from "react-router";
@@ -304,6 +304,8 @@ export default React.memo((props) => {
               style={filteredLists?.length ? { padding: 0 } : undefined}
             >
               {filteredLists.map((list, unitIdx) => {
+                const { pointLimit, type } = list;
+                console.log(list);
                 return (
                   <>
                     <ListItem
@@ -378,7 +380,7 @@ export default React.memo((props) => {
                         sx={{ py: 1.5 }}
                         onClick={() => goToList(list.id)}
                       >
-                        {list.name}
+                        <ListItemText primary={list.name} secondary={[(pointLimit ? `${pointLimit}pts` : undefined), startCase(type)].join(' - ')} />
                       </ListItemButton>
                     </ListItem>
                   </>

@@ -6,6 +6,7 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
+  useTheme,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -16,6 +17,7 @@ import { getTextColor, hexToRgb } from "utils/colors";
 export const Overview = (props) => {
   const { faction, nameFilter } = props;
   const { color: factionColor } = faction;
+  const theme = useTheme();
   const textColor = factionColor
     ? getTextColor(hexToRgb(factionColor))
     : "white";
@@ -39,12 +41,12 @@ export const Overview = (props) => {
       {!!description && (
         <Card
           sx={{
-            border: `2px solid ${factionColor}`,
+            border: `2px solid ${theme.palette.primary.main}`,
             mb: 2,
           }}
         >
           <CardHeader
-            sx={{ backgroundColor: factionColor, color: textColor, py: 1 }}
+            sx={{ py: 1, background: theme.palette.primary.main }}
             title={
               <Typography variant="h5" component="div">
                 {"Overview"}
@@ -57,12 +59,12 @@ export const Overview = (props) => {
       {!!lore && (
         <Card
           sx={{
-            border: `2px solid ${factionColor}`,
+            border: `2px solid ${theme.palette.primary.main}`,
             mb: 2,
           }}
         >
           <CardHeader
-            sx={{ backgroundColor: factionColor, color: textColor, py: 1 }}
+            sx={{ py: 1, background: theme.palette.primary.main }}
             title={
               <Typography variant="h5" component="div">
                 {"Lore Details"}
@@ -78,11 +80,11 @@ export const Overview = (props) => {
         <Card
           sx={{
             m: 0,
-            border: `2px solid ${factionColor}`,
+            border: `2px solid ${theme.palette.primary.main}`,
           }}
         >
           <CardHeader
-            sx={{ backgroundColor: factionColor, color: textColor, py: 1 }}
+            sx={{ py: 1, background: theme.palette.primary.main }}
             title={
               <Typography variant="h5" component="div">
                 {"Model Makers"}

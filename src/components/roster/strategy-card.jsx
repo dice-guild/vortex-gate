@@ -1,10 +1,11 @@
-import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import { Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import { getTextColor, hexToRgb } from 'utils/colors';
 
 export const StrategyCard = (props) => {
   const { strategy, faction } = props;
   const { color: factionColor } = faction;
+  const theme = useTheme();
   const textColor = factionColor
     ? getTextColor(hexToRgb(factionColor))
     : "white";
@@ -12,13 +13,12 @@ export const StrategyCard = (props) => {
     <Card
       className="no-break"
       sx={{
-        border: `2px solid ${factionColor}`
+        border: `2px solid ${theme.palette.primary.main}`
       }}
     >
       <CardHeader
         sx={{
-          backgroundColor: factionColor,
-          color: textColor,
+          backgroundColor: theme.palette.primary.main,
           py: 1,
         }}
         title={

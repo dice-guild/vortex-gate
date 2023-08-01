@@ -3,15 +3,17 @@ import ReactMarkdown from "react-markdown";
 import { getTextColor, hexToRgb } from "utils/colors";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material";
 
 export const RuleList = (props) => {
   const { rules, faction, toggler, twoColumn, showName = true } = props;
+  const theme = useTheme();
   const [showRules, setShowRules] = useState(false);
   const { color: factionColor } = faction;
   const textColor = factionColor
     ? getTextColor(hexToRgb(factionColor))
     : "white";
-  const borderColor = textColor !== "white" ? textColor : factionColor;
+  const borderColor = theme.palette.primary.main;
   const btnStyle = { borderColor };
   return (
     <div>

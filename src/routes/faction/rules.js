@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, Typography, useTheme } from "@mui/material";
 import { RuleList } from "components/roster/rule-list";
 import { sortBy } from "lodash";
 import React from "react";
@@ -7,6 +7,7 @@ import { getTextColor, hexToRgb } from "utils/colors";
 export const Rules = (props) => {
   const { data, faction, nameFilter } = props;
   const { color: factionColor } = faction;
+  const theme = useTheme();
   const textColor = factionColor
     ? getTextColor(hexToRgb(factionColor))
     : "white";
@@ -29,14 +30,13 @@ export const Rules = (props) => {
               <Card
                 className="no-break"
                 sx={{
-                  border: `2px solid ${factionColor}`,
+                  border: `2px solid ${theme.palette.primary.main}`,
                   mb: 2,
                 }}
               >
                 <CardHeader
                   sx={{
-                    backgroundColor: factionColor,
-                    color: textColor,
+                    backgroundColor: theme.palette.primary.main,
                     py: 1,
                   }}
                   title={

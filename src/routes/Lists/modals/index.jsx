@@ -229,13 +229,6 @@ export const AddLegend = (props) => {
                         }}
                       >
                         <Stack direction="row" spacing={1}>
-                          <Box
-                            style={{
-                              width: "8px",
-                              background: faction?.color || "grey",
-                              flex: "none",
-                            }}
-                          />
                           <ListItemText
                             primary={
                               <Typography fontWeight="bold">{`${relic.name} (${relic.points} pts)`}</Typography>
@@ -379,13 +372,6 @@ export const AddForce = (props) => {
                                 }}
                               >
                                 <Stack direction="row" spacing={1}>
-                                  <Box
-                                    style={{
-                                      width: "8px",
-                                      background: org.color,
-                                      flex: "none",
-                                    }}
-                                  />
                                   <ListItemText
                                     primary={
                                       <Typography fontWeight="bold">
@@ -463,13 +449,6 @@ export const AddForce = (props) => {
                         }}
                       >
                         <Stack direction="row" spacing={1}>
-                          <Box
-                            style={{
-                              width: "8px",
-                              background: factionData?.color || "grey",
-                              flex: "none",
-                            }}
-                          />
                           <ListItemText
                             primary={
                               <Typography fontWeight="bold">{`${org.name} (Cost ${org.cost})`}</Typography>
@@ -533,13 +512,6 @@ export const AddForce = (props) => {
                         }}
                       >
                         <Stack direction="row" spacing={1}>
-                          <Box
-                            style={{
-                              width: "8px",
-                              background: factionData?.color || "grey",
-                              flex: "none",
-                            }}
-                          />
                           <ListItemText
                             primary={
                               <Typography fontWeight="bold">
@@ -637,13 +609,6 @@ export const AddUnit = (props) => {
                       }}
                     >
                       <Stack direction="row" spacing={1}>
-                        <Box
-                          style={{
-                            width: "8px",
-                            background: faction?.color || "grey",
-                            flex: "none",
-                          }}
-                        />
                         <ListItemText
                           primary={
                             <Typography fontWeight="bold">{`${unit.name} (${unit.points} pts)`}</Typography>

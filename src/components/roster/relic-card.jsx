@@ -1,6 +1,7 @@
 import {
   Card, CardContent, CardHeader, Divider,
-  Typography
+  Typography,
+  useTheme
 } from "@mui/material";
 import { RuleList } from "components/roster/rule-list";
 import { WeaponList } from "components/roster/weapon-list";
@@ -29,6 +30,7 @@ const dummyModel = {
 
 export const RelicCard = (props) => {
   const { faction, relic, data, printMode = false } = props;
+  const theme = useTheme();
   const { color: factionColor } = faction;
   const textColor = factionColor
     ? getTextColor(hexToRgb(factionColor))
@@ -58,13 +60,12 @@ export const RelicCard = (props) => {
     <Card
       className="no-break no-page-break force-print"
       sx={{
-        border: `2px solid ${factionColor}`,
+        border: `2px solid ${theme.palette.primary.main}`,
       }}
     >
       <CardHeader
         sx={{
-          backgroundColor: factionColor,
-          color: textColor,
+          backgroundColor: theme.palette.primary.main,
           py: 1,
         }}
         title={

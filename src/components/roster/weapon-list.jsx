@@ -10,9 +10,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import { StyledTableRow } from "components/styled-table";
+import { useTheme } from "@mui/material";
 
 export const WeaponList = (props) => {
   const { weapons, faction, data, toggler, rules, twoColumns = true } = props;
+  const theme = useTheme();
   const { color: factionColor, secondary_color: factionSecondaryColor } =
     faction;
   const textColor = factionColor
@@ -21,11 +23,11 @@ export const WeaponList = (props) => {
   const textColorSecondary = factionSecondaryColor
     ? getTextColor(hexToRgb(factionSecondaryColor))
     : "white";
-  const borderColor = textColor !== "white" ? textColor : factionColor;
+  const borderColor = theme.palette.primary.main;
   const btnStyle = { borderColor };
   const thStyle = {
-    backgroundColor: factionSecondaryColor || factionColor,
-    color: factionSecondaryColor ? textColorSecondary : textColor,
+    backgroundColor: theme.palette.primary.main,
+    color: textColor,
   };
   const [showWeapons, setShowWeapons] = useState(false);
   const renderRules = (rules) => {

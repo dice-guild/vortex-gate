@@ -7,7 +7,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Card, CardContent, CardHeader, Chip, Divider, IconButton, ListItemIcon,
   ListItemText,
-  Menu, MenuItem, Typography
+  Menu, MenuItem, Typography, useTheme
 } from "@mui/material";
 import { Dropdown } from "components/dropdown";
 import { DescriptionModal, UnitDebugModal } from "components/roster/modals";
@@ -19,7 +19,6 @@ import { useModal } from "hooks";
 import { get, uniq } from "lodash";
 import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
-import { getTextColor, hexToRgb } from "utils/colors";
 import { formatLevel } from "utils/format";
 
 
@@ -49,15 +48,11 @@ export const UnitCard = (props) => {
     printMode
   } = props;
   const toggler = !printMode && toggle;
-  const { color: factionColor } = faction;
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
-  const borderColor = textColor !== "white" ? textColor : factionColor;
+  const theme = useTheme();
   const thStyle = {
-    backgroundColor: factionColor || "#376f8c",
-    color: textColor,
-    borderColor,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.main,
+    borderColor: theme.palette.primary.main,
   };
   const unitPoints = useMemo(() => {
     return points ? points : data.getUnitPoints(unit, faction);
@@ -225,11 +220,11 @@ export const UnitCard = (props) => {
     <Card
       className="force-print no-page-break"
       sx={{
-        border: `2px solid ${factionColor}`,
+        border: `2px solid ${theme.palette.primary.main}`,
       }}
     >
       <CardHeader
-        sx={{ backgroundColor: factionColor, color: textColor, py: 1.25 }}
+        sx={{ py: 1, backgroundColor: theme.palette.primary.main }}
         title={
           <>
             <Typography variant="h5">
@@ -264,7 +259,7 @@ export const UnitCard = (props) => {
             >
               <i>{unit.description}</i>
             </Typography>
-            <Divider style={thStyle} />
+            <Divider />
           </>
         )}
         <div style={{ marginBottom: "0.5em" }} className="unit-stats">
@@ -293,7 +288,7 @@ export const UnitCard = (props) => {
         )}
         {!printMode && <>{renderModelRules(unitRules)}</>}
         {renderModelExtraRules([...(perks || []), ...(setbacks || [])])}
-        <Divider style={thStyle} />
+        <Divider />
         <span className="unit-keywords">
           <b>Keywords: </b>
           {[

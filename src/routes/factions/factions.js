@@ -1,32 +1,31 @@
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
-  CardActionArea,
   CardActions,
   CardHeader,
-  Grid,
+  Collapse,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Popover from "@mui/material/Popover";
 import { Dropdown } from "components/dropdown";
 import { get, groupBy, sortBy } from "lodash";
-import React from "react";
 import { useNavigate } from "react-router";
-import { getTextColor, hexToRgb } from "utils/colors";
 import { DataAPI } from "utils/data";
 import "./factions.css";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const Factions = (props) => {
-  const { game, gameName, nameFilter, deleteFaction, rawData, userPrefs } =
-    props;
+  const { game, gameName, nameFilter, deleteFaction, userPrefs } = props;
   const navigate = useNavigate();
   const data = DataAPI(game);
   const alliances = data.getRawAlliances();
   const showBeta = userPrefs.showBeta;
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.up("md"));
   const factions = sortBy(
     data
       .getFactions(gameName)
@@ -49,138 +48,56 @@ export const Factions = (props) => {
   }
   return (
     <>
-      {categoryOrder.map((allianceKey) => {
+      {categoryOrder.map((allianceKey, index) => {
         const factions = get(unitCategories, `[${allianceKey}]`, []);
         const allianceData = data.getAlliance(allianceKey);
         return (
-          <>
-            <Typography variant="h4" gutterBottom align="center" sx={{ my: 2 }}>
-              {allianceData.name || "Unaligned"}
-            </Typography>
-            <Grid
-              container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-            >
+          <Card
+            variant="outlined"
+            sx={{ my: 2, border: `2px solid ${theme.palette.primary.main}` }}
+            key={index}
+          >
+            <>
+              <CardHeader
+                sx={{ py: 1, background: theme.palette.primary.main }}
+                title={
+                  <Typography variant="h5">
+                    {allianceData.name || "Unaligned"}
+                  </Typography>
+                }
+              />
               {factions.map((faction, index) => {
-                const factionColor = faction.color;
-                const textColor = factionColor
-                  ? getTextColor(hexToRgb(factionColor))
-                  : "white";
-                const isModified = Object.values(
-                  get(
-                    rawData,
-                    `customData.factions[${faction.id}]`,
-                    {}
-                  )
-                ).length;
                 return (
-                  <Grid item sx={{ pb: 2 }} md={4} key={index}>
-                    <Card
-                      sx={{
-                        border: `2px solid ${factionColor}`,
-                      }}
-                    >
-                      <CardActionArea onClick={() => goToFaction(faction)}>
-                        <CardHeader
-                          sx={{
-                            backgroundColor: factionColor,
-                            color: textColor,
-                            p: 1,
-                          }}
-                          title={
-                            <Typography
-                              variant="h5"
-                              component="div"
-                              align="center"
-                            >
-                              {!!isModified && (
-                                <Dropdown>
-                                  {({
-                                    handleClose,
-                                    open,
-                                    handleOpen,
-                                    anchorElement,
-                                  }) => (
-                                    <>
-                                      <span
-                                        aria-haspopup="true"
-                                        onMouseEnter={handleOpen}
-                                        onMouseLeave={handleClose}
-                                        style={{ marginRight: "5px" }}
-                                      >
-                                        <FontAwesomeIcon
-                                          icon={faExclamationCircle}
-                                        />
-                                      </span>
-                                      <Popover
-                                        variant="warning"
-                                        id="mouse-over-popover"
-                                        sx={{
-                                          pointerEvents: "none",
-                                        }}
-                                        open={open}
-                                        anchorEl={anchorElement}
-                                        anchorOrigin={{
-                                          vertical: "top",
-                                          horizontal: "center",
-                                        }}
-                                        transformOrigin={{
-                                          vertical: "bottom",
-                                          horizontal: "center",
-                                        }}
-                                        onClose={handleClose}
-                                        disableRestoreFocus
-                                      >
-                                        <Typography sx={{ p: 1 }}>
-                                          Warning: Data Is Modified Locally
-                                        </Typography>
-                                      </Popover>
-                                    </>
-                                  )}
-                                </Dropdown>
-                              )}
-                              {faction.name}
-                              {/* <small style={{ marginLeft: '5px', fontSize: '1rem'}}>
-                                {game.version ? `(${game.version})` : ""}
-                              </small> */}
-                            </Typography>
-                          }
-                        />
-                        {!!faction.image && (
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={game.image}
-                            alt="green iguana"
-                          />
-                        )}
-                        <CardContent sx={{ p: 1.5 }}>
-                          <Typography align="center">
-                            {faction.description || " "}
+                  <ListItem key={index} sx={{ p: 0 }}>
+                    <ListItemButton onClick={() => goToFaction(faction)}>
+                      <ListItemText
+                        primary={
+                          <Typography variant="h6" component="div">
+                            {faction.name}
                           </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                      {!faction.url && (
-                        <CardActions>
-                          <Button
-                            size="small"
-                            color="primary"
-                            onClick={(event) => {
-                              event.stopPropagation();
-                              deleteFaction(game.id);
-                            }}
-                          >
-                            Delete
-                          </Button>
-                        </CardActions>
-                      )}
-                    </Card>
-                  </Grid>
+                        }
+                        secondary={faction.description || " "}
+                      />
+                    </ListItemButton>
+                    {!faction.url && (
+                      <CardActions>
+                        <Button
+                          size="small"
+                          color="primary"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            deleteFaction(game.id);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </CardActions>
+                    )}
+                  </ListItem>
                 );
               })}
-            </Grid>
-          </>
+            </>
+          </Card>
         );
       })}
     </>

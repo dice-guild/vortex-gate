@@ -1,8 +1,8 @@
 import React from "react";
 
 export const Dropdown = (props) => {
-  const { children } = props;
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { children, defaultOpen } = props;
+  const [isOpen, setIsOpen] = React.useState(defaultOpen || false);
   const [anchorElement, setAnchorElement] = React.useState(null);
   const handleClose = () => {
     setIsOpen(false);

@@ -35,16 +35,8 @@ import { v4 as uuidv4 } from "uuid";
 import { PrettyHeader } from "components/pretty-header";
 
 export default React.memo((props) => {
-  const [
-    {
-      data: nope,
-      coreData,
-      setData,
-      appState,
-      userPrefs,
-      setAppState,
-    },
-  ] = React.useContext(DataContext);
+  const [{ data: nope, coreData, setData, appState, userPrefs, setAppState }] =
+    React.useContext(DataContext);
   const nameFilter = appState?.searchText;
   const fileDialog = React.useRef();
   const navigate = useNavigate();
@@ -250,7 +242,7 @@ export default React.memo((props) => {
           onClick: () => {
             handleClick();
           },
-        }
+        },
       ],
     });
     return () => {
@@ -296,7 +288,7 @@ export default React.memo((props) => {
             }}
           >
             <CardHeader
-              sx={{ backgroundColor: factionColor, color: textColor, py: 1 }}
+              sx={{ backgroundColor: theme.palette.primary.main, py: 1 }}
               title={
                 <>
                   <Typography
@@ -309,7 +301,9 @@ export default React.memo((props) => {
                 </>
               }
             />
-            <CardContent style={filteredLists?.length ? { padding: 0 } : undefined}>
+            <CardContent
+              style={filteredLists?.length ? { padding: 0 } : undefined}
+            >
               {filteredLists.map((list, unitIdx) => {
                 return (
                   <>

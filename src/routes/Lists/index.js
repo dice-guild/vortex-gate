@@ -1274,7 +1274,7 @@ export default React.memo((props) => {
             <Card
               className="no-break"
               sx={{
-                border: `2px solid ${factionColor}`,
+                border: `2px solid ${theme.palette.primary.main}`,
                 mb: 2,
               }}
             >
@@ -1284,7 +1284,7 @@ export default React.memo((props) => {
                     <CardHeader
                       onClick={handleOpen}
                       sx={{
-                        backgroundColor: factionColor,
+                        backgroundColor: theme.palette.primary.main,
                         color: textColor,
                         p: 0,
                       }}
@@ -1298,20 +1298,22 @@ export default React.memo((props) => {
                             )
                           }
                         >
-                          <>
-                            <Typography
-                              fontSize="1.25rem"
-                              fontWeight="bold"
-                              component="div"
-                            >
-                              {`${forceFaction.name} ${
-                                !forceSubFactionId ||
-                                forceSubFactionId === "none"
-                                  ? ""
-                                  : `(${forceSubfaction.name})`
-                              } - ${showingReserves ? "Reserves" : force.name}`}
-                            </Typography>
-                          </>
+                          <ListItemText
+                            primary={
+                              <Typography variant="h6">
+                                {forceFaction.name}
+                              </Typography>
+                            }
+                            secondary={`${
+                              showingReserves
+                                ? "Reserves"
+                                : `${force.name} Detachment`
+                            }${
+                              !forceSubFactionId || forceSubFactionId === "none"
+                                ? ""
+                                : ` - ${forceSubfaction.name} Focus`
+                            }`}
+                          />
                         </ListItem>
                       }
                     />
@@ -1385,10 +1387,7 @@ export default React.memo((props) => {
               </Dropdown>
               <CardContent
                 style={{
-                  padding:
-                    filteredCategories.length || forceLegends.length
-                      ? 0
-                      : undefined,
+                  padding: 0,
                 }}
               >
                 <>
@@ -1397,11 +1396,7 @@ export default React.memo((props) => {
                       <ListSubheader
                         sx={{ flex: 1, zIndex: 0, color: "inherit" }}
                       >
-                        <Typography
-                          sx={{ py: 1.5 }}
-                          fontWeight="bold"
-                          variant="h6"
-                        >
+                        <Typography sx={{ py: 1.5 }} fontSize="15px">
                           Force Details
                         </Typography>
                       </ListSubheader>
@@ -1467,11 +1462,7 @@ export default React.memo((props) => {
                           <ListSubheader
                             sx={{ flex: 1, zIndex: 0, color: "inherit" }}
                           >
-                            <Typography
-                              sx={{ py: 1.5 }}
-                              fontWeight="bold"
-                              variant="h6"
-                            >
+                            <Typography sx={{ py: 1.5 }} fontSize="15px">
                               Legends
                             </Typography>
                           </ListSubheader>
@@ -1613,7 +1604,7 @@ export default React.memo((props) => {
                               color: "inherit",
                             }}
                           >
-                            <Typography sx={{ py: 1.5 }} fontWeight="bold">
+                            <Typography sx={{ py: 1.5 }} fontSize="15px">
                               {category.name}{" "}
                               {listType !== "narrative"
                                 ? `${`(${categoryData.min || 0}-${
@@ -1892,9 +1883,6 @@ export default React.memo((props) => {
                       </>
                     );
                   })}
-                  {!filteredCategories.length && !forceLegends.length && (
-                    <>Force is empty...</>
-                  )}
                 </>
               </CardContent>
             </Card>

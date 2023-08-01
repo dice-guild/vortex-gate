@@ -1,3 +1,4 @@
+import { useTheme } from "@mui/material";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import Table from "@mui/material/Table";
@@ -16,6 +17,7 @@ export const UnitStats = (props) => {
   const { data, unit, faction, toggler, models, options, perks, setbacks, powerSpecialty } =
     props;
   const [showOptions, setShowOptions] = useState(false);
+  const theme = useTheme();
   const { color: factionColor, secondary_color: factionSecondaryColor } =
     faction;
   const textColor = factionColor
@@ -26,8 +28,8 @@ export const UnitStats = (props) => {
     : "white";
   const borderColor = textColor !== "white" ? textColor : factionColor;
   const thStyle = {
-    backgroundColor: factionSecondaryColor || factionColor,
-    color: factionSecondaryColor ? textColorSecondary : textColor,
+    backgroundColor: theme.palette.primary.main,
+    color: textColor,
   };
   const btnStyle = { borderColor };
   const unitModels = (models ? models : data.getModels(unit, faction)).filter(

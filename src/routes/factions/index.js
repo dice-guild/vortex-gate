@@ -154,7 +154,7 @@ const FactionsMain = () => {
   );
   React.useEffect(() => {
     setAppState({
-      enableSearch: true,
+      enableSearch: false,
       contextActions: [
         ...(!!userPrefs.developerMode
           ? [

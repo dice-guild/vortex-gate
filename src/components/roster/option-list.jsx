@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import { getTextColor, hexToRgb } from "utils/colors";
+import { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 import './option-list.css';
 import { useTheme } from "@mui/material";
 
 export const OptionList = (props) => {
-  const { options, faction, toggler = true, twoColumn = true } = props;
+  const { options, toggler = true, twoColumn = true } = props;
   const [showOptions, setShowOptions] = useState(false);
   const theme = useTheme();
-  const { color: factionColor } = faction;
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
   const borderColor = theme.palette.primary.main;
   const btnStyle = { borderColor };
 

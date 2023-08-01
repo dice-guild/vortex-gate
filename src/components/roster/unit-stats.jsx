@@ -9,27 +9,26 @@ import TableHead from "@mui/material/TableHead";
 import { OptionList } from "components/roster/option-list";
 import { StyledTableRow } from "components/styled-table";
 import { isNumber } from "lodash";
-import React, { useState } from "react";
-import { getTextColor, hexToRgb } from "utils/colors";
+import { useState } from "react";
 import { formatModel } from "utils/format";
 
 export const UnitStats = (props) => {
-  const { data, unit, faction, toggler, models, options, perks, setbacks, powerSpecialty } =
-    props;
+  const {
+    data,
+    unit,
+    faction,
+    toggler,
+    models,
+    options,
+    perks,
+    setbacks,
+    powerSpecialty,
+  } = props;
   const [showOptions, setShowOptions] = useState(false);
   const theme = useTheme();
-  const { color: factionColor, secondary_color: factionSecondaryColor } =
-    faction;
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
-  const textColorSecondary = factionSecondaryColor
-    ? getTextColor(hexToRgb(factionSecondaryColor))
-    : "white";
-  const borderColor = textColor !== "white" ? textColor : factionColor;
+  const borderColor = theme.palette.primary.main;
   const thStyle = {
-    backgroundColor: theme.palette.primary.main,
-    color: textColor,
+    backgroundColor: theme.palette.primary.main
   };
   const btnStyle = { borderColor };
   const unitModels = (models ? models : data.getModels(unit, faction)).filter(
@@ -39,14 +38,14 @@ export const UnitStats = (props) => {
   const perkString =
     perks && perks.length
       ? `${perks.length > 1 ? "perks" : "the perk"} (${perks
-        .map((perk) => perk.name)
-        .join(", ")})`
+          .map((perk) => perk.name)
+          .join(", ")})`
       : "";
   const setbackString =
     setbacks && setbacks.length
       ? `${setbacks.length > 1 ? "injuries" : "the injury"} (${setbacks
-        .map((setback) => setback.name)
-        .join(", ")})`
+          .map((setback) => setback.name)
+          .join(", ")})`
       : "";
   const combinedString = [perkString, setbackString]
     .filter((str) => str.length)
@@ -95,7 +94,17 @@ export const UnitStats = (props) => {
               />
             )}
           </div>
-          {!!unitPowerSpecialty && <div style={{ marginBottom: '0.5rem' }}><ul className="optionUl">{!!unitPowerSpecialty && <li>The unit has the "{unitPowerSpecialty}" Power specialty</li>}</ul></div>}
+          {!!unitPowerSpecialty && (
+            <div style={{ marginBottom: "0.5rem" }}>
+              <ul className="optionUl">
+                {!!unitPowerSpecialty && (
+                  <li>
+                    The unit has the "{unitPowerSpecialty}" Power specialty
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
           <div style={{ marginBottom: "0.5rem" }}>
             <ul className="optionUl">
               {!!combinedString && <li>The unit has {combinedString}</li>}
@@ -103,8 +112,12 @@ export const UnitStats = (props) => {
           </div>
           {!!unitModels.length && (
             <>
-              <TableContainer sx={{ borderRadius: '2px' }}>
-                <Table size="small" aria-label="simple table" style={{ padding: 0 }}>
+              <TableContainer sx={{ borderRadius: "2px" }}>
+                <Table
+                  size="small"
+                  aria-label="simple table"
+                  style={{ padding: 0 }}
+                >
                   <TableHead>
                     <StyledTableRow style={thStyle}>
                       <TableCell>{"Model"}</TableCell>
@@ -121,10 +134,11 @@ export const UnitStats = (props) => {
                       <StyledTableRow>
                         <TableCell>{model.name}</TableCell>
                         <TableCell align="center">
-                          {`${isNumber(model.movement)
+                          {`${
+                            isNumber(model.movement)
                               ? `${model.movement}"`
                               : model.movement
-                            }`}
+                          }`}
                         </TableCell>
                         <TableCell align="center">
                           {`${!!model.shoot ? `${model.shoot}` : "-"}`}

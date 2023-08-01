@@ -6,7 +6,6 @@ import {
 import { RuleList } from "components/roster/rule-list";
 import { WeaponList } from "components/roster/weapon-list";
 import ReactMarkdown from "react-markdown";
-import { getTextColor, hexToRgb } from "utils/colors";
 
 const dummyModel = {
   name: "Battle Brother",
@@ -31,10 +30,6 @@ const dummyModel = {
 export const RelicCard = (props) => {
   const { faction, relic, data, printMode = false } = props;
   const theme = useTheme();
-  const { color: factionColor } = faction;
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
   const weaponData = relic.weapon
     ? data.getWeapon(relic.weapon, faction)
     : undefined;

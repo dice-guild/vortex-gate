@@ -17,7 +17,7 @@ import { UnitStats } from "components/roster/unit-stats";
 import { WeaponList } from "components/roster/weapon-list";
 import { useModal } from "hooks";
 import { get, uniq } from "lodash";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { formatLevel } from "utils/format";
 

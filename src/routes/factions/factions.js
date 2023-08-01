@@ -2,21 +2,17 @@ import {
   Button,
   CardActions,
   CardHeader,
-  Collapse,
   ListItem,
   ListItemButton,
   ListItemText,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import Card from "@mui/material/Card";
-import { Dropdown } from "components/dropdown";
 import { get, groupBy, sortBy } from "lodash";
 import { useNavigate } from "react-router";
 import { DataAPI } from "utils/data";
 import "./factions.css";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const Factions = (props) => {
   const { game, gameName, nameFilter, deleteFaction, userPrefs } = props;
@@ -25,7 +21,6 @@ export const Factions = (props) => {
   const alliances = data.getRawAlliances();
   const showBeta = userPrefs.showBeta;
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.up("md"));
   const factions = sortBy(
     data
       .getFactions(gameName)
@@ -52,22 +47,20 @@ export const Factions = (props) => {
         const factions = get(unitCategories, `[${allianceKey}]`, []);
         const allianceData = data.getAlliance(allianceKey);
         return (
-          <Card
-            variant="outlined"
-            sx={{ my: 2, border: `2px solid ${theme.palette.primary.main}` }}
-            key={index}
-          >
-            <>
+          <>
+            <Card sx={{ my: 2 }}>
               <CardHeader
-                sx={{ py: 1, background: theme.palette.primary.main }}
+                sx={{ py: 2, background: theme.palette.primary.main }}
                 title={
                   <Typography variant="h5">
                     {allianceData.name || "Unaligned"}
                   </Typography>
                 }
               />
-              {factions.map((faction, index) => {
-                return (
+            </Card>
+            {factions.map((faction, index) => {
+              return (
+                <Card sx={{ my: 2 }}>
                   <ListItem key={index} sx={{ p: 0 }}>
                     <ListItemButton onClick={() => goToFaction(faction)}>
                       <ListItemText
@@ -94,10 +87,10 @@ export const Factions = (props) => {
                       </CardActions>
                     )}
                   </ListItem>
-                );
-              })}
-            </>
-          </Card>
+                </Card>
+              );
+            })}
+          </>
         );
       })}
     </>

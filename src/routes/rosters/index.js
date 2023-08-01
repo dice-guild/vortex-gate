@@ -261,7 +261,6 @@ export default React.memo((props) => {
     );
   }
   const factionColor = theme.palette.primary.main;
-  const textColor = "white";
   const filteredLists = Object.keys(lists)
     .map((listId) => {
       return {

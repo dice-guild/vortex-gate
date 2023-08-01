@@ -7,15 +7,10 @@ import {
   useTheme,
 } from "@mui/material";
 import ReactMarkdown from "react-markdown";
-import { getTextColor, hexToRgb } from "utils/colors";
 
 export const PowerCard = (props) => {
-  const { faction, power } = props;
+  const { power } = props;
   const theme = useTheme();
-  const { color: factionColor } = faction;
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
   return (
     <Card
       className="no-break"

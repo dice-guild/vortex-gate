@@ -1,16 +1,18 @@
-import { Box, Card, CardContent, CardHeader, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { WeaponList } from "components/roster/weapon-list";
 import { sortBy } from "lodash";
 import React from "react";
-import { getTextColor, hexToRgb } from "utils/colors";
 
 export const Weapons = React.memo((props) => {
   const { data, faction, nameFilter } = props;
-  const { color: factionColor } = faction;
   const theme = useTheme();
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
   const weapons = data
     .getAllWeapons(faction)
     .filter((strategy) =>

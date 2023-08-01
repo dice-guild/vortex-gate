@@ -12,15 +12,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { get, sortBy } from "lodash";
 import ReactMarkdown from "react-markdown";
-import { getTextColor, hexToRgb } from "utils/colors";
 
 export const Overview = (props) => {
   const { faction, nameFilter } = props;
-  const { color: factionColor } = faction;
   const theme = useTheme();
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
   const background = faction.background;
   const description = faction.description;
   const lore = faction.lore;

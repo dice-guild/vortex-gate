@@ -307,7 +307,6 @@ export const AddForce = (props) => {
   ];
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const factionData = data.getFaction(faction);
   return (
     <>
       <Dialog

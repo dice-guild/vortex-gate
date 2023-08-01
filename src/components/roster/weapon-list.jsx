@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { getTextColor, hexToRgb } from "utils/colors";
 import { get } from "lodash";
 import { RuleList } from "components/roster/rule-list";
 import Collapse from "@mui/material/Collapse";
@@ -15,19 +14,10 @@ import { useTheme } from "@mui/material";
 export const WeaponList = (props) => {
   const { weapons, faction, data, toggler, rules, twoColumns = true } = props;
   const theme = useTheme();
-  const { color: factionColor, secondary_color: factionSecondaryColor } =
-    faction;
-  const textColor = factionColor
-    ? getTextColor(hexToRgb(factionColor))
-    : "white";
-  const textColorSecondary = factionSecondaryColor
-    ? getTextColor(hexToRgb(factionSecondaryColor))
-    : "white";
   const borderColor = theme.palette.primary.main;
   const btnStyle = { borderColor };
   const thStyle = {
-    backgroundColor: theme.palette.primary.main,
-    color: textColor,
+    backgroundColor: theme.palette.primary.main
   };
   const [showWeapons, setShowWeapons] = useState(false);
   const renderRules = (rules) => {

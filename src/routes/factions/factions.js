@@ -48,7 +48,7 @@ export const Factions = (props) => {
         const allianceData = data.getAlliance(allianceKey);
         return (
           <>
-            <Card sx={{ my: 2 }}>
+            <Card sx={{ my: 1 }}>
               <CardHeader
                 sx={{ py: 2, background: theme.palette.primary.main }}
                 title={
@@ -60,7 +60,7 @@ export const Factions = (props) => {
             </Card>
             {factions.map((faction, index) => {
               return (
-                <Card sx={{ my: 2 }}>
+                <Card sx={{ my: 1 }}>
                   <ListItem key={index} sx={{ p: 0 }}>
                     <ListItemButton onClick={() => goToFaction(faction)}>
                       <ListItemText

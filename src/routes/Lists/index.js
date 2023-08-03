@@ -81,6 +81,7 @@ import {
   ViewStrategies,
   ViewUnit,
 } from "./modals";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const PrintStyles = styled.div``;
 
@@ -1397,7 +1398,7 @@ export default React.memo((props) => {
                         sx={{ flex: 1, zIndex: 0, color: "inherit" }}
                       >
                         <Typography sx={{ py: 1.5 }} fontSize="15px">
-                          Force Details
+                          Abilities
                         </Typography>
                       </ListSubheader>
                     </ListItem>
@@ -1413,7 +1414,10 @@ export default React.memo((props) => {
                           })
                         }
                       >
-                        View Strategies
+                        <ListItemText
+                          primary="View Strategies"
+                          secondary="Strategies are additional army bonuses you can activate with strategy points (SP)."
+                        />
                       </ListItemButton>
                     </ListItem>
                   )}
@@ -1429,7 +1433,10 @@ export default React.memo((props) => {
                           })
                         }
                       >
-                        View Powers
+                        <ListItemText
+                          primary="View Powers"
+                          secondary="Powers are special abilities certain units can call upon to provide bonuses or do damage."
+                        />
                       </ListItemButton>
                     </ListItem>
                   )}
@@ -1550,9 +1557,15 @@ export default React.memo((props) => {
                                     });
                                   }}
                                 >
-                                  <>
-                                    {legend.name} {`(${legend.points} pts)`}
-                                  </>
+                                  <ListItemText
+                                    primary={`${legend.name} (${legend.points} pts)`}
+                                    secondary={
+                                      <ReactMarkdown
+                                        children={legend.flavor}
+                                        className="rule-text"
+                                      />
+                                    }
+                                  />
                                 </ListItemButton>
                               </ListItem>
                             </>
@@ -1837,44 +1850,56 @@ export default React.memo((props) => {
                                       });
                                     }}
                                   >
-                                    <Typography>
-                                      {unit.customName || unit.name}{" "}
-                                      {`(${unit.points} pts)`}
-                                      {unitLevel > 0 &&
-                                        listType === "campaign" && (
-                                          <Chip
-                                            sx={{ ml: 1 }}
-                                            size="small"
-                                            variant="outlined"
-                                            color="secondary"
-                                            label={
-                                              listType === "campaign" &&
-                                              unitLevel > 0
-                                                ? ` ${formatLevel(unitLevel)}`
-                                                : ""
-                                            }
-                                          />
-                                        )}
-                                      {unitSetbacksCount > 0 &&
-                                        listType === "campaign" && (
-                                          <Chip
-                                            size="small"
-                                            sx={{ ml: 1 }}
-                                            variant="outlined"
-                                            color="error"
-                                            label={
-                                              listType === "campaign" &&
-                                              unitSetbacksCount > 0
-                                                ? `${unitSetbacksCount} ${
-                                                    unitSetbacksCount > 1
-                                                      ? "Injuries"
-                                                      : "Injury"
-                                                  }`
-                                                : ""
-                                            }
-                                          />
-                                        )}
-                                    </Typography>
+                                    <ListItemText
+                                      primary={
+                                        <>
+                                          {`${unit.customName || unit.name}
+                                          (${unit.points} pts)`}
+                                          {unitLevel > 0 &&
+                                            listType === "campaign" && (
+                                              <Chip
+                                                sx={{ ml: 1 }}
+                                                size="small"
+                                                variant="outlined"
+                                                color="secondary"
+                                                label={
+                                                  listType === "campaign" &&
+                                                  unitLevel > 0
+                                                    ? ` ${formatLevel(
+                                                        unitLevel
+                                                      )}`
+                                                    : ""
+                                                }
+                                              />
+                                            )}
+                                          {unitSetbacksCount > 0 &&
+                                            listType === "campaign" && (
+                                              <Chip
+                                                size="small"
+                                                sx={{ ml: 1 }}
+                                                variant="outlined"
+                                                color="error"
+                                                label={
+                                                  listType === "campaign" &&
+                                                  unitSetbacksCount > 0
+                                                    ? `${unitSetbacksCount} ${
+                                                        unitSetbacksCount > 1
+                                                          ? "Injuries"
+                                                          : "Injury"
+                                                      }`
+                                                    : ""
+                                                }
+                                              />
+                                            )}
+                                        </>
+                                      }
+                                      secondary={
+                                        <ReactMarkdown
+                                          children={unit.description}
+                                          className="rule-text"
+                                        />
+                                      }
+                                    />
                                   </ListItemButton>
                                 </ListItem>
                               </>

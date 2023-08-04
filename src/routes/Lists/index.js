@@ -1030,11 +1030,11 @@ export default React.memo((props) => {
         forceFactionId,
         forceSubFactionId
       );
-      const name = `${forceFaction.name} ${
+      const name = `${forceFaction.name}  - ${force.name} Detachment ${
         !forceSubFactionId || forceSubFactionId === "none"
           ? ""
-          : `(${forceSubfaction.name})`
-      } - ${force.name}`;
+          : `- ${forceSubfaction.name} Focus`
+      }`;
       const forceCategories = Object.keys(get(force, "categories", {}));
       const forceUnits = get(force, "units", []);
       // Check for limited units here
@@ -1173,15 +1173,11 @@ export default React.memo((props) => {
                   }
                 >
                   <ListItemButton sx={{ p: 1.5, py: 1 }}>
-                    <>
-                      <Typography
-                        fontSize="1.25rem"
-                        fontWeight="bold"
-                        component="div"
-                      >
-                        Game Trackers
-                      </Typography>
-                    </>
+                    <ListItemText
+                      primary={
+                        <Typography variant="h6">{"Game Trackers"}</Typography>
+                      }
+                    />
                   </ListItemButton>
                 </ListItem>
               }

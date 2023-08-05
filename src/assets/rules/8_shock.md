@@ -8,6 +8,9 @@ Units gain a Shock when any of the following occur:
 
 A unit may only inflict a maximum of one Shock on a target unit unless a special rule specifies otherwise.
 
+### Heavily Armored
+A unit does not gain shock from attacks which do not bring its Save value below 10.
+
 ### Effects of Shock
 Shock causes units to perform worse and move less under pressure. For each shock a unit has, it suffers the following effects:
 * -1 Accuracy

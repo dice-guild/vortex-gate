@@ -2,20 +2,18 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import UploadIcon from "@mui/icons-material/Upload";
-import InfoIcon from "@mui/icons-material/Info";
 import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import CustomCircularProgress from "components/CustomCircularProgress";
 import { Dropdown } from "components/dropdown";
-import { DataContext, useModal } from "hooks";
+import { DataContext } from "hooks";
 import { get, omitBy } from "lodash";
 import { set } from "lodash/fp";
 import { useSnackbar } from "notistack";
 import React, { useContext } from "react";
 import { useParams } from "react-router";
-import { ShowInfo } from "routes/modals";
 import { DataAPI, mergeGlobalData } from "utils/data";
 import { readFileContent } from "utils/files";
 import { Factions } from "./factions";
@@ -139,19 +137,6 @@ const FactionsMain = () => {
     };
     setData(newGameData);
   };
-  const [showShowInfo, hideShowInfo] = useModal(
-    ({ extraProps }) => (
-      <ShowInfo
-        hideModal={hideShowInfo}
-        contextTitle={"Game Details"}
-        author={game?.author}
-        version={game?.version}
-        id={game?.id}
-        {...extraProps}
-      />
-    ),
-    []
-  );
   React.useEffect(() => {
     setAppState({
       enableSearch: false,
@@ -174,11 +159,6 @@ const FactionsMain = () => {
               },
             ]
           : []),
-        {
-          name: "Details",
-          icon: <InfoIcon />,
-          onClick: () => showShowInfo(),
-        },
       ],
     });
     return () => {

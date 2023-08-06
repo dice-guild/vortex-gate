@@ -1862,6 +1862,8 @@ export const DataAPI = (data, root = {}) => {
           total -= resolvePointsRecurse(arrItem.subtract, variables);
         } else if (!isNil(arrItem.divide)) {
           total /= resolvePointsRecurse(arrItem.divide, variables);
+        } else if (!isNil(arrItem.pow)) {
+          total = Math.pow(total, resolvePointsRecurse(arrItem.pow, variables));
         } else if (!isNil(arrItem.max)) {
           total = Math.max(total, resolvePointsRecurse(arrItem.max, variables));
         } else if (!isNil(arrItem.min)) {

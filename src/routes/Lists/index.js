@@ -61,7 +61,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import { UpdateList } from "routes/factions/modals";
 import styled from "styled-components";
-import { getTextColor, hexToRgb } from "utils/colors";
 import { BASE_THEME } from "utils/constants";
 import { DataAPI, mergeGlobalData } from "utils/data";
 import { downloadFile, readFileContent } from "utils/files";
@@ -1227,10 +1226,7 @@ export default React.memo((props) => {
             forceFactionId,
             forceSubFactionId || "none"
           );
-          const { color: factionColor } = forceFaction;
-          const textColor = factionColor
-            ? getTextColor(hexToRgb(factionColor))
-            : "white";
+          const textColor = "white";
           const forceCategories = Object.keys(get(force, "categories", {}));
           const showingReserves = !!showReserves[index];
           const forceUnits = showingReserves

@@ -58,4 +58,4 @@ The armor penetration characteristic of this weapon.
 Any special rules that affect this weapon.
 
 ## Leaders and Supports
-Units with the leader or support rule may be embedded in another unit at list construction as long as they have the same unit type keyword (for example, Heavy Infantry may be added to Heavy infantry units). A unit may have a maximum of 1 Support and 1 Leader embedded in it. Leaders and Support units may only be assigned hits after all other models in the unit are destroyed. When taking Courage tests, use the highest Courage in the unit, including leaders and support units.
+Units with the leader or support rule may be embedded in another unit at the start of the battle as long as they have the same unit type keyword (for example, Heavy Infantry may be added to Heavy infantry units). A unit may have a maximum of 1 Support and 1 Leader embedded in it. Leaders and Support units may only be assigned hits after all other models in the unit are destroyed. When taking Courage tests, use the highest Courage in the unit, including leaders and support units.

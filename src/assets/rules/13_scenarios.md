@@ -8,7 +8,7 @@ Players control objectives if they end the turn within 3" the most models on the
 Victory points are the primary way to win scenarios. Players score victory points as described in the scenario and the player with the most victory points at the end of the game is the winner.
 
 ## Scenario Length
-All scenarios are complete at the end of game round 6. At that point, players add up the number of victory points they have scored and a winner is determined.
+All scenarios are complete at the end of game round 5. At that point, players add up the number of victory points they have scored and a winner is determined.
 
 ## Reserves and Transports
 Before deployment, any units in reserve such as ambush, outflanking or other and units inside transports are set aside and not deployed during that phase. Players may choose any units to be left in reserves as long as that player has a reserves table edge marked in the scenario. When activating a unit in reserves, if it is not yet on the table (or does not arrive via a special rule), it may enter on a designated reinforcement edge. It must first perform a Move action from the table edge to arrive, but then may complete any action.

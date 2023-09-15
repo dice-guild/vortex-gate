@@ -1,5 +1,5 @@
 # Introduction
-Vortex Gate is a set of modular wargame rules to use with your favorite miniatures or even some green plastic army men and is a great set of rules for beginners to wargaming. In our [Game Modules](/#/games) you can find the game modules we support. If you have an idea for a cool game setting, you can join our [Discord](https://discord.gg/M9sets4) and let us know.
+Vortex Gate is a set of community-driven wargame rules to use with your favorite miniatures or even some green plastic army men and is a great set of rules for beginners to wargaming. If you have any balance or gameplay ideas, you can join our [Discord](https://discord.gg/M9sets4) and let us know.
 
 ## Game Materials
 To get started you'll need the following items:

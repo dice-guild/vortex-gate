@@ -60,7 +60,7 @@ export const PrintView = (props) => {
             {listType === "campaign"
               ? ` ${totalForceReservePoints} pts of reserves,`
               : ""}
-            {` ${totalSP} SP`},{" "}
+            {` ${totalSP} TP`},{" "}
             {`${legendLimit} Legend${legendLimit > 1 ? "s" : ""}`}
           </Typography>
         </div>
@@ -122,7 +122,7 @@ export const PrintView = (props) => {
             <div>
               <div>
                 {/* <div className="d-flex justify-content-between align-items-center">
-                  <h4 className="text-left">{`${forceFaction.name} ${(!forceSubFactionId || forceSubFactionId === "none") ? '' : `(${forceSubfaction.name})`} - ${force.name}`}<small>{` (${force.cost} SP)`}</small></h4>
+                  <h4 className="text-left">{`${forceFaction.name} ${(!forceSubFactionId || forceSubFactionId === "none") ? '' : `(${forceSubfaction.name})`} - ${force.name}`}<small>{` (${force.cost} TP)`}</small></h4>
                 </div> */}
                 <div>
                   {((factionRelics.length) && (!!forceLegends.length)) && <>
@@ -255,8 +255,8 @@ export const PrintView = (props) => {
                         <Table size="small" aria-label="simple table" style={{ padding: 0 }}>
                           <TableHead>
                             <StyledTableRow style={thStyle2}>
-                              <TableCell>{"Strategy"}</TableCell>
-                              <TableCell align="center">{"SP"}</TableCell>
+                              <TableCell>{"Tactic"}</TableCell>
+                              <TableCell align="center">{"TP"}</TableCell>
                               <TableCell>{"Phase"}</TableCell>
                               <TableCell>{"Description"}</TableCell>
                             </StyledTableRow>

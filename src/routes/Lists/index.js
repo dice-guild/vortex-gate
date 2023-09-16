@@ -1128,7 +1128,7 @@ export default React.memo((props) => {
           {listType === "campaign"
             ? ` ${totalForceReservePoints} pts Reserve,`
             : ""}
-          {` ${totalSP} SP`},{" "}
+          {` ${totalSP} TP`},{" "}
           {`${legendLimit} Legend${legendLimit > 1 ? "s" : ""}`}
         </Typography>
         {validationErrors.map((error, idx) => (
@@ -1189,7 +1189,7 @@ export default React.memo((props) => {
                 <FormGroup>
                   <InputNumber
                     fullWidth
-                    label={"Strategy Points"}
+                    label={"Tactic Points"}
                     min={0}
                     type="number"
                     color="primary"
@@ -1408,7 +1408,7 @@ export default React.memo((props) => {
                       >
                         <ListItemText
                           primary="View Strategies"
-                          secondary="Strategies are additional army bonuses you can activate with strategy points (SP)."
+                          secondary="Strategies are additional army bonuses you can activate with Tactic Points (TP)."
                         />
                       </ListItemButton>
                     </ListItem>

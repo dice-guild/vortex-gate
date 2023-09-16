@@ -124,45 +124,46 @@ export default function Home() {
           >
             <img flex={1} className={"logo"} src={logo} alt="logo" />
           </Box>
+          <Container>
+            <Grid container rowSpacing={2} sx={{ mt: -1, mb: 3 }} columnSpacing={2}>
+              {CARDS.map((card) => (
+                <Grid item sm={6} md={4}>
+                  <Card sx={{ border: `2px solid ${theme.palette.primary.main}`}}>
+                    <CardActionArea
+                      onClick={() =>
+                        card.toAbs
+                          ? window.open(card.toAbs, "_blank")
+                          : navigate(card.to)
+                      }
+                    >
+                      <CardContent>
+                        <Box
+                          display="flex"
+                          flexDirection="row"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <Box
+                            sx={{ mr: 2, color: theme.palette.primary.main }}
+                          >
+                            {card.icon}
+                          </Box>
+                          <Stack>
+                            <Typography variant={fullScreen ? "h4" : "h5"} component="div">
+                              {card.name}
+                            </Typography>
+                            <Typography align="left">{card.text}</Typography>
+                          </Stack>
+                        </Box>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
         </Box>
       </div>
-      <Container>
-        <Grid container rowSpacing={2} sx={{ mt: 1 }} columnSpacing={2}>
-          {CARDS.map((card) => (
-            <Grid item sm={6} md={4}>
-              <Card>
-                <CardActionArea
-                  onClick={() =>
-                    card.toAbs
-                      ? window.open(card.toAbs, "_blank")
-                      : navigate(card.to)
-                  }
-                >
-                  <CardContent>
-                    <Box
-                      display="flex"
-                      flexDirection="row"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Box sx={{ mr: 2, color: theme.palette.primary.main }}>
-                        {card.icon}
-                      </Box>
-                      <Stack>
-                        <Typography variant="h4" component="div">
-                          {card.name}
-                        </Typography>
-                        <Typography align="left">{card.text}</Typography>
-                      </Stack>
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-      <Divider sx={{ pb: 2 }} />
       <Container>
         <Box sx={{ mt: 3 }}>
           <Typography

@@ -1407,8 +1407,8 @@ export default React.memo((props) => {
                         }
                       >
                         <ListItemText
-                          primary="View Strategies"
-                          secondary="Strategies are additional army bonuses you can activate with Tactic Points (TP)."
+                          primary="View Tactics"
+                          secondary="Tactics are additional army bonuses you can activate with Tactic Points (TP)."
                         />
                       </ListItemButton>
                     </ListItem>

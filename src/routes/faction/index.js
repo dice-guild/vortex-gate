@@ -216,7 +216,7 @@ export default React.memo((props) => {
       />
     ),
     Powers: <Powers data={data} faction={faction} nameFilter={nameFilter} />,
-    Strategies: (
+    Tactics: (
       <Strategies data={data} faction={faction} nameFilter={nameFilter} />
     ),
     Legends: <Relics data={data} faction={faction} nameFilter={nameFilter} />,

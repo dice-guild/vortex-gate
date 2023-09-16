@@ -17,8 +17,8 @@ __For Example:__ We are playing a 1000 point game, so I would gain 1 base, and 1
 ### Spending Tactic Points
 Each tactic will specify when it may be used. This can include when a unit is targeted by an attack, when a unit is activated, and many more. A unit may only be the target of one tactic per action it takes (Move, Shoot, Focus etc).
 
-### Pre-game Strategies
-Some strategies are used before the game begins. You may spend Tactic Points from your first-round Tactic Point income to activate these strategies. Note however, those points will be unavailable for the first game round.
+### Pre-game Tactics
+Some tactics are used before the game begins. You may spend Tactic Points from your first-round Tactic Point income to activate these strategies. Note however, those points will be unavailable for the first game round.
 
 ## Legends
 Legends are particularly memorable people or weapons. They typically replace or upgrade a unit with a unique ability which cannot be acquired elsewhere.

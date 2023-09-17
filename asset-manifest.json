@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.26ca4ca8.js",
+    "main.js": "/static/js/main.3c11fdf6.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
@@ -15,16 +15,16 @@
     "static/media/7_fighting.md": "/static/media/7_fighting.ea8ca97e7e1b2d1bc843.md",
     "static/media/1_introduction.md": "/static/media/1_introduction.305826c05bd7b4752d3e.md",
     "static/media/11_powers.md": "/static/media/11_powers.689463232803f955185b.md",
-    "static/media/9_reactions.md": "/static/media/9_reactions.9fe5fed3145bf9391c90.md",
     "static/media/8_shock.md": "/static/media/8_shock.79838f397b9b46ff2c69.md",
+    "static/media/9_reactions.md": "/static/media/9_reactions.a954db4bfe513b254182.md",
     "static/media/14_multiplayer.md": "/static/media/14_multiplayer.edb3f5fc34bc4dc63d2f.md",
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.26ca4ca8.js.map": "/static/js/main.26ca4ca8.js.map"
+    "main.3c11fdf6.js.map": "/static/js/main.3c11fdf6.js.map"
   },
   "entrypoints": [
     "static/css/main.82ab7748.css",
-    "static/js/main.26ca4ca8.js"
+    "static/js/main.3c11fdf6.js"
   ]
 }

@@ -10,4 +10,9 @@ Units may react to the following triggers:
 To make a Reaction, a unit declares they are attempting to react to one of the above triggers and takes an Initiative skill check. If failed, the unit takes 1 Shock and may activate later in the round. If passed, the unit may immediately perform one action after which it counts as activating for the round.
 
 ## Reaction Timing
-Reactions follow some special timing as they interrupt another unit's activation. Attack actions such as Fight or Shoot are performed simultaneously with the interrupted unit's activation. This means if a unit reacts to a shoot action, it performs its own shoot action simultaneously with the unit targeting it. All other actions are performed before the interrupted unit's activation such as Move actions or Evade actions.
+Reactions follow some special timing as they interrupt another unit's activation. 
+
+Timings are described as follows:
+* Move, Focus, Evade and Rally actions are performed immediately when a reaction is successful.
+* Shoot and Fight are performed simultaneously with the attacking unit.
+* Charges are performed before the attacking unit moves, after which both units Fight simultaneously.

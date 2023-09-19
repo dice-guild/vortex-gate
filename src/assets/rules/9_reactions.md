@@ -7,7 +7,7 @@ Units may react to the following triggers:
 * A unit on Hold has a unit move within range of a charge or shooting attack
 
 ## Making A Reaction
-To make a Reaction, a unit declares they are attempting to react to one of the above triggers and takes an Initiative skill check. If failed, the unit takes 1 Shock and may activate later in the round. If passed, the unit may immediately perform one action after which it counts as activating for the round.
+To make a Reaction, a unit declares they are attempting to react to one of the above triggers and takes an Initiative skill check. If failed, the unit takes 1 Shock and may activate later in the round. If passed, the unit may perform one action after which it counts as activating for the round.
 
 ## Reaction Timing
 Reactions follow some special timing as they interrupt another unit's activation. 

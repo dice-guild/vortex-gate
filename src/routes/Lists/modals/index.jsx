@@ -913,7 +913,7 @@ Reactions follow some special timing as they interrupt another unit's activation
 Timings are described as follows:
 * Move, Focus, Evade and Rally actions are performed immediately when a reaction is successful.
 * Shoot and Fight are performed simultaneously with the attacking unit.
-* Charges are performed before the attacking unit moves, after which both units Fight simultaneously.
+* Charges are performed before the attacking unit moves, after which both units Fight simultaneously if the unit being reacted to is also charging.
 `;
 const ReferenceRules = styled.div`
   h1,

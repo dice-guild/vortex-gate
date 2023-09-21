@@ -1638,7 +1638,7 @@ export default React.memo((props) => {
                             );
                             const hasPowerRule = find(
                               get(unit, "selectedRules", []),
-                              (rule) => rule.id === "power" || rule === "power"
+                              (rule) => rule.id === "power" || rule === "power" || rule === "conclave"
                             );
                             const hasOptions = !!unit?.optionList?.length;
                             return (

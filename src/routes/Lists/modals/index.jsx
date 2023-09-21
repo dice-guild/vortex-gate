@@ -1087,7 +1087,7 @@ export const EditUnit = (props) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const hasPowerRule = find(
     get(unit, "selectedRules", []),
-    (rule) => rule.id === "power" || rule === "power"
+    (rule) => rule.id === "power" || rule === "power" || rule === "conclave"
   );
   if (!unit) {
     return <div></div>;

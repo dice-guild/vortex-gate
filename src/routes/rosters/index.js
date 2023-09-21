@@ -305,7 +305,6 @@ export default React.memo((props) => {
             >
               {filteredLists.map((list, unitIdx) => {
                 const { pointLimit, type } = list;
-                console.log(list);
                 return (
                   <>
                     <ListItem

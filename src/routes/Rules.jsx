@@ -157,7 +157,6 @@ export default function QuickRules() {
     navigate(`/rules/${nextPageId}`);
     scrollWithOffset(false);
   };
-  // useEffect with an empty dependency array (`[]`) runs only once
   React.useEffect(() => {
     fetch(currentPage)
       .then((response) => response.text())

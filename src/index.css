@@ -478,3 +478,17 @@ input[type=number] {
     font-size: 22pt;
   }
 }
+
+.banner {
+  height: 600px;
+}
+/* @media (max-width: 768px) {
+  .banner {
+    height: 600px;
+  }
+}
+@media (max-width: 512px) {
+  .banner {
+    height: 600px;
+  }
+} */

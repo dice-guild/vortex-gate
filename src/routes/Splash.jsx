@@ -9,7 +9,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Divider,
   Grid,
   Stack,
   Typography,
@@ -18,16 +17,14 @@ import {
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
 import logo from "assets/vortex_gate_wide.png";
-import Gallery from "components/gallery";
-import { shuffle } from "lodash";
 import React from "react";
 import ChessPawn from "mdi-material-ui/ChessPawn";
-import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router";
 import { colors } from "utils/colors";
-import { getHeaders } from "utils/images";
-import { MaterialRenderer } from "utils/markdown";
 import bgImage from "assets/background.jpg";
+import bgImage2 from "assets/background2.jpg";
+import bgImage3 from "assets/background3.jpg";
+import bgImage4 from "assets/background4.jpg";
 import { DataContext } from "hooks";
 import { useContext } from "react";
 import { useSnackbar } from "notistack";
@@ -38,9 +35,7 @@ export default function Home() {
   const [{ refreshAllData: refreshData, setAppState }] =
     useContext(DataContext);
   const { enqueueSnackbar } = useSnackbar();
-  const images = React.useMemo(() => shuffle(getHeaders()), []);
   const iconSize = "60px";
-  const mrender = MaterialRenderer();
   const fullScreen = useMediaQuery(theme.breakpoints.up("md"));
   const CARDS = [
     {
@@ -111,7 +106,7 @@ export default function Home() {
         }}
       >
         <Box
-          sx={{ display: "flex", flexDirection: "column", mt: -2 }}
+          sx={{ display: "flex", flexDirection: "column", mt: -2, py: 5 }}
           style={{ width: "100%", background: "rgba(0,0,0,0.4)" }}
         >
           <Box
@@ -125,10 +120,17 @@ export default function Home() {
             <img flex={1} className={"logo"} src={logo} alt="logo" />
           </Box>
           <Container>
-            <Grid container rowSpacing={2} sx={{ mt: -1, mb: 3 }} columnSpacing={2}>
+            <Grid
+              container
+              rowSpacing={2}
+              sx={{ mt: 0, mb: 0 }}
+              columnSpacing={2}
+            >
               {CARDS.map((card) => (
                 <Grid item sm={6} md={4}>
-                  <Card sx={{ border: `2px solid ${theme.palette.primary.main}`}}>
+                  <Card
+                    sx={{ border: `2px solid ${theme.palette.primary.main}` }}
+                  >
                     <CardActionArea
                       onClick={() =>
                         card.toAbs
@@ -149,7 +151,10 @@ export default function Home() {
                             {card.icon}
                           </Box>
                           <Stack>
-                            <Typography variant={fullScreen ? "h4" : "h5"} component="div">
+                            <Typography
+                              variant={fullScreen ? "h4" : "h5"}
+                              component="div"
+                            >
                               {card.name}
                             </Typography>
                             <Typography align="left">{card.text}</Typography>
@@ -164,62 +169,92 @@ export default function Home() {
           </Container>
         </Box>
       </div>
-      <Container>
-        <Box sx={{ mt: 3 }}>
-          <Typography
-            variant={fullScreen ? "h1" : "h3"}
-            paragraph
-            align={fullScreen ? "center" : "left"}
-            sx={{
-              mb: "0.5em",
-              borderBottom: `5px solid ${theme.palette.primary.main}`,
-            }}
-          >
-            Battles in the Celestia Expanse
-          </Typography>
-          <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-            In the distant future, in a war-torn galaxy known as the Celestia
-            Expanse, countless planets and civilizations find themselves
-            embroiled in a seemingly unending conflict. The Celestia Expanse was
-            once a beacon of prosperity and interstellar cooperation, but it all
-            changed when the enigmatic Vortex Gate appeared at its center. The
-            Vortex Gate was a cosmic anomaly of immense power, emitting dark and
-            corrupt energies that spread like a plague throughout the galaxy. At
-            its heart lay an ancient and malevolent cosmic horror, dormant for
-            eons but now awakened by the ambitions and conflicts of the various
-            civilizations within the Celestia Expanse.
-          </Typography>
-          <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-            Humanity, at the forefront of exploration and colonization, had
-            formed the Stellar Vanguard, an elite interstellar marine force
-            dedicated to safeguarding the galaxy from threats. The Vanguard
-            stood as a symbol of hope and valor. Eager to harness the power of
-            the Vortex Gate for the benefit of mankind, the Stellar Vanguard
-            embarked on a daring mission to investigate the anomaly. Their
-            intentions were noble, driven by the belief that understanding the
-            gate's energies could provide an advantage against their enemies.
-            However, their encounter with the Vortex Gate proved catastrophic.
-            The corrupt cosmic horror within the gate saw an opportunity to
-            spread its malevolence further and exploited the Vanguard's
-            vulnerabilities. The dark energies of the Vortex Gate twisted their
-            minds, turning the once-virtuous Stellar Vanguard into the
-            malevolent and corrupted nightmarish beings, their souls and bodies
-            twisted by darkness.
-          </Typography>
-          <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-            The Vortex Gate is both a beacon of hope and a harbinger of
-            destruction. Join the ranks of the valiant defenders or the
-            ambitious conquerors in this breathtaking sci-fi saga, where the
-            destiny of countless worlds depends on the outcome of the battle for
-            the Celestia Expanse. Prepare for an adrenaline-pumping adventure
-            that will challenge your wit, courage, and determination in the face
-            of the unknown. Are you ready to seize your place in this war-torn
-            cosmos and shape its destiny?
-          </Typography>
-        </Box>
+      <div
+        className="banner"
+        style={{
+          backgroundImage: `url(${bgImage2})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <Box
+          sx={{ display: "flex", flexDirection: "column", p: 3 }}
+          style={{
+            width: "100%",
+            background: "rgba(0,0,0,0.1)",
+            height: "600px",
+          }}
+        ></Box>
+      </div>
+      <Container sx={{ my: 5 }}>
+        <Typography
+          variant={fullScreen ? "h1" : "h3"}
+          paragraph
+          align={fullScreen ? "center" : "left"}
+          sx={{
+            mb: "0.5em",
+            borderBottom: `5px solid ${theme.palette.primary.main}`,
+          }}
+        >
+          Battles in the Celestia Expanse
+        </Typography>
+        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+          In the distant future, in a war-torn galaxy known as the Celestia
+          Expanse, countless planets and civilizations find themselves embroiled
+          in a seemingly unending conflict. The Celestia Expanse was once a
+          beacon of prosperity and interstellar cooperation, but it all changed
+          when the enigmatic Vortex Gate appeared at its center. The Vortex Gate
+          was a cosmic anomaly of immense power, emitting dark and corrupt
+          energies that spread like a plague throughout the galaxy. At its heart
+          lay an ancient and malevolent cosmic horror, dormant for eons but now
+          awakened by the ambitions and conflicts of the various civilizations
+          within the Celestia Expanse.
+        </Typography>
+        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+          Humanity, at the forefront of exploration and colonization, had formed
+          the Stellar Vanguard, an elite interstellar marine force dedicated to
+          safeguarding the galaxy from threats. The Vanguard stood as a symbol
+          of hope and valor. Eager to harness the power of the Vortex Gate for
+          the benefit of mankind, the Stellar Vanguard embarked on a daring
+          mission to investigate the anomaly. Their intentions were noble,
+          driven by the belief that understanding the gate's energies could
+          provide an advantage against their enemies. However, their encounter
+          with the Vortex Gate proved catastrophic. The corrupt cosmic horror
+          within the gate saw an opportunity to spread its malevolence further
+          and exploited the Vanguard's vulnerabilities. The dark energies of the
+          Vortex Gate twisted their minds, turning the once-virtuous Stellar
+          Vanguard into the malevolent and corrupted nightmarish beings, their
+          souls and bodies twisted by darkness.
+        </Typography>
+        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+          The Vortex Gate is both a beacon of hope and a harbinger of
+          destruction. Join the ranks of the valiant defenders or the ambitious
+          conquerors in this breathtaking sci-fi saga, where the destiny of
+          countless worlds depends on the outcome of the battle for the Celestia
+          Expanse. Prepare for an adrenaline-pumping adventure that will
+          challenge your wit, courage, and determination in the face of the
+          unknown. Are you ready to seize your place in this war-torn cosmos and
+          shape its destiny?
+        </Typography>
       </Container>
-      <Divider sx={{ py: 2 }} />
-      <Container>
+      <div
+        className="banner"
+        style={{
+          backgroundImage: `url(${bgImage3})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <Box
+          sx={{ display: "flex", flexDirection: "column", p: 3 }}
+          style={{
+            width: "100%",
+            background: "rgba(0,0,0,0.1)",
+            height: "600px",
+          }}
+        ></Box>
+      </div>
+      <Container sx={{ my: 5 }}>
         <Typography
           variant={fullScreen ? "h1" : "h3"}
           paragraph
@@ -340,22 +375,23 @@ export default function Home() {
           </Grid>
         </Grid>
       </Container>
-      <Divider sx={{ py: 2 }} />
-      <Container>
-        <Gallery
-          images={images.map((img) => ({
-            imgPath: `/images/headers/${img.img}`,
-            label: (
-              <ReactMarkdown
-                components={mrender}
-                className="rule-text"
-                children={img.credit}
-              />
-            ),
-          }))}
-          maxHeight={500}
-        />
-      </Container>
+      <div
+        className="banner"
+        style={{
+          backgroundImage: `url(${bgImage4})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <Box
+          sx={{ display: "flex", flexDirection: "column", p: 3 }}
+          style={{
+            width: "100%",
+            background: "rgba(0,0,0,0.2)",
+            height: "600px",
+          }}
+        ></Box>
+      </div>
     </>
   );
 }

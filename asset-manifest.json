@@ -1,7 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.0ac7eadb.js",
+    "main.css": "/static/css/main.5515535b.css",
+    "main.js": "/static/js/main.a034328f.js",
+    "static/media/background2.jpg": "/static/media/background2.c82d7304a6d7ed1a8558.jpg",
+    "static/media/background3.jpg": "/static/media/background3.d3939783303931222832.jpg",
+    "static/media/background4.jpg": "/static/media/background4.ec3dc4a91f1f53fd3104.jpg",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
@@ -20,11 +23,11 @@
     "static/media/14_multiplayer.md": "/static/media/14_multiplayer.edb3f5fc34bc4dc63d2f.md",
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
-    "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.0ac7eadb.js.map": "/static/js/main.0ac7eadb.js.map"
+    "main.5515535b.css.map": "/static/css/main.5515535b.css.map",
+    "main.a034328f.js.map": "/static/js/main.a034328f.js.map"
   },
   "entrypoints": [
-    "static/css/main.82ab7748.css",
-    "static/js/main.0ac7eadb.js"
+    "static/css/main.5515535b.css",
+    "static/js/main.a034328f.js"
   ]
 }

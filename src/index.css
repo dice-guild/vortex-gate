@@ -480,15 +480,15 @@ input[type=number] {
 }
 
 .banner {
-  height: 600px;
+  height: 550px;
 }
 @media (max-width: 768px) {
   .banner {
-    height: 500px;
+    height: 450px;
   }
 }
 @media (max-width: 512px) {
   .banner {
-    height: 400px;
+    height: 350px;
   }
 }

@@ -1,12 +1,7 @@
-import { Sync } from "@mui/icons-material";
 import {
-  Button,
   CardHeader,
-  Checkbox,
   Container,
   Divider,
-  FormControlLabel,
-  FormGroup,
   Grid,
   Typography,
   useTheme,
@@ -21,24 +16,34 @@ import React from "react";
 import { DataContext } from "hooks";
 import { DataAPI, mergeGlobalData } from "utils/data";
 import { PrettyHeader } from "components/pretty-header";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 export function MissionGenerator() {
-  const [{ data: nope, appState, setAppState, userPrefs }] =
+  const [{ data: nope, appState, setAppState }] =
     React.useContext(DataContext);
   const nameFilter = appState?.searchText;
-  const globalData = mergeGlobalData({ gameType: 'battle' }, nope);
+  const globalData = mergeGlobalData({ gameType: "battle" }, nope);
   const data = DataAPI({}, globalData);
   React.useEffect(() => {
     setAppState({
-      enableSearch: true,
+      enableSearch: false,
+      contextActions: [
+        {
+          name: "Refresh",
+          icon: <RefreshIcon />,
+          onClick: () => {
+            generateNewMission();
+          },
+        },
+      ],
     });
     return () => {
       setAppState({
-        enableSearch: false,
+        contextActions: [],
       });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userPrefs.developerMode]);
+  }, []);
   const theme = useTheme();
   const missions = data
     .getMissionScenarios()
@@ -61,10 +66,6 @@ export function MissionGenerator() {
     "mission_generator_randomSecondary",
     getRandomItems(secondaries, 3)
   );
-  const [enableWeather, setEnableWeather] = useLocalStorage(
-    "mission_generator_enableWeather",
-    false
-  );
   const generateNewMission = () => {
     setRandomMission(getRandomItem(missions));
     setRandomWeather(getRandomItem(weathers));
@@ -74,51 +75,6 @@ export function MissionGenerator() {
     <>
       <PrettyHeader text="Scenarios" />
       <Container sx={{ mt: 2 }}>
-        <Card
-          sx={{
-            border: `2px solid ${theme.palette.primary.main}`,
-            mb: 2,
-          }}
-        >
-          <CardHeader
-            sx={{
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.getContrastText(theme.palette.primary.main),
-              p: 1,
-            }}
-            title={
-              <Typography variant="h5" component="div" align="center">
-                Options
-              </Typography>
-            }
-          />
-          <CardContent>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={enableWeather}
-                    onChange={() => setEnableWeather(!enableWeather)}
-                  />
-                }
-                label="Twist"
-              />
-            </FormGroup>
-            {/* <FormGroup check inline>
-          <Label style={{ display: 'inline' }}>
-            <Input type="checkbox" title="" style={{ marginLeft: '5px' }} color="primary" checked={enableCondition} onChange={() => setEnableCondition(!enableCondition)} />
-            {'Fighting Condition'}
-          </Label>
-        </FormGroup> */}
-            <Button
-              variant="contained"
-              onClick={generateNewMission}
-              startIcon={<Sync />}
-            >
-              New Scenario
-            </Button>
-          </CardContent>
-        </Card>
         {!randomMission && (
           <>
             <div
@@ -154,6 +110,7 @@ export function MissionGenerator() {
             >
               <Grid item sx={{ mb: 2 }} md={6}>
                 <Card
+                  style={{ height: "100%" }}
                   sx={{
                     border: `2px solid ${theme.palette.primary.main}`,
                   }}
@@ -167,17 +124,55 @@ export function MissionGenerator() {
                       p: 1,
                     }}
                     title={
-                      <Typography variant="h5" component="div" align="center">
-                        {randomMission.name}
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        align="center"
+                        fontSize="24px"
+                      >
+                        Battle Map
                       </Typography>
                     }
                   />
-                  <CardMedia
-                    component="img"
-                    image={randomMission.map}
-                    alt={randomMission.name}
+                  <CardContent>
+                    <CardMedia
+                      component="img"
+                      image={randomMission.map}
+                      alt={randomMission.name}
+                    />
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item sx={{ mb: 2 }} md={6}>
+                <Card
+                  style={{ height: "100%" }}
+                  sx={{
+                    border: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                >
+                  <CardHeader
+                    sx={{
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.getContrastText(
+                        theme.palette.primary.main
+                      ),
+                      p: 1,
+                    }}
+                    title={
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        align="center"
+                        fontSize="24px"
+                      >
+                        Primary Objective
+                      </Typography>
+                    }
                   />
                   <CardContent>
+                    <Typography variant="h5" component="div" gutterBottom>
+                      Capture and Hold
+                    </Typography>
                     <Typography variant="body" color="text.primary">
                       <ReactMarkdown
                         className="rule-text"
@@ -190,6 +185,7 @@ export function MissionGenerator() {
               </Grid>
               <Grid item sx={{ mb: 2 }} md={6}>
                 <Card
+                  style={{ height: "100%" }}
                   sx={{
                     border: `2px solid ${theme.palette.primary.main}`,
                   }}
@@ -203,7 +199,12 @@ export function MissionGenerator() {
                       p: 1,
                     }}
                     title={
-                      <Typography variant="h5" component="div" align="center">
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        align="center"
+                        fontSize="24px"
+                      >
                         Secondary Objectives
                       </Typography>
                     }
@@ -232,46 +233,51 @@ export function MissionGenerator() {
                   </CardContent>
                 </Card>
               </Grid>
-              {!!enableWeather && (
-                <Grid item sx={{ mb: 2 }} md={12}>
-                  <Card
+              <Grid item sx={{ mb: 2 }} md={6}>
+                <Card
+                  style={{ height: "100%" }}
+                  sx={{
+                    border: `2px solid ${theme.palette.primary.main}`,
+                  }}
+                >
+                  <CardHeader
                     sx={{
-                      border: `2px solid ${theme.palette.primary.main}`,
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.getContrastText(
+                        theme.palette.primary.main
+                      ),
+                      p: 1,
                     }}
-                  >
-                    <CardHeader
-                      sx={{
-                        backgroundColor: theme.palette.primary.main,
-                        color: theme.palette.getContrastText(
-                          theme.palette.primary.main
-                        ),
-                      }}
-                      title={
-                        <Typography variant="h5" component="div" align="center">
-                          Twist
-                        </Typography>
-                      }
-                    />
-                    <CardContent>
-                      <Typography variant="h5" component="div" gutterBottom>
-                        {randomWeather.name}
+                    title={
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        align="center"
+                        fontSize="24px"
+                      >
+                        Twist
                       </Typography>
-                      <div style={{ marginBottom: "0.5em" }}>
-                        <ReactMarkdown
-                          className="rule-text font-italic"
-                          style={{ breakInside: "avoid-column" }}
-                          children={randomWeather.description}
-                        />
-                      </div>
+                    }
+                  />
+                  <CardContent>
+                    <Typography variant="h5" component="div" gutterBottom>
+                      {randomWeather.name}
+                    </Typography>
+                    <div style={{ marginBottom: "0.5em" }}>
                       <ReactMarkdown
-                        className="rule-text"
+                        className="rule-text font-italic"
                         style={{ breakInside: "avoid-column" }}
-                        children={randomWeather.rules}
+                        children={randomWeather.description}
                       />
-                    </CardContent>
-                  </Card>
-                </Grid>
-              )}
+                    </div>
+                    <ReactMarkdown
+                      className="rule-text"
+                      style={{ breakInside: "avoid-column" }}
+                      children={randomWeather.rules}
+                    />
+                  </CardContent>
+                </Card>
+              </Grid>
             </Grid>
           </>
         )}

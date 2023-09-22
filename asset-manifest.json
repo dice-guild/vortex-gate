@@ -1,30 +1,30 @@
 {
   "files": {
     "main.css": "/static/css/main.82ab7748.css",
-    "main.js": "/static/js/main.294eac4c.js",
+    "main.js": "/static/js/main.0ac7eadb.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
     "static/media/12_force_building.md": "/static/media/12_force_building.5de25a85f926f3130ba7.md",
     "static/media/6_shooting.md": "/static/media/6_shooting.e908d68ce088d892296e.md",
     "static/media/2_datasheets.md": "/static/media/2_datasheets.17ca55a72aaefaba5517.md",
-    "static/media/4_actions.md": "/static/media/4_actions.6917136ef819bdf88142.md",
+    "static/media/4_actions.md": "/static/media/4_actions.8083d1b6f7be9e756400.md",
     "static/media/10_terrain.md": "/static/media/10_terrain.b97aa0fda4c95b227919.md",
     "static/media/13_scenarios.md": "/static/media/13_scenarios.332e0d9a92caf78ef4ab.md",
     "static/media/5_movement.md": "/static/media/5_movement.9fb3e6458bee3d4e4278.md",
     "static/media/7_fighting.md": "/static/media/7_fighting.ea8ca97e7e1b2d1bc843.md",
     "static/media/1_introduction.md": "/static/media/1_introduction.305826c05bd7b4752d3e.md",
-    "static/media/9_reactions.md": "/static/media/9_reactions.b5be230e69e373e978f7.md",
+    "static/media/9_reactions.md": "/static/media/9_reactions.84d15ccf05d5cdaceac1.md",
     "static/media/8_shock.md": "/static/media/8_shock.79838f397b9b46ff2c69.md",
     "static/media/11_powers.md": "/static/media/11_powers.e5972d98e4965b8b5071.md",
     "static/media/14_multiplayer.md": "/static/media/14_multiplayer.edb3f5fc34bc4dc63d2f.md",
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.82ab7748.css.map": "/static/css/main.82ab7748.css.map",
-    "main.294eac4c.js.map": "/static/js/main.294eac4c.js.map"
+    "main.0ac7eadb.js.map": "/static/js/main.0ac7eadb.js.map"
   },
   "entrypoints": [
     "static/css/main.82ab7748.css",
-    "static/js/main.294eac4c.js"
+    "static/js/main.0ac7eadb.js"
   ]
 }

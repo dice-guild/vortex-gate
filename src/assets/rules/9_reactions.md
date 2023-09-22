@@ -4,7 +4,7 @@ Reactions allow units to perform actions out of the normal activation sequence. 
 ## Reaction Triggers
 Units may react to the following triggers:
 * A unit is targeted by a Shoot action, Fight action or Charge action
-* A unit on Hold has a unit move within range of a charge or shooting attack
+* A unit on Hold has an enemy unit start or end a Move action within range of a charge or shooting attack
 
 ## Making A Reaction
 To make a Reaction, a unit declares they are attempting to react to one of the above triggers and takes an Initiative skill check. If failed, the unit takes 1 Shock and may activate later in the round. If passed, the unit may perform one action after which it counts as activating for the round.

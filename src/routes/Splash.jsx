@@ -1,9 +1,9 @@
-import ExtensionIcon from "@mui/icons-material/Extension";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import CodeIcon from "@mui/icons-material/Code";
+import SwordCrossIcon from "mdi-material-ui/SwordCross";
 import {
   Box,
   Card,
@@ -47,7 +47,7 @@ export default function Home() {
     },
     {
       name: "Factions",
-      icon: <ExtensionIcon style={{ fontSize: iconSize }} />,
+      icon: <SwordCrossIcon style={{ fontSize: iconSize }} />,
       text: "Browse all of the available game factions to play.",
       to: "/factions",
       color: colors.green.import[900],

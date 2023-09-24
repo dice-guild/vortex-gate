@@ -2,7 +2,6 @@ import { ExpandLess, ExpandMore, Map } from "@mui/icons-material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import ConstructionIcon from "@mui/icons-material/Construction";
-import ExtensionIcon from "@mui/icons-material/Extension";
 import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
@@ -155,7 +154,7 @@ export const MainNav = (props) => {
       return {
         id: allianceKey,
         name: `${allianceData?.name}`,
-        icon: <ExtensionIcon />,
+        icon: <BookmarkIcon />,
         to: "/factions",
         children: [
           ...Object.keys(theFactions).map((orgKey) => {
@@ -243,13 +242,7 @@ export const MainNav = (props) => {
                 onClick={() => (open ? handleClose() : handleOpen())}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText
-                  primary={
-                    <Typography>
-                      {item.name}
-                    </Typography>
-                  }
-                />
+                <ListItemText primary={<Typography>{item.name}</Typography>} />
                 {open ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={open} timeout="auto" unmountOnExit>

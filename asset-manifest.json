@@ -1,33 +1,34 @@
 {
   "files": {
     "main.css": "/static/css/main.bc47369f.css",
-    "main.js": "/static/js/main.9fe9ad0a.js",
+    "main.js": "/static/js/main.14d8ffbb.js",
     "static/media/background2.jpg": "/static/media/background2.c82d7304a6d7ed1a8558.jpg",
     "static/media/background3.jpg": "/static/media/background3.d3939783303931222832.jpg",
     "static/media/background4.jpg": "/static/media/background4.ec3dc4a91f1f53fd3104.jpg",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
-    "static/media/12_force_building.md": "/static/media/12_force_building.9882732d51856a6e1d9c.md",
+    "static/media/13_force_building.md": "/static/media/13_force_building.90b2895a5b378f5c8503.md",
     "static/media/6_shooting.md": "/static/media/6_shooting.e908d68ce088d892296e.md",
     "static/media/2_datasheets.md": "/static/media/2_datasheets.17ca55a72aaefaba5517.md",
     "static/media/4_actions.md": "/static/media/4_actions.8083d1b6f7be9e756400.md",
     "static/media/10_terrain.md": "/static/media/10_terrain.b97aa0fda4c95b227919.md",
-    "static/media/13_scenarios.md": "/static/media/13_scenarios.332e0d9a92caf78ef4ab.md",
+    "static/media/14_scenarios.md": "/static/media/14_scenarios.332e0d9a92caf78ef4ab.md",
     "static/media/5_movement.md": "/static/media/5_movement.9fb3e6458bee3d4e4278.md",
+    "static/media/12_tactic_points.md": "/static/media/12_tactic_points.1a6b381fe1a912f842f1.md",
     "static/media/7_fighting.md": "/static/media/7_fighting.ea8ca97e7e1b2d1bc843.md",
     "static/media/1_introduction.md": "/static/media/1_introduction.305826c05bd7b4752d3e.md",
     "static/media/9_reactions.md": "/static/media/9_reactions.84d15ccf05d5cdaceac1.md",
-    "static/media/8_shock.md": "/static/media/8_shock.79838f397b9b46ff2c69.md",
+    "static/media/8_morale.md": "/static/media/8_morale.d5267092d76e1ac16bc8.md",
     "static/media/11_powers.md": "/static/media/11_powers.e5972d98e4965b8b5071.md",
-    "static/media/14_multiplayer.md": "/static/media/14_multiplayer.edb3f5fc34bc4dc63d2f.md",
+    "static/media/15_multiplayer.md": "/static/media/15_multiplayer.edb3f5fc34bc4dc63d2f.md",
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.bc47369f.css.map": "/static/css/main.bc47369f.css.map",
-    "main.9fe9ad0a.js.map": "/static/js/main.9fe9ad0a.js.map"
+    "main.14d8ffbb.js.map": "/static/js/main.14d8ffbb.js.map"
   },
   "entrypoints": [
     "static/css/main.bc47369f.css",
-    "static/js/main.9fe9ad0a.js"
+    "static/js/main.14d8ffbb.js"
   ]
 }

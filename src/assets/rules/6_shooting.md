@@ -19,7 +19,7 @@ __Extra Hits:__ Abilities which grant extra hits (1 hit counts as 2 for example)
 #### Long Range
 If a unit's target is outside a weapon's Short range band and in range of its Long range band it suffers -1 to its Accuracy rolls.
 ### Save Rolls
-For each "hit" suffered, the defender must assign the hit to a model. Only models that were valid targets of that attack may be assigned hits (models out of line of sight or otherwise may not be hit by that attack). Abilities or special rules which allow a model to negate hits are applied after the hit is assigned. A unit may only use one such ability, so choose the best one.
+For each "hit" suffered, the defender must assign the hit to a model. Abilities or special rules which allow a model to negate hits are applied after the hit is assigned. A unit may only use one such ability, so choose the best one.
 For each hit, roll a D10 and subtract the AP value of the weapon from the target's Save characteristic. Each result that is equal to or less than the defender's Save is successfully stopped. Any remaining hits cause the target to lose 1 wound or be killed if the target has only 1 wound. Any models with zero wounds are then removed from the table as casualties.
 
 __Automatic Failures:__ Save rolls of 10 always fail, as do any other skill checks on 10s.

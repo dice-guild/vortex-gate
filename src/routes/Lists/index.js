@@ -8,6 +8,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import EditIcon from "@mui/icons-material/Edit";
 import GroupIcon from "@mui/icons-material/Group";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import MapIcon from "@mui/icons-material/Map";
 import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 import PrintIcon from "@mui/icons-material/Print";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -74,7 +75,6 @@ import {
   EditUnit,
   EditUnitCampaign,
   RenameUnit,
-  ViewActionReference,
   ViewLegend,
   ViewPowers,
   ViewStrategies,
@@ -847,17 +847,12 @@ export default React.memo((props) => {
     ),
     [forces, list]
   );
-  const [showViewActionReference, hideViewActionReference] = useModal(
-    ({ extraProps }) => (
-      <ViewActionReference
-        hideModal={hideViewActionReference}
-        data={data}
-        isSkirmish={isSkirmish}
-        {...extraProps}
-      />
-    ),
-    [forces, list, isSkirmish]
-  );
+  const showViewActionReference = () => {
+    window.open("/#/rules", "_blank");
+  };
+  const showScenarioBuilder = () => {
+    window.open("/#/scenarios", "_blank");
+  };
   const [showUpdateList, hideUpdateList] = useModal(
     ({ extraProps }) => (
       <UpdateList
@@ -909,6 +904,11 @@ export default React.memo((props) => {
                 name: "Reference",
                 icon: <MenuBookIcon />,
                 onClick: () => showViewActionReference(),
+              },
+              {
+                name: "Scenarios",
+                icon: <MapIcon />,
+                onClick: () => showScenarioBuilder(),
               },
             ]
           : []),
@@ -1638,7 +1638,10 @@ export default React.memo((props) => {
                             );
                             const hasPowerRule = find(
                               get(unit, "selectedRules", []),
-                              (rule) => rule.id === "power" || rule === "power" || rule === "conclave"
+                              (rule) =>
+                                rule.id === "power" ||
+                                rule === "power" ||
+                                rule === "conclave"
                             );
                             const hasOptions = !!unit?.optionList?.length;
                             return (

@@ -13,13 +13,14 @@ import actions from 'assets/rules/4_actions.md';
 import movement from 'assets/rules/5_movement.md';
 import shooting from 'assets/rules/6_shooting.md';
 import fighting from 'assets/rules/7_fighting.md';
-import shock from 'assets/rules/8_shock.md';
+import morale from 'assets/rules/8_morale.md';
 import reactions from 'assets/rules/9_reactions.md';
 import terrain from 'assets/rules/10_terrain.md';
 import powers from 'assets/rules/11_powers.md';
-import force_building from 'assets/rules/12_force_building.md';
-import scenarios from 'assets/rules/13_scenarios.md';
-import multiplayer from 'assets/rules/14_multiplayer.md';
+import tactic_points from 'assets/rules/12_tactic_points.md';
+import force_building from 'assets/rules/13_force_building.md';
+import scenarios from 'assets/rules/14_scenarios.md';
+import multiplayer from 'assets/rules/15_multiplayer.md';
 import { Navigate, useNavigate, useParams } from 'react-router';
 import { PrettyHeader } from 'components/pretty-header';
 
@@ -52,9 +53,9 @@ export const CHAPTERS = {
     name: "Fighting",
     page: fighting
   },
-  shock: {
-    name: "Shock and Morale",
-    page: shock
+  morale: {
+    name: "Morale",
+    page: morale
   },
   reactions: {
     name: "Reactions",
@@ -67,6 +68,10 @@ export const CHAPTERS = {
   powers: {
     name: "Powers",
     page: powers
+  },
+  tactic_points: {
+    name: "Tactic Points",
+    page: tactic_points
   },
   force_building: {
     name: "Force Building",

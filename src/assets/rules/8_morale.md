@@ -1,7 +1,7 @@
-# Shock and Morale
+# Morale
 When units come under fire, their effectiveness decreases and they may even be forced to fall back.
 
-### Gaining Shock
+### Shock Points
 Units gain a Shock when any of the following occur:
 * A unit is hit by an attack
 * A unit within 3" is destroyed

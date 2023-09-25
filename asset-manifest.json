@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.bc47369f.css",
-    "main.js": "/static/js/main.14d8ffbb.js",
+    "main.js": "/static/js/main.f6408ffc.js",
     "static/media/background2.jpg": "/static/media/background2.c82d7304a6d7ed1a8558.jpg",
     "static/media/background3.jpg": "/static/media/background3.d3939783303931222832.jpg",
     "static/media/background4.jpg": "/static/media/background4.ec3dc4a91f1f53fd3104.jpg",
@@ -9,8 +9,8 @@
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
     "static/media/13_force_building.md": "/static/media/13_force_building.90b2895a5b378f5c8503.md",
-    "static/media/6_shooting.md": "/static/media/6_shooting.e908d68ce088d892296e.md",
     "static/media/2_datasheets.md": "/static/media/2_datasheets.17ca55a72aaefaba5517.md",
+    "static/media/6_shooting.md": "/static/media/6_shooting.0f53e42ae23db18e6b32.md",
     "static/media/4_actions.md": "/static/media/4_actions.8083d1b6f7be9e756400.md",
     "static/media/10_terrain.md": "/static/media/10_terrain.b97aa0fda4c95b227919.md",
     "static/media/14_scenarios.md": "/static/media/14_scenarios.332e0d9a92caf78ef4ab.md",
@@ -25,10 +25,10 @@
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.bc47369f.css.map": "/static/css/main.bc47369f.css.map",
-    "main.14d8ffbb.js.map": "/static/js/main.14d8ffbb.js.map"
+    "main.f6408ffc.js.map": "/static/js/main.f6408ffc.js.map"
   },
   "entrypoints": [
     "static/css/main.bc47369f.css",
-    "static/js/main.14d8ffbb.js"
+    "static/js/main.f6408ffc.js"
   ]
 }

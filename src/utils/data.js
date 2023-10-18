@@ -2394,6 +2394,10 @@ export const DataAPI = (data, root = {}) => {
     return Object.values(getMissions().secondaries || {});
   };
 
+  const getMissionPrimaries = () => {
+    return Object.values(getMissions().primaries || {});
+  };
+
   return {
     getNameLists,
     getNameList,
@@ -2467,6 +2471,7 @@ export const DataAPI = (data, root = {}) => {
     getCategory,
     getMissions,
     getMissionScenarios,
+    getMissionPrimaries,
     getMissionSecondaries,
     getMissionWeather,
     getMissionConditions,

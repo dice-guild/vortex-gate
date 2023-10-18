@@ -19,8 +19,7 @@ import { PrettyHeader } from "components/pretty-header";
 import RefreshIcon from "@mui/icons-material/Refresh";
 
 export function MissionGenerator() {
-  const [{ data: nope, appState, setAppState }] =
-    React.useContext(DataContext);
+  const [{ data: nope, appState, setAppState }] = React.useContext(DataContext);
   const nameFilter = appState?.searchText;
   const globalData = mergeGlobalData({ gameType: "battle" }, nope);
   const data = DataAPI({}, globalData);
@@ -66,8 +65,14 @@ export function MissionGenerator() {
     "mission_generator_randomSecondary",
     getRandomItems(secondaries, 3)
   );
+  const primaries = data.getMissionPrimaries();
+  const [randomPrimary, setRandomPrimary] = useLocalStorage(
+    "mission_generator_randomPrimary",
+    getRandomItem(primaries)
+  );
   const generateNewMission = () => {
     setRandomMission(getRandomItem(missions));
+    setRandomPrimary(getRandomItem(primaries));
     setRandomWeather(getRandomItem(weathers));
     setRandomSecondary(getRandomItems(secondaries, 3));
   };
@@ -170,16 +175,23 @@ export function MissionGenerator() {
                     }
                   />
                   <CardContent>
-                    <Typography variant="h5" component="div" gutterBottom>
-                      Capture and Hold
-                    </Typography>
-                    <Typography variant="body" color="text.primary">
+                    <div className="width-100">
+                      <Typography variant="h5" component="div" gutterBottom>
+                        {randomPrimary.name}
+                      </Typography>
+                      <div style={{ marginBottom: "0.5em" }}>
+                        <ReactMarkdown
+                          className="rule-text font-italic"
+                          style={{ breakInside: "avoid-column" }}
+                          children={randomPrimary.description}
+                        />
+                      </div>
                       <ReactMarkdown
                         className="rule-text"
                         style={{ breakInside: "avoid-column" }}
-                        children={randomMission.victory_conditions}
+                        children={randomPrimary.rules}
                       />
-                    </Typography>
+                    </div>
                   </CardContent>
                 </Card>
               </Grid>

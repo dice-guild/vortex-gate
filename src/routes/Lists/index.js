@@ -89,9 +89,8 @@ const pageStyle = `
 
 export default React.memo((props) => {
   const { listId } = useParams();
-  const [{ data: someData, setData, userPrefs, setAppState }] =
-    useContext(DataContext);
-  const lists = get(someData, `lists`, {});
+  const [{ data: someData, userPrefs, setAppState }] = useContext(DataContext);
+  const [lists, setRawLists] = useLocalStorage("lists", {});
   const list = get(lists, `[${listId}]`, {});
   const gameName = get(list, "gameId");
   const game = get(someData, `gameData`, {});
@@ -505,13 +504,10 @@ export default React.memo((props) => {
   };
   const setLists = (listData) => {
     const newGameData = {
-      ...someData,
-      lists: {
-        ...get(someData, "lists", {}),
-        ...listData,
-      },
+      ...lists,
+      ...listData,
     };
-    setData(newGameData);
+    setRawLists(newGameData);
   };
   const updateList = (newData) => {
     setLists({

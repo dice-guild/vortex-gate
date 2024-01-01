@@ -33,9 +33,10 @@ import { AddList, UpdateList, ShareList } from "routes/rosters/modals";
 import { downloadFile, readFileContent } from "utils/files";
 import { v4 as uuidv4 } from "uuid";
 import { PrettyHeader } from "components/pretty-header";
+import { useLocalStorage } from "hooks/use-localstorage";
 
 export default React.memo((props) => {
-  const [{ data: nope, coreData, setData, appState, userPrefs, setAppState }] =
+  const [{ data: nope, appState, userPrefs, setAppState }] =
     React.useContext(DataContext);
   const nameFilter = appState?.searchText;
   const fileDialog = React.useRef();
@@ -47,19 +48,17 @@ export default React.memo((props) => {
     [location.search]
   );
   const shareData = queryParams?.get("share");
-  const lists = get(nope, `lists`, {});
+  const [lists, setRawLists] = useLocalStorage("lists", {});
   const { enqueueSnackbar } = useSnackbar();
   const setLists = React.useCallback(
     (listData) => {
       const newGameData = {
-        ...coreData,
-        lists: {
-          ...listData,
-        },
+        ...lists,
+        ...listData,
       };
-      setData(newGameData);
+      setRawLists(newGameData);
     },
-    [coreData, setData]
+    [setRawLists, lists]
   );
   const importList = React.useCallback(
     (listObject) => {
@@ -379,7 +378,13 @@ export default React.memo((props) => {
                         sx={{ py: 1.5 }}
                         onClick={() => goToList(list.id)}
                       >
-                        <ListItemText primary={list.name} secondary={[(pointLimit ? `${pointLimit}pts` : undefined), startCase(type)].join(' - ')} />
+                        <ListItemText
+                          primary={list.name}
+                          secondary={[
+                            pointLimit ? `${pointLimit}pts` : undefined,
+                            startCase(type),
+                          ].join(" - ")}
+                        />
                       </ListItemButton>
                     </ListItem>
                   </>

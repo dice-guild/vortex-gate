@@ -119,7 +119,6 @@ export const useDataFetcher = (myUrl) => {
         factions: merge(coreData?.factions, factionData),
       },
       customData: {},
-      lists: get(data, "lists", {}),
     };
     updateData(allData);
     return allData;

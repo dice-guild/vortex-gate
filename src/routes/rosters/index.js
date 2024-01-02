@@ -53,12 +53,11 @@ export default React.memo((props) => {
   const setLists = React.useCallback(
     (listData) => {
       const newGameData = {
-        ...lists,
         ...listData,
       };
       setRawLists(newGameData);
     },
-    [setRawLists, lists]
+    [setRawLists]
   );
   const importList = React.useCallback(
     (listObject) => {

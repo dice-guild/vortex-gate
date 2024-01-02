@@ -65,12 +65,12 @@ export const Factions = (props) => {
             <Grid container spacing={1}>
               {factions.map((faction, index) => {
                 return (
-                  <Grid item sm={12} md={6} lg={4}>
+                  <Grid item md={6}>
                     <Card sx={{ my: 1 }}>
                       <CardActionArea onClick={() => goToFaction(faction)}>
                         {!!faction.image && (
                           <CardMedia
-                            sx={{ height: 250 }}
+                            sx={{ height: 300 }}
                             image={faction.image}
                             title="green iguana"
                           />

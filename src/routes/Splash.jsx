@@ -174,7 +174,7 @@ export default function Home() {
         style={{
           backgroundImage: `url(${bgImage2})`,
           backgroundPosition: "center",
-          backgroundSize: "cover",
+          backgroundSize: "cover"
         }}
       >
         <Box

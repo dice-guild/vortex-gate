@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.bc47369f.css",
-    "main.js": "/static/js/main.e5673851.js",
-    "static/media/background2.jpg": "/static/media/background2.c82d7304a6d7ed1a8558.jpg",
-    "static/media/background3.jpg": "/static/media/background3.d3939783303931222832.jpg",
-    "static/media/background4.jpg": "/static/media/background4.ec3dc4a91f1f53fd3104.jpg",
+    "main.js": "/static/js/main.029e1d2d.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
+    "static/media/background4.jpg": "/static/media/background4.2c766f77cd4a5d334dd4.jpg",
+    "static/media/background3.jpg": "/static/media/background3.ddc0c489b2d325ff9d1a.jpg",
+    "static/media/background2.jpg": "/static/media/background2.48c1f9217ba1b6bf1ca4.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
     "static/media/2_datasheets.md": "/static/media/2_datasheets.17ca55a72aaefaba5517.md",
@@ -25,10 +25,10 @@
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.bc47369f.css.map": "/static/css/main.bc47369f.css.map",
-    "main.e5673851.js.map": "/static/js/main.e5673851.js.map"
+    "main.029e1d2d.js.map": "/static/js/main.029e1d2d.js.map"
   },
   "entrypoints": [
     "static/css/main.bc47369f.css",
-    "static/js/main.e5673851.js"
+    "static/js/main.029e1d2d.js"
   ]
 }

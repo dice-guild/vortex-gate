@@ -10,6 +10,7 @@ import { OptionList } from "components/roster/option-list";
 import { StyledTableRow } from "components/styled-table";
 import { isNumber } from "lodash";
 import { useState } from "react";
+import { formatRuleVariables } from "utils/data";
 import { formatModel } from "utils/format";
 
 export const UnitStats = (props) => {
@@ -28,7 +29,7 @@ export const UnitStats = (props) => {
   const theme = useTheme();
   const borderColor = theme.palette.primary.main;
   const thStyle = {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   };
   const btnStyle = { borderColor };
   const unitModels = (models ? models : data.getModels(unit, faction)).filter(
@@ -121,42 +122,50 @@ export const UnitStats = (props) => {
                   <TableHead>
                     <StyledTableRow style={thStyle}>
                       <TableCell>{"Model"}</TableCell>
-                      <TableCell align="center">{"Mov"}</TableCell>
+                      <TableCell align="center">{"M"}</TableCell>
                       <TableCell align="center">{"Acc"}</TableCell>
                       <TableCell align="center">{"Str"}</TableCell>
-                      <TableCell align="center">{"Sav"}</TableCell>
-                      <TableCell align="center">{"Init"}</TableCell>
+                      <TableCell align="center">{"Sv"}</TableCell>
+                      <TableCell align="center">{"W"}</TableCell>
+                      <TableCell align="center">{"In"}</TableCell>
                       <TableCell align="center">{"Co"}</TableCell>
                     </StyledTableRow>
                   </TableHead>
                   <TableBody>
-                    {unitModels.map((model) => (
-                      <StyledTableRow>
-                        <TableCell>{model.name}</TableCell>
-                        <TableCell align="center">
-                          {`${
-                            isNumber(model.movement)
-                              ? `${model.movement}"`
-                              : model.movement
-                          }`}
-                        </TableCell>
-                        <TableCell align="center">
-                          {`${!!model.shoot ? `${model.shoot}` : "-"}`}
-                        </TableCell>
-                        <TableCell align="center">
-                          {`${!!model.fight ? `${model.fight}` : "-"}`}
-                        </TableCell>
-                        <TableCell align="center">
-                          {`${!!model.defense ? `${model.defense}` : "-"}`}
-                        </TableCell>
-                        <TableCell align="center">
-                          {`${!!model.reflexes ? `${model.reflexes}` : "-"}`}
-                        </TableCell>
-                        <TableCell align="center">
-                          {`${!!model.courage ? `${model.courage}` : "-"}`}
-                        </TableCell>
-                      </StyledTableRow>
-                    ))}
+                    {unitModels.map((model) => {
+                      const ruleMap = formatRuleVariables(model?.rules || []);
+                      const modelWounds = model.wounds || ruleMap?.wounds?.x;
+                      return (
+                        <StyledTableRow>
+                          <TableCell>{model.name}</TableCell>
+                          <TableCell align="center">
+                            {`${
+                              isNumber(model.movement)
+                                ? `${model.movement}"`
+                                : model.movement
+                            }`}
+                          </TableCell>
+                          <TableCell align="center">
+                            {`${!!model.shoot ? `${model.shoot}` : "-"}`}
+                          </TableCell>
+                          <TableCell align="center">
+                            {`${!!model.fight ? `${model.fight}` : "-"}`}
+                          </TableCell>
+                          <TableCell align="center">
+                            {`${!!model.defense ? `${model.defense}` : "-"}`}
+                          </TableCell>
+                          <TableCell align="center">
+                            {`${!!modelWounds ? `${modelWounds}` : 1}`}
+                          </TableCell>
+                          <TableCell align="center">
+                            {`${!!model.reflexes ? `${model.reflexes}` : "-"}`}
+                          </TableCell>
+                          <TableCell align="center">
+                            {`${!!model.courage ? `${model.courage}` : "-"}`}
+                          </TableCell>
+                        </StyledTableRow>
+                      );
+                    })}
                   </TableBody>
                 </Table>
               </TableContainer>

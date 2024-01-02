@@ -23,17 +23,19 @@ This is a list of keywords that are referenced by some abilities. These are typi
 ## Model Characteristics
 Each model in a unit has the following characteristics:
 
-#### Movement (Mov)
+#### Movement (M)
 This is the unit's base movement distance in inches.
 #### Accuracy (Acc)
 This is the value required to hit when performing a shooting attack.
 #### Strength (Str)
 This is the value required to hit when performing a melee attack.
-#### Save (Sav)
+#### Save (Sv)
 This is the value required when attempting to stop enemy attacks.
-#### Initiative (Init)
+#### Initiative (In)
 This is the value required when attempting to cross terrain, escape from assaults or perform reactions.
 #### Courage (Co)
+This is the value required when attempting to clear Shock or take break tests.
+#### Wounds (W)
 This is the value required when attempting to clear Shock or take break tests.
 #### Special
 Any special rules associated with this particular model.

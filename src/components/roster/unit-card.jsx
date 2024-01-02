@@ -1,13 +1,19 @@
-import {
-  faBook,
-  faBug
-} from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBug } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-  Card, CardContent, CardHeader, Chip, Divider, IconButton, ListItemIcon,
+  Card,
+  CardContent,
+  CardHeader,
+  Chip,
+  Divider,
+  IconButton,
+  ListItemIcon,
   ListItemText,
-  Menu, MenuItem, Typography, useTheme
+  Menu,
+  MenuItem,
+  Typography,
+  useTheme,
 } from "@mui/material";
 import { Dropdown } from "components/dropdown";
 import { DescriptionModal, UnitDebugModal } from "components/roster/modals";
@@ -20,8 +26,6 @@ import { get, uniq } from "lodash";
 import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { formatLevel } from "utils/format";
-
-
 
 export const UnitCard = (props) => {
   const {
@@ -45,7 +49,7 @@ export const UnitCard = (props) => {
     showContext = false,
     userPrefs,
     powerSpecialty,
-    printMode
+    printMode,
   } = props;
   const toggler = !printMode && toggle;
   const theme = useTheme();
@@ -64,16 +68,17 @@ export const UnitCard = (props) => {
     : data.getWeaponRules([unit], faction);
   const unitSubfactions = focusView
     ? [
-      subfactionId !== "none"
-        ? `${{ ...data.getSubfaction(faction.id, subfactionId) }.name || "No"
-        } Focus`
-        : "",
-    ].filter((name) => !!name)
+        subfactionId !== "none"
+          ? `${
+              { ...data.getSubfaction(faction.id, subfactionId) }.name || "No"
+            } Focus`
+          : "",
+      ].filter((name) => !!name)
     : uniq(
-      get(unit, "subfactions", [])
-        .map((subfactionId) => data.getSubfaction(faction.id, subfactionId))
-        .map((subfac) => `${subfac.name || "No"} Focus`)
-    );
+        get(unit, "subfactions", [])
+          .map((subfactionId) => data.getSubfaction(faction.id, subfactionId))
+          .map((subfac) => `${subfac.name || "No"} Focus`)
+      );
   const unitSetbacksCount = (setbacks || []).length;
   const [showUnitDescription, hideUnitDescription] = useModal(
     ({ extraProps }) => (
@@ -110,7 +115,7 @@ export const UnitCard = (props) => {
     }
     return (
       <>
-        {(!toggler) && <Divider style={thStyle} />}
+        {!toggler && <Divider style={thStyle} />}
         <div className="unit-specialrules">
           <RuleList
             twoColumn
@@ -136,10 +141,7 @@ export const UnitCard = (props) => {
             return (
               <div className="no-break">
                 <>
-                  <ReactMarkdown
-                    children={stuff}
-                    className="rule-text"
-                  />
+                  <ReactMarkdown children={stuff} className="rule-text" />
                 </>
               </div>
             );
@@ -168,7 +170,7 @@ export const UnitCard = (props) => {
         <Dropdown>
           {({ handleClose, open, handleOpen, anchorElement }) => (
             <>
-              <IconButton onClick={handleOpen} sx={{ color: 'inherit' }}>
+              <IconButton onClick={handleOpen} sx={{ color: "inherit" }}>
                 <MoreVertIcon />
               </IconButton>
               <Menu
@@ -228,30 +230,39 @@ export const UnitCard = (props) => {
         title={
           <>
             <Typography variant="h5">
-              <span style={{ marginRight: "5px" }}>{unit.customName || unit.name}</span>
-              <small style={{ fontSize: '1rem' }}>{`(${unitPoints}pts)`}</small>
-              {level > 0 && <Chip
-                size="small"
-                color="secondary"
-                sx={{ ml: 1 }}
-                label={level ? `${formatLevel(level)}` : ""}
-              />}
-              {unitSetbacksCount > 0 && <Chip
-                size="small"
-                color="error"
-                sx={{ ml: 1 }}
-                label={unitSetbacksCount > 0
-                  ? `${unitSetbacksCount} ${unitSetbacksCount > 1 ? "Injuries" : "Injury"
-                  }`
-                  : ""}
-              />}
+              <span style={{ marginRight: "5px" }}>
+                {unit.customName || unit.name}
+              </span>
+              <small style={{ fontSize: "1rem" }}>{`(${unitPoints}pts)`}</small>
+              {level > 0 && (
+                <Chip
+                  size="small"
+                  color="secondary"
+                  sx={{ ml: 1 }}
+                  label={level ? `${formatLevel(level)}` : ""}
+                />
+              )}
+              {unitSetbacksCount > 0 && (
+                <Chip
+                  size="small"
+                  color="error"
+                  sx={{ ml: 1 }}
+                  label={
+                    unitSetbacksCount > 0
+                      ? `${unitSetbacksCount} ${
+                          unitSetbacksCount > 1 ? "Injuries" : "Injury"
+                        }`
+                      : ""
+                  }
+                />
+              )}
             </Typography>
           </>
         }
         action={getExtraActions()}
       />
       <CardContent>
-        {(!!unit.description && !printMode) && (
+        {!!unit.description && !printMode && (
           <>
             <Typography
               className="unit-description"
@@ -274,7 +285,6 @@ export const UnitCard = (props) => {
             options={embeddedOptions ? unitOptions : undefined}
           />
         </div>
-        {!!showOptions && renderOptions(data, unit, faction)}
         {!!unitWeapons.length && !printMode && (
           <div style={{ marginBottom: "0.5em" }} className="unit-weapons">
             <WeaponList
@@ -286,7 +296,12 @@ export const UnitCard = (props) => {
             />
           </div>
         )}
-        {!printMode && <>{renderModelRules(unitRules)}</>}
+        {!printMode && (
+          <div style={{ marginBottom: "0.5em" }} className="unit-weapons">
+            {renderModelRules(unitRules)}
+          </div>
+        )}
+        {!!showOptions && renderOptions(data, unit, faction)}
         {renderModelExtraRules([...(perks || []), ...(setbacks || [])])}
         <Divider />
         <span className="unit-keywords">

@@ -20,6 +20,25 @@ import {
 import { formatModel, formatWeapon } from "utils/format";
 import { getRandomItem, round5 } from "utils/math";
 
+export const formatRuleVariables = (rules) => {
+  return mapValues(
+    keyBy(rules, (rule) => rule?.id || rule),
+    (rule) => {
+      if (isString(rule)) {
+        return 1;
+      } else if (isObject(rule) && Object.keys(rule).length <= 1) {
+        return 1;
+      } else {
+        return rule;
+      }
+    }
+  );
+};
+
+export const mergeGlobalData = (game, gameData) => {
+  return get(gameData, `gameData`, {});
+};
+
 export const DataAPI = (data, root = {}) => {
   const factionList = Object.values(data.factions || {});
   const globalWeapons = data.weapons || {};
@@ -53,7 +72,7 @@ export const DataAPI = (data, root = {}) => {
       reflexes: 5,
       wounds: 1,
       defense: 5,
-      baseCost: 5,
+      baseCost: 5
     },
     woundsCost: 5,
     courageCost: 2,
@@ -1916,7 +1935,7 @@ export const DataAPI = (data, root = {}) => {
       return 0;
     }
     let points = 0;
-    // const wounds = model.wounds || CONSTANTS.baseStats.wounds;
+    const wounds = model.wounds || CONSTANTS.baseStats.wounds;
     const defense = model.defense || CONSTANTS.baseStats.defense;
     const courage = model.courage || CONSTANTS.baseStats.courage;
     const movement = isNil(model.movement)
@@ -1928,8 +1947,8 @@ export const DataAPI = (data, root = {}) => {
     // const shootCost = (shoot - 5);
     // const fightCost = (fight - 5);
     //const woundsCost = (wounds > 1) ? ((wounds - 1) * 2 * (defenseIncrease || 1)) : 0;
-    const defenseIncrease = defense - 5;
-    // const woundsCost = (wounds > 1) ? ((wounds - 1) * CONSTANTS.woundsCost * (defenseIncrease || 1)) : 0;
+    const defenseIncrease = defense - CONSTANTS.baseStats.defense;
+    const woundsCost = Math.pow((wounds - 1), 1.3) * ((defenseIncrease * 2) + CONSTANTS.baseStats.baseCost);
     const defenseCost = model.defense === "-" ? 0 : defenseIncrease * 2;
     const courageCost = model.courage === "-" ? 0 : (courage - 5) * 2;
     const movementCost = movement - 6;
@@ -1940,6 +1959,7 @@ export const DataAPI = (data, root = {}) => {
       courageCost +
       reflexCost +
       movementCost +
+      woundsCost +
       CONSTANTS.baseStats.baseCost;
     return points;
   };
@@ -1989,21 +2009,6 @@ export const DataAPI = (data, root = {}) => {
     const weaponPoints = weaponBase * weaponCount * weaponMountMult;
     points += weaponPoints;
     return points;
-  };
-
-  const formatRuleVariables = (rules) => {
-    return mapValues(
-      keyBy(rules, (rule) => rule?.id || rule),
-      (rule) => {
-        if (isString(rule)) {
-          return 1;
-        } else if (isObject(rule) && Object.keys(rule).length <= 1) {
-          return 1;
-        } else {
-          return rule;
-        }
-      }
-    );
   };
 
   /*
@@ -2477,8 +2482,4 @@ export const DataAPI = (data, root = {}) => {
     getMissionConditions,
     getTerrain,
   };
-};
-
-export const mergeGlobalData = (game, gameData) => {
-  return get(gameData, `gameData`, {});
 };

@@ -1234,7 +1234,8 @@ export default React.memo((props) => {
             !isNil(rawForceFaction.powers) &&
             !isEqual(rawForceFaction.powers, {});
           const rawSubfactions = data.getFactionSubfactions(forceFactionId);
-          const hasSubfactions = !!rawSubfactions.length;
+          console.log(rawSubfactions);
+          const hasSubfactions = !!Object.keys(rawSubfactions || {}).length;
           const factionStrategies = data.getStrategies(forceFaction);
           const units = data.getUnits(forceFaction);
           const forceLegends = get(force, "legends", []);
@@ -1360,7 +1361,6 @@ export default React.memo((props) => {
                             <ListItemText>Change Focus</ListItemText>
                           </MenuItem>
                         )}
-
                         {!!editMode && (
                           <MenuItem onClick={() => deleteForce(index)}>
                             <ListItemIcon>

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.bc47369f.css",
-    "main.js": "/static/js/main.12e260cf.js",
+    "main.js": "/static/js/main.7190bcf1.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
     "static/media/background4.jpg": "/static/media/background4.2c766f77cd4a5d334dd4.jpg",
     "static/media/background3.jpg": "/static/media/background3.ddc0c489b2d325ff9d1a.jpg",
     "static/media/background2.jpg": "/static/media/background2.48c1f9217ba1b6bf1ca4.jpg",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
-    "static/media/2_datasheets.md": "/static/media/2_datasheets.17ca55a72aaefaba5517.md",
+    "static/media/2_datasheets.md": "/static/media/2_datasheets.89f7943f1c391bdf8a52.md",
     "static/media/6_shooting.md": "/static/media/6_shooting.0f53e42ae23db18e6b32.md",
     "static/media/4_actions.md": "/static/media/4_actions.8083d1b6f7be9e756400.md",
     "static/media/10_terrain.md": "/static/media/10_terrain.b97aa0fda4c95b227919.md",
@@ -25,10 +25,10 @@
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.bc47369f.css.map": "/static/css/main.bc47369f.css.map",
-    "main.12e260cf.js.map": "/static/js/main.12e260cf.js.map"
+    "main.7190bcf1.js.map": "/static/js/main.7190bcf1.js.map"
   },
   "entrypoints": [
     "static/css/main.bc47369f.css",
-    "static/js/main.12e260cf.js"
+    "static/js/main.7190bcf1.js"
   ]
 }

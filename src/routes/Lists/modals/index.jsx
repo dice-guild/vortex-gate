@@ -5,6 +5,7 @@ import {
   Visibility,
 } from "@mui/icons-material";
 import {
+  Avatar,
   Button,
   Checkbox,
   Chip,
@@ -20,6 +21,7 @@ import {
   InputLabel,
   LinearProgress,
   ListItem,
+  ListItemAvatar,
   ListItemButton,
   ListItemText,
   ListSubheader,
@@ -370,6 +372,14 @@ export const AddForce = (props) => {
                                   setFaction(org.id);
                                 }}
                               >
+                                <ListItemAvatar>
+                                  <Avatar
+                                    sx={{ p: 0 }}
+                                    variant="rounded"
+                                    alt="Faction image"
+                                    src={org.image}
+                                  />
+                                </ListItemAvatar>
                                 <Stack direction="row" spacing={1}>
                                   <ListItemText
                                     primary={
@@ -677,15 +687,13 @@ export const ViewStrategies = (props) => {
                 >
                   {phaseData.name || "Any Phase"}
                 </Typography>
-                <div className="two-columns">
-                  {sortedStrategies.map((strategy, index) => (
-                    <div key={index} className="no-break">
-                      <Box sx={{ mb: 2 }}>
-                        <StrategyCard strategy={strategy} faction={faction} />
-                      </Box>
-                    </div>
-                  ))}
-                </div>
+                {sortedStrategies.map((strategy, index) => (
+                  <div key={index} className="no-break">
+                    <Box sx={{ mb: 2 }}>
+                      <StrategyCard strategy={strategy} faction={faction} />
+                    </Box>
+                  </div>
+                ))}
               </div>
             );
           })}
@@ -745,15 +753,13 @@ export const ViewPowers = (props) => {
                     {phaseData.name || "Any Specialty"}
                   </Typography>
                 </div>
-                <div className="two-columns">
-                  {sortedStrategies.map((power, index) => (
-                    <div key={index} className="no-break">
-                      <Box sx={{ mb: 2 }}>
-                        <PowerCard faction={faction} power={power} />
-                      </Box>
-                    </div>
-                  ))}
-                </div>
+                {sortedStrategies.map((power, index) => (
+                  <div key={index} className="no-break">
+                    <Box sx={{ mb: 2 }}>
+                      <PowerCard faction={faction} power={power} />
+                    </Box>
+                  </div>
+                ))}
               </>
             );
           })}

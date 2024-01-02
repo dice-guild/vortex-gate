@@ -81,6 +81,7 @@ import {
   ViewUnit,
 } from "./modals";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { PrettyHeader } from "components/pretty-header";
 
 const PrintStyles = styled.div``;
 
@@ -1112,21 +1113,23 @@ export default React.memo((props) => {
       <div style={{ display: "none" }}>
         <PrintStyles ref={componentRef}>{renderPrintMode()}</PrintStyles>
       </div>
-      <Container>
-        <Typography
-          style={{ wordBreak: "break-all" }}
-          variant="h4"
-          align="center"
-          sx={{ mb: 1 }}
-        >{`${list.name}`}</Typography>
-        <Typography align="center" sx={{ mb: 2 }}>
-          {`${listTypeName}, ${currentForcePoints}/${totalForcePoints} pts`},
-          {listType === "campaign"
-            ? ` ${totalForceReservePoints} pts Reserve,`
-            : ""}
-          {` ${totalSP} TP`},{" "}
-          {`${legendLimit} Legend${legendLimit > 1 ? "s" : ""}`}
-        </Typography>
+      <PrettyHeader
+        text={
+          <>
+            {list.name}{" "}
+            <Typography align="center" sx={{ mb: 2 }}>
+              {`${listTypeName}, ${currentForcePoints}/${totalForcePoints} pts`}
+              ,
+              {listType === "campaign"
+                ? ` ${totalForceReservePoints} pts Reserve,`
+                : ""}
+              {` ${totalSP} TP`},{" "}
+              {`${legendLimit} Legend${legendLimit > 1 ? "s" : ""}`}
+            </Typography>
+          </>
+        }
+      />
+      <Container sx={{ mt: 1 }}>
         {validationErrors.map((error, idx) => (
           <Alert
             key={idx}
@@ -1234,7 +1237,6 @@ export default React.memo((props) => {
             !isNil(rawForceFaction.powers) &&
             !isEqual(rawForceFaction.powers, {});
           const rawSubfactions = data.getFactionSubfactions(forceFactionId);
-          console.log(rawSubfactions);
           const hasSubfactions = !!Object.keys(rawSubfactions || {}).length;
           const factionStrategies = data.getStrategies(forceFaction);
           const units = data.getUnits(forceFaction);

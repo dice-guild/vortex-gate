@@ -276,7 +276,7 @@ export default function Home() {
                 />
               </div>
               <Typography variant="h5" gutterBottom>
-                Strategic Gameplay
+                Deep Strategy
               </Typography>
               <Typography style={{ fontSize: 16 }} paragraph>
                 The rules employ alternating activations to keep both players

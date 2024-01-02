@@ -8,6 +8,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -23,6 +24,7 @@ export const Factions = (props) => {
   const alliances = data.getRawAlliances();
   const showBeta = userPrefs.showBeta;
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const factions = sortBy(
     data
       .getFactions(gameName)
@@ -68,7 +70,7 @@ export const Factions = (props) => {
                       <CardActionArea onClick={() => goToFaction(faction)}>
                         {!!faction.image && (
                           <CardMedia
-                            sx={{ height: 300 }}
+                            sx={{ height: isMobile ? 250 : 300 }}
                             image={faction.image}
                             title="green iguana"
                           />

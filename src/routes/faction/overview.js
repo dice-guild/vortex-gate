@@ -32,7 +32,6 @@ export const Overview = (props) => {
           <p>{`No information available...`}</p>
         </div>
       )}
-
       {!!description && (
         <Card
           sx={{
@@ -49,6 +48,32 @@ export const Overview = (props) => {
             }
           />
           <CardContent>{description}</CardContent>
+        </Card>
+      )}
+      {!!faction.image && (
+        <Card
+          sx={{
+            border: `2px solid ${theme.palette.primary.main}`,
+            mb: 2,
+          }}
+        >
+          <div
+            className="banner"
+            style={{
+              backgroundImage: `url(${faction.image})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          >
+            <Box
+              sx={{ display: "flex", flexDirection: "column", p: 3 }}
+              style={{
+                width: "100%",
+                background: "rgba(0,0,0,0.1)",
+                height: "100%",
+              }}
+            ></Box>
+          </div>
         </Card>
       )}
       {!!lore && (

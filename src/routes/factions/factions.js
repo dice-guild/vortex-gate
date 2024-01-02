@@ -1,7 +1,11 @@
 import {
+  Box,
   Button,
+  CardActionArea,
   CardActions,
   CardHeader,
+  CardMedia,
+  Grid,
   ListItem,
   ListItemButton,
   ListItemText,
@@ -58,38 +62,49 @@ export const Factions = (props) => {
                 }
               />
             </Card>
-            {factions.map((faction, index) => {
-              return (
-                <Card sx={{ my: 1 }}>
-                  <ListItem key={index} sx={{ p: 0 }}>
-                    <ListItemButton onClick={() => goToFaction(faction)}>
-                      <ListItemText
-                        primary={
-                          <Typography variant="h6" component="div">
-                            {faction.name}
-                          </Typography>
-                        }
-                        secondary={faction.description || " "}
-                      />
-                    </ListItemButton>
-                    {!faction.url && (
-                      <CardActions>
-                        <Button
-                          size="small"
-                          color="primary"
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            deleteFaction(game.id);
-                          }}
-                        >
-                          Delete
-                        </Button>
-                      </CardActions>
-                    )}
-                  </ListItem>
-                </Card>
-              );
-            })}
+            <Grid container spacing={1}>
+              {factions.map((faction, index) => {
+                return (
+                  <Grid item sm={12} md={6} lg={4}>
+                    <Card sx={{ my: 1 }}>
+                      <CardActionArea onClick={() => goToFaction(faction)}>
+                        {!!faction.image && (
+                          <CardMedia
+                            sx={{ height: 250 }}
+                            image={faction.image}
+                            title="green iguana"
+                          />
+                        )}
+                        <ListItem key={index} sx={{ px: 1, py: 0.5 }}>
+                          <ListItemText
+                            primary={
+                              <Typography variant="h6" component="div">
+                                {faction.name}
+                              </Typography>
+                            }
+                            secondary={faction.description || " "}
+                          />
+                          {!faction.url && (
+                            <CardActions>
+                              <Button
+                                size="small"
+                                color="primary"
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                  deleteFaction(game.id);
+                                }}
+                              >
+                                Delete
+                              </Button>
+                            </CardActions>
+                          )}
+                        </ListItem>
+                      </CardActionArea>
+                    </Card>
+                  </Grid>
+                );
+              })}
+            </Grid>
           </>
         );
       })}

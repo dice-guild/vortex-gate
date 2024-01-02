@@ -176,16 +176,7 @@ export default function Home() {
           backgroundPosition: "center",
           backgroundSize: "cover"
         }}
-      >
-        <Box
-          sx={{ display: "flex", flexDirection: "column", p: 3 }}
-          style={{
-            width: "100%",
-            background: "rgba(0,0,0,0.1)",
-            height: "100%",
-          }}
-        ></Box>
-      </div>
+      />
       <Container sx={{ my: 5 }}>
         <Typography
           variant={fullScreen ? "h1" : "h3"}
@@ -244,16 +235,7 @@ export default function Home() {
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-      >
-        <Box
-          sx={{ display: "flex", flexDirection: "column", p: 3 }}
-          style={{
-            width: "100%",
-            background: "rgba(0,0,0,0.1)",
-            height: "100%",
-          }}
-        ></Box>
-      </div>
+      />
       <Container sx={{ my: 5 }}>
         <Typography
           variant={fullScreen ? "h1" : "h3"}
@@ -382,16 +364,7 @@ export default function Home() {
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-      >
-        <Box
-          sx={{ display: "flex", flexDirection: "column", p: 3 }}
-          style={{
-            width: "100%",
-            background: "rgba(0,0,0,0.2)",
-            height: "100%",
-          }}
-        ></Box>
-      </div>
+      />
     </>
   );
 }

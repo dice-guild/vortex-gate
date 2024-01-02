@@ -34,7 +34,7 @@ export const UnitStats = (props) => {
   const btnStyle = { borderColor };
   const unitModels = (models ? models : data.getModels(unit, faction)).filter(
     (model) =>
-      !(model.shoot === "-" && model.fight === "-" && model.save === "-")
+      !(!model.shoot || (model.shoot === "-") && (!model.fight || model.fight === "-") && (!model.save || model.save === "-"))
   );
   const perkString =
     perks && perks.length

@@ -13,7 +13,6 @@ import {
   Box,
   ClickAwayListener,
   Tooltip,
-  Typography,
   useTheme,
 } from "@mui/material";
 import { Dropdown } from "components/dropdown";

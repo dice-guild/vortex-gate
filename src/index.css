@@ -234,6 +234,10 @@ strong b {
   cursor: pointer;
 }
 
+.font-16 {
+  font-size: 10pt;
+}
+
 /* .logo:hover {
   opacity: 0.8;
 } */
@@ -491,4 +495,12 @@ input[type=number] {
   .banner {
     height: 350px;
   }
+}
+
+.MuiTooltip-tooltip {
+  background: rgba(0, 0, 0, 0.92) !important;
+}
+
+.MuiTooltip-arrow {
+  color: rgba(0, 0, 0, 0.92) !important;
 }

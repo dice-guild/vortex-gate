@@ -52,7 +52,7 @@ export default function Home() {
     },
     {
       name: "Factions",
-      background: armory,
+      background: posters,
       text: "Browse all of the available game factions to play.",
       to: "/factions",
       icon: <SwordCrossIcon style={{ fontSize: iconSize }} />,
@@ -60,7 +60,7 @@ export default function Home() {
     },
     {
       name: "Rosters",
-      background: posters,
+      background: armory,
       text: "Create and browse rosters to use during your games.",
       to: "/lists",
       icon: <FeaturedPlayListIcon style={{ fontSize: iconSize }} />,

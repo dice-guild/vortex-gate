@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { get } from "lodash";
 import { RuleList } from "components/roster/rule-list";
 import Collapse from "@mui/material/Collapse";
@@ -9,15 +9,31 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import { StyledTableRow } from "components/styled-table";
-import { useTheme } from "@mui/material";
+import {
+  Box,
+  ClickAwayListener,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { Dropdown } from "components/dropdown";
+import ReactMarkdown from "react-markdown";
 
 export const WeaponList = (props) => {
-  const { weapons, faction, data, toggler, rules, twoColumns = true } = props;
+  const {
+    weapons,
+    faction,
+    data,
+    toggler,
+    rules,
+    twoColumns = true,
+    showRules = false,
+  } = props;
   const theme = useTheme();
   const borderColor = theme.palette.primary.main;
   const btnStyle = { borderColor };
   const thStyle = {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   };
   const [showWeapons, setShowWeapons] = useState(false);
   const renderRules = (rules) => {
@@ -28,6 +44,47 @@ export const WeaponList = (props) => {
       <div>
         <RuleList twoColumn={twoColumns} faction={faction} rules={rules} />
       </div>
+    );
+  };
+  const renderRuleTooltip = (rule, ruleData) => {
+    const ruleString = ruleData.inputs
+      ? `${ruleData.name}(${ruleData.inputs
+          .map((input) => rule[input])
+          .join(", ")})`
+      : ruleData.name;
+    return (
+      <Dropdown>
+        {({ handleClose, open, handleOpen, anchorElement }) => (
+          <>
+            <ClickAwayListener onClickAway={handleClose}>
+              <Tooltip
+                arrow
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                className="clickable"
+                onClose={handleClose}
+                open={open}
+                title={
+                  <ReactMarkdown
+                    className="rule-text font-16"
+                    children={ruleData.description}
+                  />
+                }
+                placement="top"
+              >
+                <Box
+                  sx={{ pr: 1 }}
+                  style={{ display: "inline", textDecoration: "underline" }}
+                  onClick={handleOpen}
+                >
+                  {ruleString}
+                </Box>
+              </Tooltip>
+            </ClickAwayListener>
+          </>
+        )}
+      </Dropdown>
     );
   };
   return (
@@ -49,7 +106,7 @@ export const WeaponList = (props) => {
         </div>
       )}
       <Collapse in={!toggler || showWeapons}>
-        <TableContainer sx={{ borderRadius: '2px', mb: 1 }}>
+        <TableContainer sx={{ borderRadius: "2px", mb: 1 }}>
           <Table size="small" style={{ borderColor: borderColor }}>
             <TableHead>
               <StyledTableRow style={thStyle}>
@@ -85,22 +142,18 @@ export const WeaponList = (props) => {
                           {weaponProfile.ap || "-"}
                         </TableCell>
                         <TableCell>
-                          {[
-                            ...get(weapon, "rules", []),
-                            ...get(weaponProfile, "rules", []),
-                          ]
-                            .map((rule) => {
+                          <Box display="flex" flexWrap="wrap">
+                            {[
+                              ...get(weapon, "rules", []),
+                              ...get(weaponProfile, "rules", []),
+                            ].map((rule) => {
                               const ruleData = data.getRule(
                                 rule.id || rule,
                                 faction
                               );
-                              return ruleData.inputs
-                                ? `${ruleData.name}(${ruleData.inputs
-                                    .map((input) => rule[input])
-                                    .join(", ")})`
-                                : ruleData.name;
-                            })
-                            .join(", ") || "-"}
+                              return renderRuleTooltip(rule, ruleData);
+                            })}
+                          </Box>
                         </TableCell>
                       </StyledTableRow>
                     );
@@ -121,19 +174,15 @@ export const WeaponList = (props) => {
                     </TableCell>
                     <TableCell align="center">{weapon.ap || "-"}</TableCell>
                     <TableCell>
-                      {get(weapon, "rules", [])
-                        .map((rule) => {
+                      <Box display="flex" flexWrap="wrap">
+                        {get(weapon, "rules", []).map((rule) => {
                           const ruleData = data.getRule(
                             rule.id || rule,
                             faction
                           );
-                          return ruleData.inputs
-                            ? `${ruleData.name}(${ruleData.inputs
-                                .map((input) => rule[input])
-                                .join(", ")})`
-                            : ruleData.name;
-                        })
-                        .join(", ") || "-"}
+                          return renderRuleTooltip(rule, ruleData);
+                        })}
+                      </Box>
                     </TableCell>
                   </StyledTableRow>
                 );
@@ -141,7 +190,7 @@ export const WeaponList = (props) => {
             </TableBody>
           </Table>
         </TableContainer>
-        {!!(rules && rules.length) && <>{renderRules(rules)}</>}
+        {!!(showRules && rules && rules.length) && <>{renderRules(rules)}</>}
       </Collapse>
     </div>
   );

@@ -26,7 +26,7 @@ export const WeaponList = (props) => {
     toggler,
     rules,
     twoColumns = true,
-    showRules = false,
+    printMode = false,
   } = props;
   const theme = useTheme();
   const borderColor = theme.palette.primary.main;
@@ -189,7 +189,7 @@ export const WeaponList = (props) => {
             </TableBody>
           </Table>
         </TableContainer>
-        {!!(showRules && rules && rules.length) && <>{renderRules(rules)}</>}
+        {!!(printMode && rules && rules.length) && <>{renderRules(rules)}</>}
       </Collapse>
     </div>
   );

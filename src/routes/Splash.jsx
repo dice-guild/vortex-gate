@@ -162,7 +162,9 @@ export default function Home() {
                         spacing={1}
                         sx={{ mt: 25, p: 2 }}
                       >
-                        <Box sx={{ mr: 1, color: theme.palette.primary.main }}>{card.icon}</Box>
+                        <Box sx={{ mr: 1, color: theme.palette.primary.main }}>
+                          {card.icon}
+                        </Box>
                         <Stack>
                           <Typography
                             variant={fullScreen ? "h4" : "h5"}
@@ -217,7 +219,7 @@ export default function Home() {
             </Typography>
             <Box display="flex" alignItems="center" justifyContent="center">
               <Button
-                style={{ color: "white", fontSize: 16, textTransform: 'none' }}
+                style={{ color: "white", fontSize: 16, textTransform: "none" }}
                 variant="outlined"
                 onClick={() =>
                   window.open("https://discord.com/invite/M9sets4", "_blank")

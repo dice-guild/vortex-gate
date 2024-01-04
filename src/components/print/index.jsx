@@ -1,4 +1,4 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, Typography, useTheme } from '@mui/material';
 import { WeaponList } from 'components/print/weapon-list';
 import { RelicCard } from 'components/roster/relic-card';
 import { RuleList } from 'components/roster/rule-list';
@@ -11,6 +11,7 @@ import { getTextColor, hexToRgb } from 'utils/colors';
 
 export const PrintView = (props) => {
   const { list, forces, data } = props;
+  const theme = useTheme();
   const LIST_TYPES = [
     { label: 'Competitive', value: 'competitive' },
     { label: 'Narrative', value: 'narrative' },
@@ -74,11 +75,11 @@ export const PrintView = (props) => {
           const { color: factionColor, secondary_color: factionSecondaryColor } = forceFaction;
           const textColor = factionColor ? getTextColor(hexToRgb(factionColor)) : 'white';
           const textColorSecondary = factionSecondaryColor ? getTextColor(hexToRgb(factionSecondaryColor)) : 'white';
-          const borderColor = (textColor !== 'white') ? textColor : factionColor;
+          const borderColor = theme.palette.primary.main;
           const btnStyle = { borderColor };
-          const thStyle = { backgroundColor: factionColor, color: textColor };
+          const thStyle = { backgroundColor: theme.palette.primary.main, color: textColor };
           const thStyle2 = {
-            backgroundColor: factionSecondaryColor || factionColor,
+            backgroundColor: theme.palette.primary.main || factionColor,
             color: factionSecondaryColor ? textColorSecondary : textColor,
           };
           const forceCategories = Object.keys(get(force, 'categories', {}));

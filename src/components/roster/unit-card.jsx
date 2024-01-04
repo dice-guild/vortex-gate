@@ -288,6 +288,7 @@ export const UnitCard = (props) => {
         {!!unitWeapons.length && !printMode && (
           <div style={{ marginBottom: "0.5em" }} className="unit-weapons">
             <WeaponList
+              printMode={printMode}
               toggler={toggler}
               weapons={unitWeapons}
               faction={faction}

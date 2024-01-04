@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.bc47369f.css",
-    "main.js": "/static/js/main.42513568.js",
+    "main.js": "/static/js/main.dbd4561c.js",
     "static/media/background.jpg": "/static/media/background.5b140bf9a931322ebdce.jpg",
-    "static/media/background4.jpg": "/static/media/background4.971bc415680f6faa18e1.jpg",
     "static/media/background3.jpg": "/static/media/background3.ddc0c489b2d325ff9d1a.jpg",
     "static/media/background2.jpg": "/static/media/background2.48c1f9217ba1b6bf1ca4.jpg",
+    "static/media/library.png": "/static/media/library.379905904e9abc9cfb39.png",
+    "static/media/soldiers.png": "/static/media/soldiers.2d5370099b79ded2f05f.png",
+    "static/media/armory.png": "/static/media/armory.b79bc86173b567641b67.png",
     "static/media/vortex_gate_small.png": "/static/media/vortex_gate_small.e07fb5e9923f41d2c2ea.png",
     "static/media/vortex_gate_wide.png": "/static/media/vortex_gate_wide.e30f15a6a18e425ea564.png",
     "static/media/2_datasheets.md": "/static/media/2_datasheets.89f7943f1c391bdf8a52.md",
@@ -25,10 +27,10 @@
     "static/media/3_game_rounds.md": "/static/media/3_game_rounds.82e3541847a723921de0.md",
     "index.html": "/index.html",
     "main.bc47369f.css.map": "/static/css/main.bc47369f.css.map",
-    "main.42513568.js.map": "/static/js/main.42513568.js.map"
+    "main.dbd4561c.js.map": "/static/js/main.dbd4561c.js.map"
   },
   "entrypoints": [
     "static/css/main.bc47369f.css",
-    "static/js/main.42513568.js"
+    "static/js/main.dbd4561c.js"
   ]
 }

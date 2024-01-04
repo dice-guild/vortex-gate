@@ -6,6 +6,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import SwordCrossIcon from "mdi-material-ui/SwordCross";
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -24,10 +25,13 @@ import { colors } from "utils/colors";
 import bgImage from "assets/background.jpg";
 import bgImage2 from "assets/background2.jpg";
 import bgImage3 from "assets/background3.jpg";
-import bgImage4 from "assets/background4.jpg";
+import library from "assets/library.png";
+import armory from "assets/armory.png";
+import posters from "assets/soldiers.png";
 import { DataContext } from "hooks";
 import { useContext } from "react";
 import { useSnackbar } from "notistack";
+import Discord from "mdi-material-ui/Discord";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -40,23 +44,26 @@ export default function Home() {
   const CARDS = [
     {
       name: "Rules",
-      icon: <MenuBookIcon style={{ fontSize: iconSize }} />,
+      background: library,
       text: "Read any of the core rules in their digital format here.",
       to: "/rules",
+      icon: <MenuBookIcon style={{ fontSize: iconSize }} />,
       color: colors.red.import[800],
     },
     {
       name: "Factions",
-      icon: <SwordCrossIcon style={{ fontSize: iconSize }} />,
+      background: armory,
       text: "Browse all of the available game factions to play.",
       to: "/factions",
+      icon: <SwordCrossIcon style={{ fontSize: iconSize }} />,
       color: colors.green.import[900],
     },
     {
       name: "Rosters",
-      icon: <FeaturedPlayListIcon style={{ fontSize: iconSize }} />,
+      background: posters,
       text: "Create and browse rosters to use during your games.",
       to: "/lists",
+      icon: <FeaturedPlayListIcon style={{ fontSize: iconSize }} />,
       color: colors.brown.import[500],
     },
   ];
@@ -119,140 +126,121 @@ export default function Home() {
           >
             <img flex={1} className={"logo"} src={logo} alt="logo" />
           </Box>
-          <Container>
-            <Grid
-              container
-              rowSpacing={2}
-              sx={{ mt: 0, mb: 0 }}
-              columnSpacing={2}
-            >
-              {CARDS.map((card) => (
-                <Grid item sm={6} md={4}>
-                  <Card
-                    sx={{ border: `2px solid ${theme.palette.primary.main}` }}
-                  >
-                    <CardActionArea
-                      onClick={() =>
-                        card.toAbs
-                          ? window.open(card.toAbs, "_blank")
-                          : navigate(card.to)
-                      }
-                    >
-                      <CardContent>
-                        <Box
-                          display="flex"
-                          flexDirection="row"
-                          alignItems="center"
-                          justifyContent="center"
-                        >
-                          <Box
-                            sx={{ mr: 2, color: theme.palette.primary.main }}
-                          >
-                            {card.icon}
-                          </Box>
-                          <Stack>
-                            <Typography
-                              variant={fullScreen ? "h4" : "h5"}
-                              component="div"
-                            >
-                              {card.name}
-                            </Typography>
-                            <Typography align="left">{card.text}</Typography>
-                          </Stack>
-                        </Box>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
         </Box>
       </div>
-      <div
-        className="banner"
-        style={{
-          backgroundImage: `url(${bgImage2})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover"
-        }}
-      />
-      <Container sx={{ my: 5 }}>
-        <Typography
-          variant={fullScreen ? "h1" : "h3"}
-          paragraph
-          align={fullScreen ? "center" : "left"}
-          sx={{
-            mb: "0.5em",
-            borderBottom: `5px solid ${theme.palette.primary.main}`,
-          }}
-        >
-          Battles in the Celestia Expanse
-        </Typography>
-        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-          In the distant future, in a war-torn galaxy known as the Celestia
-          Expanse, countless planets and civilizations find themselves embroiled
-          in a seemingly unending conflict. The Celestia Expanse was once a
-          beacon of prosperity and interstellar cooperation, but it all changed
-          when the enigmatic Vortex Gate appeared at its center. The Vortex Gate
-          was a cosmic anomaly of immense power, emitting dark and corrupt
-          energies that spread like a plague throughout the galaxy. At its heart
-          lay an ancient and malevolent cosmic horror, dormant for eons but now
-          awakened by the ambitions and conflicts of the various civilizations
-          within the Celestia Expanse.
-        </Typography>
-        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-          Humanity, at the forefront of exploration and colonization, had formed
-          the Stellar Vanguard, an elite interstellar marine force dedicated to
-          safeguarding the galaxy from threats. The Vanguard stood as a symbol
-          of hope and valor. Eager to harness the power of the Vortex Gate for
-          the benefit of mankind, the Stellar Vanguard embarked on a daring
-          mission to investigate the anomaly. Their intentions were noble,
-          driven by the belief that understanding the gate's energies could
-          provide an advantage against their enemies. However, their encounter
-          with the Vortex Gate proved catastrophic. The corrupt cosmic horror
-          within the gate saw an opportunity to spread its malevolence further
-          and exploited the Vanguard's vulnerabilities. The dark energies of the
-          Vortex Gate twisted their minds, turning the once-virtuous Stellar
-          Vanguard into the malevolent and corrupted nightmarish beings, their
-          souls and bodies twisted by darkness.
-        </Typography>
-        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-          The Vortex Gate is both a beacon of hope and a harbinger of
-          destruction. Join the ranks of the valiant defenders or the ambitious
-          conquerors in this breathtaking sci-fi saga, where the destiny of
-          countless worlds depends on the outcome of the battle for the Celestia
-          Expanse. Prepare for an adrenaline-pumping adventure that will
-          challenge your wit, courage, and determination in the face of the
-          unknown. Are you ready to seize your place in this war-torn cosmos and
-          shape its destiny?
-        </Typography>
+      <Container sx={{ my: fullScreen ? 10 : 4 }}>
+        <Grid container rowSpacing={2} sx={{ mt: 0, mb: 0 }} columnSpacing={2}>
+          {CARDS.map((card) => (
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                style={{
+                  backgroundImage: `url(${card.background})`,
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              >
+                <CardActionArea
+                  onClick={() =>
+                    card.toAbs
+                      ? window.open(card.toAbs, "_blank")
+                      : navigate(card.to)
+                  }
+                >
+                  <CardContent sx={{ p: 0 }}>
+                    <Box
+                      display="flex"
+                      flexDirection="row"
+                      alignItems="center"
+                      justifyContent="center"
+                      textAlign="center"
+                    >
+                      <Stack
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        style={{ background: "rgb(0,0,0,0.95)", flex: 1 }}
+                        spacing={1}
+                        sx={{ mt: 25, p: 2 }}
+                      >
+                        <Box sx={{ mr: 1 }}>{card.icon}</Box>
+                        <Stack>
+                          <Typography
+                            variant={fullScreen ? "h4" : "h5"}
+                            component="div"
+                            textAlign="left"
+                          >
+                            {card.name}
+                          </Typography>
+                          <Typography align="left">{card.text}</Typography>
+                        </Stack>
+                      </Stack>
+                    </Box>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
-      <div
-        className="banner"
+      <Box
+        sx={{ py: fullScreen ? 18 : 0 }}
         style={{
           backgroundImage: `url(${bgImage3})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-      />
+      >
+        <Container style={{ background: "rgb(0,0,0,0.95)" }}>
+          <Box sx={{ py: 2 }}>
+            <Typography
+              variant={fullScreen ? "h2" : "h3"}
+              paragraph
+              align={fullScreen ? "center" : "center"}
+              sx={{
+                mb: "0.5em",
+                borderBottom: `5px solid ${theme.palette.primary.main}`,
+              }}
+            >
+              Welcome to Vortex Gate
+            </Typography>
+            <Typography
+              style={{ fontSize: 16 }}
+              textAlign="center"
+              variant="body1"
+              paragraph
+            >
+              Vortex Gate is a tactical miniature wargame designed for either
+              small clashes or large all out battles. It allows you to use any
+              miniatures you like in our simple to learn but deep to master
+              rules provide a fair set of rules for both competitive and casual
+              players alike.
+            </Typography>
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <Button
+                style={{ color: "white", fontSize: 16, textTransform: 'none' }}
+                variant="outlined"
+                onClick={() =>
+                  window.open("https://discord.com/invite/M9sets4", "_blank")
+                }
+              >
+                <Discord sx={{ mr: 1 }} />
+                Join the community
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
       <Container sx={{ my: 5 }}>
         <Typography
-          variant={fullScreen ? "h1" : "h3"}
+          variant={fullScreen ? "h2" : "h3"}
           paragraph
-          align={fullScreen ? "center" : "left"}
+          align={fullScreen ? "center" : "center"}
           sx={{
             mb: "0.5em",
             borderBottom: `5px solid ${theme.palette.primary.main}`,
           }}
         >
           Key Game Features
-        </Typography>
-        <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
-          Vortex Gate is a tactical miniature wargame designed for either small
-          clashes or large all out battles. It allows you to use any miniatures
-          you like in our simple to learn but deep to master rules provide a
-          fair set of rules for both competitive and casual players alike.
         </Typography>
         <Grid
           container
@@ -357,14 +345,70 @@ export default function Home() {
           </Grid>
         </Grid>
       </Container>
-      <div
-        className="banner"
+      <Box
+        sx={{ py: fullScreen ? 14 : 0 }}
         style={{
-          backgroundImage: `url(${bgImage4})`,
+          backgroundImage: `url(${bgImage2})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
-      />
+      >
+        <Container style={{ background: "rgb(0,0,0,0.95)" }}>
+          <Box sx={{ py: 2 }}>
+            <Typography
+              variant={fullScreen ? "h2" : "h3"}
+              paragraph
+              align={fullScreen ? "center" : "center"}
+              sx={{
+                mb: "0.5em",
+                borderBottom: `5px solid ${theme.palette.primary.main}`,
+              }}
+            >
+              Battles in the Celestia Expanse
+            </Typography>
+            <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+              In the distant future, in a war-torn galaxy known as the Celestia
+              Expanse, countless planets and civilizations find themselves
+              embroiled in a seemingly unending conflict. The Celestia Expanse
+              was once a beacon of prosperity and interstellar cooperation, but
+              it all changed when the enigmatic Vortex Gate appeared at its
+              center. The Vortex Gate was a cosmic anomaly of immense power,
+              emitting dark and corrupt energies that spread like a plague
+              throughout the galaxy. At its heart lay an ancient and malevolent
+              cosmic horror, dormant for eons but now awakened by the ambitions
+              and conflicts of the various civilizations within the Celestia
+              Expanse.
+            </Typography>
+            <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+              Humanity, at the forefront of exploration and colonization, had
+              formed the Stellar Vanguard, an elite interstellar marine force
+              dedicated to safeguarding the galaxy from threats. The Vanguard
+              stood as a symbol of hope and valor. Eager to harness the power of
+              the Vortex Gate for the benefit of mankind, the Stellar Vanguard
+              embarked on a daring mission to investigate the anomaly. Their
+              intentions were noble, driven by the belief that understanding the
+              gate's energies could provide an advantage against their enemies.
+              However, their encounter with the Vortex Gate proved catastrophic.
+              The corrupt cosmic horror within the gate saw an opportunity to
+              spread its malevolence further and exploited the Vanguard's
+              vulnerabilities. The dark energies of the Vortex Gate twisted
+              their minds, turning the once-virtuous Stellar Vanguard into the
+              malevolent and corrupted nightmarish beings, their souls and
+              bodies twisted by darkness.
+            </Typography>
+            <Typography style={{ fontSize: 16 }} variant="body1" paragraph>
+              The Vortex Gate is both a beacon of hope and a harbinger of
+              destruction. Join the ranks of the valiant defenders or the
+              ambitious conquerors in this breathtaking sci-fi saga, where the
+              destiny of countless worlds depends on the outcome of the battle
+              for the Celestia Expanse. Prepare for an adrenaline-pumping
+              adventure that will challenge your wit, courage, and determination
+              in the face of the unknown. Are you ready to seize your place in
+              this war-torn cosmos and shape its destiny?
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
     </>
   );
 }
